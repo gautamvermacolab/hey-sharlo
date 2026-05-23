@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Card Membership</title>
+    <style>
+        :root {
+            --royal-blue: #4876cf;
+            --emerald-aqua: #00c08b;
+            --sand-beige: #f0e5cf;
+            --charcoal-black: #1e1e1e;
+            --clean-white: #ffffff;
+            --deep-onyx: #111111;
+            --soft-teal: #a9f1df;
+            --glass-blur: blur(12px);
+            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--deep-onyx);
+            color: var(--sand-beige);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .card-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--sand-beige);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 2.5rem;
+            color: var(--sand-beige);
+            margin: 0;
+        }
+
+        .card-subtitle {
+            color: var(--royal-blue);
+            font-style: italic;
+        }
+
+        .benefits-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(240, 229, 207, 0.3);
+            display: flex;
+            align-items: center;
+        }
+
+        .benefits-list li:before {
+            content: "✓";
+            color: var(--royal-blue);
+            margin-right: 10px;
+        }
+
+     /* From Uiverse.io by vinodjangid07 */ 
+.Btn {
+  width: 140px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+  background-size: 250%;
+  background-position: left;
+  color: #ffd277;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.Btn::before {
+  position: absolute;
+  content: "SUBSCRIBE";
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.842);
+  background-size: 200%;
+}
+
+.Btn:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.Btn:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.Btn:active {
+  transform: scale(0.95);
+}
+
+        .coming-soon {
+            display: inline-block;
+            background-color: var(--royal-blue);
+            color: var(--clean-white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card-header">
+            <h1 class="card-title">VIP Card <span class="coming-soon">Coming Soon</span></h1>
+            <p class="card-subtitle">5 Year Membership</p>
+        </div>
+        
+        <ul class="benefits-list">
+            <li>Early access to new launches (24 hours before public)</li>
+            <li>20% discount on all products</li>
+            <li>Free gift hamper annually</li>
+            <li>Dedicated customer service</li>
+            <li>Free shipping on orders above ₹1,499</li>
+            <li>Birthday discounts</li>
+        </ul>
+
+<!-- Replace the form section with this -->
+<div class="subscribe-btn-container">
+    <a href="https://rzp.io/rzp/4o7kqffp" class="Btn">Subscribe</a>
+</div>
+    </div>
+</body>
+</html>

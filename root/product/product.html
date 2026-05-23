@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heysharlo | Products</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
+    <style>
+        :root {
+            --royal-blue: #4876cf;
+            --emerald-aqua: #00c08b;
+            --sand-beige: #f0e5cf;
+            --charcoal-black: #1e1e1e;
+            --clean-white: #ffffff;
+            --deep-onyx: #111111;
+            --soft-teal: #a9f1df;
+            --glass-blur: blur(12px);
+            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--sand-beige);
+            color: var(--deep-onyx);
+            overflow-x: hidden;
+            transition: var(--transition-all);
+            padding-top: 80px;
+        }
+
+        body.dark-mode {
+            background-color: var(--charcoal-black);
+            color: var(--clean-white);
+        }
+
+        /* Navbar (Same as homepage) */
+        .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: var(--transition-all);
+    padding: 20px 0;
+    background: rgba(240, 229, 207, 0.8);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .navbar {
+    background: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo-text {
+    background: linear-gradient(to right, #4876cf, #00c08b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 5px 0;
+}
+
+.nav-center {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding: 12px 30px;
+    margin: 0 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    border: 1px solid rgba(72, 118, 207, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.dark-mode .nav-links {
+    background: rgba(30, 30, 30, 0.1);
+    border: 1px solid rgba(0, 192, 139, 0.2);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    position: relative;
+    color: var(--deep-onyx);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: var(--transition-all);
+    padding: 8px 0;
+}
+
+.dark-mode .nav-link {
+    color: var(--clean-white);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #4876cf, #00c08b);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.login-btn {
+    padding: 10px 25px;
+    border-radius: 25px;
+    background: transparent;
+    color: var(--deep-onyx);
+    border: 1.5px solid rgba(72, 118, 207, 0.3);
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-all);
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.dark-mode .login-btn {
+    color: var(--clean-white);
+    border-color: rgba(0, 192, 139, 0.3);
+}
+
+.login-btn:hover {
+    background: linear-gradient(to right, #4876cf, #00c08b);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(72, 118, 207, 0.3);
+}
+
+.theme-toggle {
+    width: 50px;
+    height: 24px;
+    border-radius: 12px;
+    background: var(--deep-onyx);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 3px;
+    transition: var(--transition-all);
+    border: 1px solid rgba(72, 118, 207, 0.3);
+}
+
+.dark-mode .theme-toggle {
+    background: var(--sand-beige);
+    border: 1px solid rgba(0, 192, 139, 0.3);
+}
+
+.toggle-ball {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--sand-beige);
+    transition: transform 0.3s ease;
+}
+
+.dark-mode .toggle-ball {
+    background: var(--charcoal-black);
+    transform: translateX(26px);
+}
+
+
+
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--deep-onyx);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.dark-mode .mobile-menu-btn {
+    color: var(--clean-white);
+}
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    padding: 10px 0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(240, 229, 207, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu-btn {
+        display: none;
+    }
+    .mobile-menu{
+display: none;
+    }
+/* Mobile Nav */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    .nav-center {
+        display: none;
+    }
+    
+    .nav-right {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    /* Mobile menu styles */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--deep-onyx);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.dark-mode .mobile-menu-btn {
+    color: var(--clean-white);
+}
+
+/* Mobile Menu - Hidden by default */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--sand-beige);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-all);
+    z-index: 999;
+    padding: 80px 30px 30px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .mobile-menu {
+    background: var(--charcoal-black);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.mobile-menu .nav-link {
+    padding: 12px 0;
+    font-size: 1.1rem;
+}
+
+.mobile-menu .login-btn {
+    margin-top: 30px;
+    text-align: center;
+    padding: 12px;
+}
+
+.mobile-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 15px 0;
+    border-top: 1px solid rgba(72, 118, 207, 0.2);
+}
+
+.dark-mode .mobile-theme-toggle {
+    border-top: 1px solid rgba(0, 192, 139, 0.2);
+}
+
+/* Show mobile menu button only on mobile */
+@media (max-width: 992px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-center,
+    .nav-right {
+        display: none;
+    }
+    
+    .logo {
+        flex: none;
+    }
+}
+}
+
+
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    padding: 15px 0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(240, 229, 207, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Nav */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--sand-beige);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: var(--transition-all);
+        z-index: 999;
+    }
+    
+    .dark-mode .nav-links {
+        background: var(--charcoal-black);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .login-btn {
+        margin-top: 20px;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .theme-toggle {
+        margin-left: 0;
+    }
+}
+
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    padding: 10px 0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(240, 229, 207, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(30, 30, 30, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Nav */
+@media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--sand-beige);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: var(--transition-all);
+        z-index: 999;
+        backdrop-filter: var(--glass-blur);
+        left: auto;
+        transform: none;
+    }
+    
+    .dark-mode .nav-links {
+        background: var(--charcoal-black);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .theme-toggle {
+        position: static;
+        margin-left: auto;
+        margin-right: 20px;
+    }
+}
+
+         /* Products Section */
+        .products {
+            gap: 20px;
+            padding: 100px 40px;
+            background-color: var(--sand-beige);
+            position: relative;
+        }
+
+        .dark-mode .products {
+            background-color: var(--charcoal-black);
+        }
+
+        .products::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--royal-blue), transparent);
+            opacity: 0.3;
+        }
+
+        .products-grid {
+            display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition-all);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .dark-mode .product-card {
+            background: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .product-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-image {
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.5));
+            z-index: 1;
+        }
+
+        .product-info {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--deep-onyx);
+        }
+
+        .dark-mode .product-title {
+            color: var(--clean-white);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--royal-blue);
+            margin-bottom: 15px;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--deep-onyx);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
+
+        .dark-mode .product-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .product-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--royal-blue);
+            color: var(--clean-white);
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition-all);
+            border: none;
+            cursor: pointer;
+        }
+
+        .product-btn:hover {
+            background: var(--emerald-aqua);
+            transform: translateY(-3px);
+        }
+
+        .view-more {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .view-more-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            color: var(--royal-blue);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--royal-blue);
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .view-more-btn {
+            color: var(--emerald-aqua);
+            border-color: var(--emerald-aqua);
+        }
+
+        .view-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(72, 118, 207, 0.2), transparent);
+            transition: var(--transition-all);
+        }
+
+        .view-more-btn:hover::before {
+            left: 100%;
+        }
+
+        .view-more-btn:hover {
+            box-shadow: 0 0 20px rgba(72, 118, 207, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .dark-mode .view-more-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 192, 139, 0.3);
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 100px 20px;
+            background-color: var(--sand-beige);
+            position: relative;
+        }
+
+        .dark-mode .reviews {
+            background-color: var(--charcoal-black);
+        }
+
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .reviews-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .reviews-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            border-radius: 3px;
+        }
+
+        .reviews-scroll {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .reviews-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .review-card {
+            min-width: 300px;
+            height: 500px;
+            scroll-snap-align: start;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition-all);
+            background: var(--deep-onyx);
+        }
+
+        .dark-mode .review-card {
+            background: var(--deep-onyx);
+        }
+
+        .review-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .review-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--clean-white);
+            transform: translateY(100%);
+            transition: var(--transition-all);
+        }
+
+        .review-card:hover .review-overlay {
+            transform: translateY(0);
+        }
+
+        .review-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .review-author {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--clean-white);
+            opacity: 0;
+            transition: var(--transition-all);
+        }
+
+        .review-card:hover .floating-hearts {
+            opacity: 1;
+            animation: floatUp 2s infinite;
+        }
+
+        @keyframes floatUp {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--sand-beige);
+            padding: 60px 40px 30px;
+            position: relative;
+        }
+
+        .dark-mode .footer {
+            background-color: var(--charcoal-black);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--royal-blue), transparent);
+            opacity: 0.3;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--deep-onyx);
+            margin-bottom: 20px;
+        }
+
+        .dark-mode .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .footer-title {
+            color: var(--emerald-aqua);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 10px;
+        }
+
+        .footer-link a {
+            color: var(--deep-onyx);
+            text-decoration: none;
+            transition: var(--transition-all);
+            font-size: 0.9rem;
+        }
+
+        .dark-mode .footer-link a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-link a:hover {
+            color: var(--royal-blue);
+            padding-left: 5px;
+        }
+
+        .dark-mode .footer-link a:hover {
+            color: var(--emerald-aqua);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid rgba(72, 118, 207, 0.3);
+            border-radius: 5px 0 0 5px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: var(--transition-all);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .dark-mode .newsletter-input {
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(0, 192, 139, 0.3);
+            color: var(--clean-white);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 10px rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .newsletter-input:focus {
+            border-color: var(--emerald-aqua);
+            box-shadow: 0 0 10px rgba(0, 192, 139, 0.2);
+        }
+
+        .newsletter-btn {
+            padding: 10px 15px;
+            background: var(--royal-blue);
+            color: var(--clean-white);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: var(--transition-all);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--emerald-aqua);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(72, 118, 207, 0.1);
+            color: var(--royal-blue);
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .social-link {
+            background: rgba(0, 192, 139, 0.1);
+            color: var(--emerald-aqua);
+        }
+
+        .social-link:hover {
+            background: var(--royal-blue);
+            color: var(--clean-white);
+            transform: translateY(-5px);
+        }
+
+        .dark-mode .social-link:hover {
+            background: var(--emerald-aqua);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(72, 118, 207, 0.1);
+            font-size: 0.8rem;
+            color: var(--deep-onyx);
+        }
+
+        .dark-mode .footer-bottom {
+            border-top: 1px solid rgba(0, 192, 139, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .product-hero {
+                padding: 60px 20px;
+            }
+            
+            .product-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .products-container {
+                padding: 40px 20px;
+            }
+            
+            .filter-section {
+                padding: 0 20px;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .product-hero p {
+                font-size: 1rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer {
+                padding: 60px 20px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-hero {
+                padding: 40px 15px;
+            }
+            
+            .product-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+                    /* Modal styles */
+    .platform-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+    
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 500px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .close-modal {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    .close-modal:hover {
+        color: black;
+    }
+    
+    .platform-options {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .platform-btn {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .platform-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .platform-btn img {
+        width: 30px;
+        height: 30px;
+        margin-right: 15px;
+        object-fit: contain;
+    }
+    
+    .amazon {
+        background-color: #d4840c;
+    }
+    
+    .flipkart {
+        background-color: #083a8b;
+    }
+    
+    .meesho {
+        background-color: #970e55;
+    }
+
+
+
+        /* Pre-Launch Banner */
+        .prelaunch-banner {
+            background: linear-gradient(135deg, var(--royal-blue), var(--emerald-aqua));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prelaunch-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .banner-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .banner-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .countdown-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 20px;
+            border-radius: 8px;
+            min-width: 80px;
+            backdrop-filter: blur(5px);
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .preorder-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: var(--royal-blue);
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-all);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .preorder-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Pre-Launch Products */
+        .prelaunch-products {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--royal-blue), var(--emerald-aqua));
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--clean-white);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition-all);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .dark-mode .product-card {
+            background: rgba(30, 30, 30, 0.9);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--emerald-aqua);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.3));
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--deep-onyx);
+        }
+
+        .dark-mode .product-title {
+            color: var(--clean-white);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--deep-onyx);
+            margin-bottom: 15px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .dark-mode .product-description {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--emerald-aqua);
+        }
+
+        .original-price {
+            font-size: 1rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .product-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--royal-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+
+        .product-btn:hover {
+            background: var(--emerald-aqua);
+            transform: translateY(-3px);
+        }
+
+        /* Product Popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .popup-content {
+            background: var(--clean-white);
+            border-radius: 15px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: popupFadeIn 0.3s ease;
+        }
+
+        .dark-mode .popup-content {
+            background: var(--charcoal-black);
+        }
+
+        @keyframes popupFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .popup-main {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .popup-main {
+                flex-direction: row;
+            }
+        }
+
+        .popup-image {
+            flex: 1;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .popup-details {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .popup-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--deep-onyx);
+        }
+
+        .dark-mode .popup-title {
+            color: var(--clean-white);
+        }
+
+        .popup-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .popup-current-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--emerald-aqua);
+        }
+
+        .popup-original-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .popup-description {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            color: var(--deep-onyx);
+        }
+
+        .dark-mode .popup-description {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .popup-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .feature-icon {
+            color: var(--emerald-aqua);
+            font-size: 1.2rem;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+
+        .specs-table tr:nth-child(even) {
+            background: rgba(72, 118, 207, 0.05);
+        }
+
+        .dark-mode .specs-table tr:nth-child(even) {
+            background: rgba(0, 192, 139, 0.05);
+        }
+
+        .specs-table th, .specs-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(72, 118, 207, 0.1);
+        }
+
+        .dark-mode .specs-table th, 
+        .dark-mode .specs-table td {
+            border-bottom: 1px solid rgba(0, 192, 139, 0.1);
+        }
+
+        .specs-table th {
+            font-weight: 600;
+            color: var(--royal-blue);
+            width: 30%;
+        }
+
+        .dark-mode .specs-table th {
+            color: var(--emerald-aqua);
+        }
+
+        .popup-buy-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, var(--royal-blue), var(--emerald-aqua));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition-all);
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .popup-buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">heysharlo</span>
+            </div>
+            <div class="nav-center">
+                <div class="nav-links" id="nav-links">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../product/product.html" class="nav-link">Products</a>
+                    <a href="../verify/verify.html" class="nav-link">Verify</a>
+                    <a href="../contest/contest.html" class="nav-link">Contest</a>
+                    <a href="../reward/reward.html" class="nav-link">Reward</a>
+                    <a href="../contactus.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="login-btn">Login</a>
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu (hidden by default) -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-nav-links">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../verify/verify.html" class="nav-link">Verify</a>
+            <a href="../contest/contest.html" class="nav-link">Contest</a>
+            <a href="../reward/reward.html" class="nav-link">Reward</a>
+            <a href="mailto:heysharloindia@gmail.com" class="nav-link">Contact</a>
+            <a href="../login/login.html" class="login-btn">Login</a>
+            <div class="mobile-theme-toggle">
+                <span>Dark Mode</span>
+                <div class="theme-toggle" id="mobile-theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Hero Section 
+    <section class="product-hero">
+        <h1>Our Premium Collection</h1>
+        <p>Discover gender-neutral luxury cosmetics designed for all skin types. Vegan, cruelty-free, and sustainably packaged.</p>
+    </section>     -->
+
+    <!-- Filter Section -->
+   <!--  <div class="filter-section">
+        <div class="filter-group">
+            <label for="category" class="filter-label">Category</label>
+            <select id="category" class="filter-select">
+                <option value="all">All Categories</option>
+                <option value="skincare">Skincare</option>
+                <option value="makeup">Makeup</option>
+                <option value="haircare">Haircare</option>
+                <option value="fragrance">Fragrance</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="price" class="filter-label">Price Range</label>
+            <select id="price" class="filter-select">
+                <option value="all">All Prices</option>
+                <option value="0-50">$0 - $50</option>
+                <option value="50-100">$50 - $100</option>
+                <option value="100-150">$100 - $150</option>
+                <option value="150+">$150+</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="sort" class="filter-label">Sort By</label>
+            <select id="sort" class="filter-select">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="newest">Newest</option>
+                <option value="rating">Highest Rated</option>
+            </select>
+        </div>
+    </div> -->
+
+
+
+
+
+
+    <!-- Pre-Launch Products -->
+    <section class="prelaunch-products" id="prelaunch-products">
+        <h2 class="section-title">Exclusive Products</h2>
+        
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card"> <style>  .product-badge span{ color: rgb(141, 41, 41);} </style>
+                <div class="product-badge"><span>Limited stock</span></div>
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"
+                     onclick="openProductPopup(
+                         '3in1 Moisturizer', 
+                         '₹999', 
+                         '₹2499', 
+                         'Our revolutionary all-in-one moisturizer combines hydration, sun protection, and anti-aging benefits in a single step. Formulated with natural ingredients to nourish your skin throughout the day.', 
+                         'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+                         'https://amazon.in',
+                         'https://flipkart.com',
+                         'https://meesho.com'
+                     )"></div>
+                <div class="product-info">
+                    <h3 class="product-title">3in1 Moisturizer</h3>
+                    <p class="product-description">Hydration, sun protection, and anti-aging in one revolutionary formula.</p>
+                    <div class="product-price">
+                        <span class="current-price">₹999</span>
+                        <span class="original-price">₹2499</span>
+                    </div>
+                    <button class="product-btn" onclick="openProductPopup(
+                        '3in1 Moisturizer', 
+                        '₹999', 
+                        '₹2499', 
+                        'Our revolutionary all-in-one moisturizer combines hydration, sun protection, and anti-aging benefits in a single step. Formulated with natural ingredients to nourish your skin throughout the day.', 
+                        'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+                        'https://amazon.in',
+                        'https://flipkart.com',
+                        'https://meesho.com'
+                    )">View Details</button>
+                </div>
+            </div>
+            
+            
+            
+            <!-- Product 2
+            <div class="product-card">
+                <div class="product-badge">Pre-Order</div>
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"
+                     onclick="openProductPopup(
+                         'Sunscreen Gel', 
+                         '₹1299', 
+                         '₹1599', 
+                         'Lightweight SPF 50+ sunscreen gel that provides broad spectrum protection without leaving a white cast. Water-resistant and suitable for all skin types.', 
+                         'https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+                         'https://amazon.in',
+                         'https://flipkart.com',
+                         'https://meesho.com'
+                     )"></div>
+                <div class="product-info">
+                    <h3 class="product-title">Sunscreen Gel</h3>
+                    <p class="product-description">Lightweight SPF 50+ protection that blends seamlessly into skin.</p>
+                    <div class="product-price">
+                        <span class="current-price">₹1299</span>
+                        <span class="original-price">₹1599</span>
+                    </div>
+                    <button class="product-btn" onclick="openProductPopup(
+                        'Sunscreen Gel', 
+                        '₹1299', 
+                        '₹1599', 
+                        'Lightweight SPF 50+ sunscreen gel that provides broad spectrum protection without leaving a white cast. Water-resistant and suitable for all skin types.', 
+                        'https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+                        'https://amazon.in',
+                        'https://flipkart.com',
+                        'https://meesho.com'
+                    )">View Details</button>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <!-- Product Popup -->
+<div class="popup-overlay" id="product-popup">
+    <div class="popup-content">
+        <div class="close-popup" onclick="closeProductPopup()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="popup-main">
+            <div class="popup-image" id="popup-product-image"></div>
+            <div class="popup-details">
+                <h2 class="popup-title" id="popup-product-title">Product Title</h2>
+                <div class="popup-price">
+                    <span class="popup-current-price" id="popup-current-price">₹2499</span>
+                    <span class="popup-original-price" id="popup-original-price">₹1299</span>
+                </div>
+                <div class="popup-description" id="popup-product-details"></div>
+                <div class="buy-options">
+                    <a href="#" class="popup-buy-btn" id="popup-amazon-btn" target="_blank">
+                        <i class="fab fa-amazon"></i> Buy on Amazon
+                    </a>
+                    <a href="#" class="popup-buy-btn" id="popup-flipkart-btn" target="_blank">
+                        <i class="fas fa-shopping-cart"></i> Buy on Flipkart
+                    </a>
+                    <a href="#" class="popup-buy-btn" id="popup-meesho-btn" target="_blank">
+                        <i class="fas fa-store"></i> Buy on Meesho
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- Footer -->
+        <footer class="footer">
+          <div class="footer-container">
+              <div class="footer-col">
+                  <div class="footer-logo">heysharlo</div>
+                  <p class="footer-text">new kundan puri civil lines 141001 ,punjab , india <br></p>
+                  <p>heysharloindia@gmail.com</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/heysharloindia?igsh=dGp2bjd5bzQxdmpx" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/g/1ARex5joqc/" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="https://youtube.com/@heysharloindia?si=vPjMia_FuygYcH1c" class="social-link"><i class="fab fa-youtube"></i></a>
+                       <a href="https://x.com/heysharloindia" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../product/product.html">Products</a></li>
+                    <li class="footer-link"><a href="../about/aboutus.html">About Us</a></li>
+                    <li class="footer-link"><a href="../verify/verify.html">Verify</a></li>
+                    <li class="footer-link"><a href="../contest/contest.html">Contest</a></li>
+                    <li class="footer-link"><a href="../reward/reward.html">Reward</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Information</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="../support/faq.html">FAQ</a></li>
+                      <li class="footer-link"><a href="../privacy/policy.html">Policy</a></li>
+                      <li class="footer-link"><a href="../contactus.html">Contact</a></li>
+                    <li class="footer-link"><a href="../support/term&condtion.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Newsletter</h3>
+                <p class="footer-text">Subscribe for exclusive offers and beauty insights.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 heysharlo. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff4d4d;"></i> in India</p>
+        </div>
+    </footer>
+
+   <script>   
+
+
+function showPlatformOptions(productName, amazonLink, flipkartLink, meeshoLink) {
+    document.getElementById('platformModal').style.display = 'block';
+    document.getElementById('productName').textContent = productName;
+
+    // Update the hrefs for each platform button
+    document.getElementById('amazonLink').href = amazonLink;
+    document.getElementById('flipkartLink').href = flipkartLink;
+    document.getElementById('meeshoLink').href = meeshoLink;
+}
+
+    
+    function hidePlatformOptions() {
+        document.getElementById('platformModal').style.display = 'none';
+    }
+    
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('platformModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    
+      // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
+    }
+    
+    // Initialize theme from localStorage
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
+    
+    // Add event listeners to both toggles
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleDarkMode);
+    }
+    
+    if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('click', toggleDarkMode);
+    }
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+        
+        // Desktop theme toggle
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleDarkMode);
+        }
+        
+        // Mobile theme toggle
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('click', toggleDarkMode);
+        }
+    
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            this.innerHTML = mobileMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+    }});
+    
+            
+            // Close mobile menu when clicking on links
+    document.querySelectorAll('.mobile-menu .nav-link, .mobile-menu .login-btn').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+    
+        // Navbar scroll effect
+       // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        }  });
+    
+        // Animate elements when they come into view
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.feature-card, .product-card, .review-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+    
+        // Set initial state for animated elements
+        document.querySelectorAll('.feature-card, .product-card, .review-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        });
+    
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+            // Filter functionality
+            const filterSelects = document.querySelectorAll('.filter-select');
+            filterSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    // In a real implementation, this would filter products
+                    console.log(`Filter by ${this.id}: ${this.value}`);
+                });
+            });
+
+            // Pagination functionality
+            const pageBtns = document.querySelectorAll('.page-btn');
+            pageBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    pageBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    // In a real implementation, this would load the selected page
+                    console.log(`Go to page ${this.textContent}`);
+                });
+            });
+
+            // Product card hover effect
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            // Function to open the popup with product details
+function openup(productTitle, productPrice, amazonLink, flipkartLink, meeshoLink) {
+    // Update the popup content with the product details
+    document.getElementById("popup-product-title").textContent = productTitle;
+    document.getElementById("popup-product-price").textContent = productPrice;
+    document.getElementById("popup-amazon-link").href = amazonLink;
+    document.getElementById("popup-flipkart-link").href = flipkartLink;
+    document.getElementById("popup-meesho-link").href = meeshoLink;
+
+    // Show the popup
+    document.getElementById("popup-overlay").style.display = "flex";
+}
+
+// Close the popup when the close button is clicked
+document.getElementById("close-popup").addEventListener("click", function () {
+    document.getElementById("popup-overlay").style.display = "none";
+});
+
+// Close popup if clicked outside the modal content
+document.getElementById("popup-overlay").addEventListener("click", function (e) {
+    if (e.target === document.getElementById("popup-overlay")) {
+        document.getElementById("popup-overlay").style.display = "none";
+    }
+});
+
+    </script> 
+
+    <script>
+
+    // Product Popup Functions
+    function openProductPopup(title, currentPrice, originalPrice, description, imageUrl, amazonUrl, flipkartUrl, meeshoUrl) {
+        const popup = document.getElementById('product-popup');
+        const popupImage = document.getElementById('popup-product-image');
+        const popupTitle = document.getElementById('popup-product-title');
+        const popupCurrentPrice = document.getElementById('popup-current-price');
+        const popupOriginalPrice = document.getElementById('popup-original-price');
+        const popupDescription = document.getElementById('popup-product-description');
+        const popupAmazonBtn = document.getElementById('popup-amazon-btn');
+        const popupFlipkartBtn = document.getElementById('popup-flipkart-btn');
+        const popupMeeshoBtn = document.getElementById('popup-meesho-btn');
+
+        // Set product details
+        popupImage.style.backgroundImage = `url('${imageUrl}')`;
+        popupTitle.textContent = title;
+        popupCurrentPrice.textContent = currentPrice;
+        popupOriginalPrice.textContent = originalPrice;
+        
+        // Create and set product description with features
+        let descriptionHTML = `
+            <p>${description}</p>
+            <div class="popup-features">
+                <div class="feature-item">
+                    <i class="fas fa-truck feature-icon"></i>
+                    <span>Free delivery by ${getDeliveryDate()}</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <span>Natural & Original </span>
+                </div>
+            </div>
+            <table class="specs-table">
+                <tr>
+                    <th>Manufacture Date</th>
+                    <td>${getManufactureDate()}</td>
+                </tr>
+                <tr>
+                    <th>Region</th>
+                    <td>India</td>
+                </tr>
+                <tr>
+                    <th>Availability</th>
+                    <td>Starts from ${getLaunchDate()}</td>
+                </tr>
+                <tr>
+                    <th>Quantity</th>
+                    <td>50ml</td>
+                </tr>
+                <tr>
+                    <th>Skin Type</th>
+                    <td>All Skin Types</td>
+                </tr>
+                <tr>
+                    <th>Key Ingredients</th>
+                    <td>Hyaluronic Acid, Vitamin E, SPF 50</td>
+                </tr>
+            </table>
+        `;
+        
+        document.getElementById('popup-product-details').innerHTML = descriptionHTML;
+        
+        // Set buy now links
+        popupAmazonBtn.href = amazonUrl;
+        popupFlipkartBtn.href = flipkartUrl;
+        popupMeeshoBtn.href = meeshoUrl;
+        
+        // Show popup
+        popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductPopup() {
+        const popup = document.getElementById('product-popup');
+        popup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Helper functions for product details
+    function getDeliveryDate() {
+        const date = new Date();
+        date.setDate(date.getDate() + 7);
+        return date.toLocaleDateString('en-IN', { weekday: 'long', month: 'short', day: 'numeric' });
+    }
+
+    function getManufactureDate() {
+        const date = new Date();
+        date.setMonth(date.getMonth() - 1);
+        return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function getLaunchDate() {
+        const date = new Date(2025, 11, 31);
+        return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    // Close popup when clicking outside of content
+    document.getElementById('product-popup').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeProductPopup();
+        }
+    });
+</script>
+</body>
+</html>

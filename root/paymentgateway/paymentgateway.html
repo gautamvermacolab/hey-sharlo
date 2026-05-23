@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Card - Payment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .payment-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .order-summary {
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .product-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4a6491 0%, #2c3e50 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 20px;
+        }
+        
+        .product-details {
+            flex: 1;
+        }
+        
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .price-section {
+            text-align: right;
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .price-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .benefits {
+            margin: 25px 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .benefit-icon {
+            color: #4a6491;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .payment-methods {
+            margin-top: 30px;
+        }
+        
+        .payment-methods img {
+            height: 30px;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        
+        .payment-btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .secure-payment {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .secure-payment i {
+            color: #4CAF50;
+            margin-right: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .payment-card {
+                padding: 20px;
+            }
+            
+            .product-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .product-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .price-section {
+                text-align: center;
+                margin-top: 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">KING CARD</div>
+        <div class="tagline">Premium Membership</div>
+    </div>
+    
+    <div class="container">
+        <div class="payment-card">
+            <h1>Complete Purchase</h1>
+            
+            <div class="order-summary">
+                <div class="product-info">
+                    <div class="product-image">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-name">King Card Membership</div>
+                        <div class="product-description">5 year subscription with exclusive benefits and privileges</div>
+                    </div>
+                </div>
+                
+                <div class="benefits">
+                    <h3>Your Membership Includes:</h3>
+                    <div class="benefit-item">
+                        <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                        <span>Exclusive VIP access to premium venues</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                        <span>24/7 Personal concierge service</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-btn-container">
+                <form>
+                  <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Qdy5cxlh06gLX3" async> </script> </form>
+                </form>
+            </div>
+            
+            <div class="secure-payment">
+                <i class="fas fa-lock"></i> Your payment information is processed securely
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        ©2025 heysharlo. All rights reserved Made with love
+    </div>
+</body>
+</html>

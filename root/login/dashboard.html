@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heysharlo | Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
+    <style>
+        :root {
+            --royal-blue: #4876cf;
+            --emerald-aqua: #00c08b;
+            --sand-beige: #f0e5cf;
+            --charcoal-black: #1e1e1e;
+            --clean-white: #ffffff;
+            --deep-onyx: #111111;
+            --soft-teal: #a9f1df;
+            --glass-blur: blur(12px);
+            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--sand-beige);
+            color: var(--deep-onyx);
+            overflow-x: hidden;
+            transition: var(--transition-all);
+            min-height: 100vh;
+        }
+
+        body.dark-mode {
+            background-color: var(--charcoal-black);
+            color: var(--clean-white);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition-all);
+            padding: 20px 0;
+            background: rgba(240, 229, 207, 0.8);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .navbar {
+            background: rgba(30, 30, 30, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text {
+            background: linear-gradient(to right, #4876cf, #00c08b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 5px 0;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-link {
+            color: var(--deep-onyx);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-all);
+            position: relative;
+        }
+
+        .dark-mode .nav-link {
+            color: var(--clean-white);
+        }
+
+        .nav-link:hover {
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .nav-link:hover {
+            color: var(--emerald-aqua);
+        }
+
+        .nav-link.active {
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-dropdown {
+            position: relative;
+        }
+
+        .user-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: var(--deep-onyx);
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .user-btn {
+            color: var(--clean-white);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--royal-blue), var(--emerald-aqua));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 50px;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition-all);
+            z-index: 1001;
+        }
+
+        .dark-mode .dropdown-menu {
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .user-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 10px 20px;
+            color: var(--deep-onyx);
+            text-decoration: none;
+            display: block;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .dropdown-item {
+            color: var(--clean-white);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(72, 118, 207, 0.1);
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .dropdown-item:hover {
+            background: rgba(0, 192, 139, 0.1);
+            color: var(--emerald-aqua);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(72, 118, 207, 0.2);
+            margin: 5px 0;
+        }
+
+        .dark-mode .dropdown-divider {
+            background: rgba(0, 192, 139, 0.2);
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 24px;
+            border-radius: 12px;
+            background: var(--deep-onyx);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+            transition: var(--transition-all);
+            border: 1px solid rgba(72, 118, 207, 0.3);
+        }
+
+        .dark-mode .theme-toggle {
+            background: var(--sand-beige);
+            border: 1px solid rgba(0, 192, 139, 0.3);
+        }
+
+        .toggle-ball {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--sand-beige);
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode .toggle-ball {
+            background: var(--charcoal-black);
+            transform: translateX(26px);
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 100px auto 50px;
+            padding: 0 40px;
+        }
+
+        .dashboard-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .dashboard-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .dashboard-subtitle {
+            font-size: 1.2rem;
+            color: var(--deep-onyx);
+            opacity: 0.8;
+        }
+
+        .dark-mode .dashboard-subtitle {
+            color: var(--clean-white);
+        }
+
+        .user-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .user-card {
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-info {
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: 600;
+            width: 150px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .info-label {
+            color: var(--emerald-aqua);
+        }
+
+        .info-value {
+            flex: 1;
+        }
+
+        .editable-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .edit-btn {
+            background: none;
+            border: none;
+            color: var(--royal-blue);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .edit-btn {
+            color: var(--emerald-aqua);
+        }
+
+        .edit-btn:hover {
+            opacity: 0.8;
+        }
+
+        .name-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid rgba(72, 118, 207, 0.3);
+            border-radius: 6px;
+            font-family: 'Sora', sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .dark-mode .name-input {
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(0, 192, 139, 0.3);
+            color: var(--clean-white);
+        }
+
+        .save-btn {
+            padding: 8px 15px;
+            background: var(--royal-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Sora', sans-serif;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .save-btn {
+            background: var(--emerald-aqua);
+        }
+
+        .save-btn:hover {
+            opacity: 0.9;
+        }
+
+        .cancel-btn {
+            padding: 8px 15px;
+            background: none;
+            color: var(--royal-blue);
+            border: 1px solid var(--royal-blue);
+            border-radius: 6px;
+            font-family: 'Sora', sans-serif;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .cancel-btn {
+            color: var(--emerald-aqua);
+            border-color: var(--emerald-aqua);
+        }
+
+        .cancel-btn:hover {
+            background: rgba(72, 118, 207, 0.1);
+        }
+
+        .dark-mode .cancel-btn:hover {
+            background: rgba(0, 192, 139, 0.1);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-all);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .primary-btn {
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: var(--clean-white);
+            border: none;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(72, 118, 207, 0.3);
+        }
+
+        .dark-mode .primary-btn:hover {
+            box-shadow: 0 10px 20px rgba(0, 192, 139, 0.3);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--royal-blue);
+            border: 2px solid var(--royal-blue);
+        }
+
+        .dark-mode .secondary-btn {
+            color: var(--emerald-aqua);
+            border-color: var(--emerald-aqua);
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .secondary-btn:hover {
+            box-shadow: 0 10px 20px rgba(0, 192, 139, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-list {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 0 20px;
+                margin-top: 80px;
+            }
+            
+            .dashboard-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .info-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .info-label {
+                margin-bottom: 5px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-title {
+                font-size: 1.8rem;
+            }
+            
+            .dashboard-subtitle {
+                font-size: 1rem;
+            }
+            
+            .user-card {
+                padding: 20px;
+            }
+            
+            .nav-container {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html" class="logo-text">HEYSHARLO</a>
+            </div>
+            
+                
+                <div class="nav-right">
+                    <div class="user-dropdown">
+                        <button class="user-btn">
+                            <div class="user-avatar" id="user-avatar">U</div>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item"><i class="fas fa-user"></i> Profile</div>
+                            <div onclick="window.location.href='../prelaunch/prelaunch.html'"  class="dropdown-item"><i class="fa-solid fa-handshake"></i>pre-launch</div>
+                            <div class="dropdown-divider"></div>
+                            <a href="../index.html" class="dropdown-item" id="nav-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                    
+                    <div class="theme-toggle" id="theme-toggle">
+                        <div class="toggle-ball"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Profile</h1>
+            <p class="dashboard-subtitle">Welcome, ji  </p>
+        </div>
+        
+        <div class="user-card">
+            <div class="user-info">
+                <div class="info-row">
+                    <span class="info-label">Name:</span>
+                    <div class="info-value">
+                        <div id="name-display">
+                            <span id="user-name">Loading...</span>
+                            <button class="edit-btn" id="edit-name-btn"><i class="fas fa-edit"></i> Edit</button>
+                        </div>
+                        <div id="name-edit" style="display: none;">
+                            <div class="editable-field">
+                                <input type="text" id="name-input" class="name-input">
+                                <button class="save-btn" id="save-name-btn">Save</button>
+                                <button class="cancel-btn" id="cancel-name-btn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value" id="user-email">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Account Created:</span>
+                    <span class="info-value" id="user-created">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Last Login:</span>
+                    <span class="info-value" id="user-last-login">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="../index.html" class="action-btn primary-btn">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase and App Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script>
+        // Firebase configuration (same as login)
+     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDCwQHJfzyW0kzw6W1iUDQan_vDL-BtBIg",
+  authDomain: "medmakedatabase.firebaseapp.com",
+  databaseURL: "https://medmakedatabase-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "medmakedatabase",
+  storageBucket: "medmakedatabase.firebasestorage.app",
+  messagingSenderId: "868380366943",
+  appId: "1:868380366943:web:b82dbe4225f6aafd0423ea",
+  measurementId: "G-J6X58E0K90"
+};
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Theme Toggle (same as login)
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+        
+        // Initialize theme from localStorage
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+        
+        // Add event listener to toggle
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleDarkMode);
+        }
+
+        // Display User Info
+        let currentUser = null;
+        
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                currentUser = user;
+                
+                // Update avatar with initials
+                const name = user.displayName || 'User';
+                const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+                document.getElementById('user-avatar').textContent = initials;
+                
+                // Display user info
+                document.getElementById('user-name').textContent = name;
+                document.getElementById('user-email').textContent = user.email;
+                
+                // Format creation date
+                if (user.metadata.creationTime) {
+                    const creationDate = new Date(user.metadata.creationTime);
+                    document.getElementById('user-created').textContent = creationDate.toLocaleDateString() + ' at ' + creationDate.toLocaleTimeString();
+                }
+                
+                // Format last login date
+                if (user.metadata.lastSignInTime) {
+                    const lastLoginDate = new Date(user.metadata.lastSignInTime);
+                    document.getElementById('user-last-login').textContent = lastLoginDate.toLocaleDateString() + ' at ' + lastLoginDate.toLocaleTimeString();
+                }
+            } else {
+                // No user is signed in, redirect to login
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Name Edit Functionality
+        document.getElementById('edit-name-btn').addEventListener('click', function() {
+            document.getElementById('name-display').style.display = 'none';
+            document.getElementById('name-edit').style.display = 'block';
+            document.getElementById('name-input').value = currentUser.displayName || '';
+        });
+
+        document.getElementById('cancel-name-btn').addEventListener('click', function() {
+            document.getElementById('name-display').style.display = 'block';
+            document.getElementById('name-edit').style.display = 'none';
+        });
+
+        document.getElementById('save-name-btn').addEventListener('click', function() {
+            const newName = document.getElementById('name-input').value.trim();
+            if (newName && currentUser) {
+                currentUser.updateProfile({
+                    displayName: newName
+                }).then(() => {
+                    document.getElementById('user-name').textContent = newName;
+                    document.getElementById('user-avatar').textContent = newName.split(' ').map(n => n[0]).join('').toUpperCase();
+                    document.getElementById('name-display').style.display = 'block';
+                    document.getElementById('name-edit').style.display = 'none';
+                }).catch((error) => {
+                    console.error('Error updating name:', error);
+                    alert('Failed to update name. Please try again.');
+                });
+            }
+        });
+
+        // Logout Function
+        function logout() {
+            auth.signOut().then(() => {
+                window.location.href = 'index.html';
+            }).catch((error) => {
+                console.error('Logout error:', error);
+            });
+        }
+
+        document.getElementById('logout-btn').addEventListener('click', logout);
+        document.getElementById('nav-logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            logout();
+        });
+    </script>
+</body>
+</html>

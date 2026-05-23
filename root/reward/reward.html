@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heysharlo Rewards | Exclusive Member Benefits</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
+    <style>
+        :root {
+            --royal-blue: #4876cf;
+            --emerald-aqua: #00c08b;
+            --sand-beige: #f0e5cf;
+            --charcoal-black: #1e1e1e;
+            --clean-white: #ffffff;
+            --deep-onyx: #111111;
+            --soft-teal: #a9f1df;
+            --glass-blur: blur(12px);
+            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--sand-beige);
+            color: var(--deep-onyx);
+            overflow-x: hidden;
+            transition: var(--transition-all);
+        }
+
+        body.dark-mode {
+            background-color: var(--charcoal-black);
+            color: var(--clean-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: var(--transition-all);
+    padding: 20px 0;
+    background: rgba(240, 229, 207, 0.8);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .navbar {
+    background: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo-text {
+    background: linear-gradient(to right, #4876cf, #00c08b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 5px 0;
+}
+
+.nav-center {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding: 12px 30px;
+    margin: 0 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    border: 1px solid rgba(72, 118, 207, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.dark-mode .nav-links {
+    background: rgba(30, 30, 30, 0.1);
+    border: 1px solid rgba(0, 192, 139, 0.2);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    position: relative;
+    color: var(--deep-onyx);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: var(--transition-all);
+    padding: 8px 0;
+}
+
+.dark-mode .nav-link {
+    color: var(--clean-white);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #4876cf, #00c08b);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.login-btn {
+    padding: 10px 25px;
+    border-radius: 25px;
+    background: transparent;
+    color: var(--deep-onyx);
+    border: 1.5px solid rgba(72, 118, 207, 0.3);
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-all);
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.dark-mode .login-btn {
+    color: var(--clean-white);
+    border-color: rgba(0, 192, 139, 0.3);
+}
+
+.login-btn:hover {
+    background: linear-gradient(to right, #4876cf, #00c08b);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(72, 118, 207, 0.3);
+}
+/* From Uiverse.io by vinodjangid07 */ 
+.Btn {
+  width: 140px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+  background-size: 250%;
+  background-position: left;
+  color: #ffd277;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.Btn::before {
+  position: absolute;
+  content: "SUBSCRIBE";
+  color: #ffd277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  height: 90%;
+  border-radius: 8px;
+  transition-duration: 1s;
+  background-color: rgba(0, 0, 0, 0.842);
+  background-size: 200%;
+}
+
+.Btn:hover {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.Btn:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+}
+
+.Btn:active {
+  transform: scale(0.95);
+}
+.theme-toggle {
+    width: 50px;
+    height: 24px;
+    border-radius: 12px;
+    background: var(--deep-onyx);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 3px;
+    transition: var(--transition-all);
+    border: 1px solid rgba(72, 118, 207, 0.3);
+}
+
+.dark-mode .theme-toggle {
+    background: var(--sand-beige);
+    border: 1px solid rgba(0, 192, 139, 0.3);
+}
+
+.toggle-ball {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--sand-beige);
+    transition: transform 0.3s ease;
+}
+
+.dark-mode .toggle-ball {
+    background: var(--charcoal-black);
+    transform: translateX(26px);
+}
+
+
+
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--deep-onyx);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.dark-mode .mobile-menu-btn {
+    color: var(--clean-white);
+}
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    padding: 10px 0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(240, 229, 207, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu-btn {
+        display: none;
+    }
+    .mobile-menu{
+display: none;
+    }
+/* Mobile Nav */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    .nav-center {
+        display: none;
+    }
+    
+    .nav-right {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    /* Mobile menu styles */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--deep-onyx);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.dark-mode .mobile-menu-btn {
+    color: var(--clean-white);
+}
+
+/* Mobile Menu - Hidden by default */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--sand-beige);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-all);
+    z-index: 999;
+    padding: 80px 30px 30px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .mobile-menu {
+    background: var(--charcoal-black);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.mobile-menu .nav-link {
+    padding: 12px 0;
+    font-size: 1.1rem;
+}
+
+.mobile-menu .login-btn {
+    margin-top: 30px;
+    text-align: center;
+    padding: 12px;
+}
+
+.mobile-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 15px 0;
+    border-top: 1px solid rgba(72, 118, 207, 0.2);
+}
+
+.dark-mode .mobile-theme-toggle {
+    border-top: 1px solid rgba(0, 192, 139, 0.2);
+}
+
+/* Show mobile menu button only on mobile */
+@media (max-width: 992px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-center,
+    .nav-right {
+        display: none;
+    }
+    
+    .logo {
+        flex: none;
+    }
+}
+}
+
+
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    padding: 15px 0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(240, 229, 207, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Nav */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--sand-beige);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: var(--transition-all);
+        z-index: 999;
+    }
+    
+    .dark-mode .nav-links {
+        background: var(--charcoal-black);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .login-btn {
+        margin-top: 20px;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .theme-toggle {
+        margin-left: 0;
+    }
+}
+
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    padding: 10px 0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(240, 229, 207, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(30, 30, 30, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Nav */
+@media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--sand-beige);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: var(--transition-all);
+        z-index: 999;
+        backdrop-filter: var(--glass-blur);
+        left: auto;
+        transform: none;
+    }
+    
+    .dark-mode .nav-links {
+        background: var(--charcoal-black);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .theme-toggle {
+        position: static;
+        margin-left: auto;
+        margin-right: 20px;
+    }
+}
+        /* Rewards Header */
+        .rewards-header {
+            text-align: center;
+            padding: 80px 0 40px;
+            background: linear-gradient(135deg, rgba(72, 118, 207, 0.1) 0%, rgba(0, 192, 139, 0.1) 100%);
+        }
+
+        .rewards-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-top: 30px;
+        }
+
+        .rewards-subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+
+                .verify-btn {
+            padding: 15px;
+            border-radius: 8px;
+            background: linear-gradient(to right, var(--royal-blue), var(--emerald-aqua));
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-all);
+            margin-top: 10px;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(72, 118, 207, 0.3);
+        }
+
+        /* Cards Section */
+        .cards-section {
+            padding: 60px 0;
+            background-color: var(--sand-beige);
+        }
+
+        .dark-mode .cards-section {
+            background-color: var(--charcoal-black);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 0;
+            text-align: center;
+            transition: var(--transition-all);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .dark-mode .card {
+            background: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .king-card .card-header {
+            background: linear-gradient(135deg, #ffd700, #ffcc00);
+        }
+
+        .queen-card .card-header {
+            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+        }
+
+        .vip-card .card-header {
+            background: linear-gradient(135deg, #cd7f32, #b87333);
+        }
+
+        .card-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--deep-onyx);
+        }
+
+        .dark-mode .king-card .card-title,
+        .dark-mode .queen-card .card-title,
+        .dark-mode .vip-card .card-title {
+            color: var(--deep-onyx);
+        }
+
+        .card-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-duration {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .card-body {
+            padding: 30px 20px;
+        }
+
+        .benefits-list {
+            text-align: left;
+            margin: 20px 0;
+            list-style-type: none;
+        }
+
+        .benefits-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+            line-height: 1.5;
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--emerald-aqua);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .card-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: var(--clean-white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-all);
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .card-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(72, 118, 207, 0.1) 0%, rgba(0, 192, 139, 0.1) 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition-all);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .feature-card {
+            background: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .feature-icon {
+            color: var(--emerald-aqua);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 60px 0;
+            background-color: var(--sand-beige);
+        }
+
+        .dark-mode .testimonials-section {
+            background-color: var(--charcoal-black);
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            transition: var(--transition-all);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .testimonial-card {
+            background: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .testimonial-author {
+            color: var(--emerald-aqua);
+        }
+
+        .testimonial-card .stars {
+            color: #ffcc00;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            background-color: var(--sand-beige);
+            padding: 60px 40px 30px;
+            position: relative;
+        }
+
+        .dark-mode .footer {
+            background-color: var(--charcoal-black);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--royal-blue), transparent);
+            opacity: 0.3;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--deep-onyx);
+            margin-bottom: 20px;
+        }
+
+        .dark-mode .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .footer-title {
+            color: var(--emerald-aqua);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 10px;
+        }
+
+        .footer-link a {
+            color: var(--deep-onyx);
+            text-decoration: none;
+            transition: var(--transition-all);
+            font-size: 0.9rem;
+        }
+
+        .dark-mode .footer-link a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-link a:hover {
+            color: var(--royal-blue);
+            padding-left: 5px;
+        }
+
+        .dark-mode .footer-link a:hover {
+            color: var(--emerald-aqua);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid rgba(72, 118, 207, 0.3);
+            border-radius: 5px 0 0 5px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: var(--transition-all);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .dark-mode .newsletter-input {
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(0, 192, 139, 0.3);
+            color: var(--clean-white);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 10px rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .newsletter-input:focus {
+            border-color: var(--emerald-aqua);
+            box-shadow: 0 0 10px rgba(0, 192, 139, 0.2);
+        }
+
+        .newsletter-btn {
+            padding: 10px 15px;
+            background: var(--royal-blue);
+            color: var(--clean-white);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: var(--transition-all);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--emerald-aqua);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(72, 118, 207, 0.1);
+            color: var(--royal-blue);
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .social-link {
+            background: rgba(0, 192, 139, 0.1);
+            color: var(--emerald-aqua);
+        }
+
+        .social-link:hover {
+            background: var(--royal-blue);
+            color: var(--clean-white);
+            transform: translateY(-5px);
+        }
+
+        .dark-mode .social-link:hover {
+            background: var(--emerald-aqua);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(72, 118, 207, 0.1);
+            font-size: 0.8rem;
+            color: var(--deep-onyx);
+        }
+
+        .dark-mode .footer-bottom {
+            border-top: 1px solid rgba(0, 192, 139, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .rewards-title {
+                font-size: 2.2rem;
+            }
+            
+            .rewards-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .rewards-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .cards-container,
+            .features-grid,
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Include your existing navbar here -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">heysharlo</span>
+            </div>
+            <div class="nav-center">
+                <div class="nav-links" id="nav-links">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../product/product.html" class="nav-link">Products</a>
+                    <a href="../verify/verify.html" class="nav-link">Verify</a>
+                    <a href="../contest/contest.html" class="nav-link">Contest</a>
+                    <a href="../reward/reward.html" class="nav-link">Reward</a>
+                    <a href="../contactus.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="../login/login.html" class="login-btn">Login</a>
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu (hidden by default) -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-nav-links">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="../product/product.html" class="nav-link">Products</a>
+          <a href="../verify/verify.html" class="nav-link">Verify</a>
+          <a href="../contest/contest.html" class="nav-link">Contest</a>
+          <a href="../reward/reward.html" class="nav-link">Reward</a>
+          <a href="../login/login.html" class="login-btn">Login</a>
+            <div class="mobile-theme-toggle">
+                <span>Dark Mode</span>
+                <div class="theme-toggle" id="mobile-theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rewards Header -->
+    <header class="rewards-header">
+        <div class="container">
+            <h1 class="rewards-title">heysharlo Premium Cards</h1>
+            <p class="rewards-subtitle">Unlock exclusive benefits, early access to products, and special privileges with our membership cards</p>
+        </div>
+    </header>
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Card</h2>
+            <div class="cards-container">
+                <!-- King Card -->
+                <div class="card king-card">
+                    <div class="card-header">
+                        <h3 class="card-title">King Card</h3>
+                        <div class="card-price">Coming-Soon</div>
+                        <div class="card-duration">5 Year Membership</div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="benefits-list">
+                            <li>Early access to all new launches (1 week before public)</li>
+                            <li>40% discount on all products</li>
+                            <li>Free luxury gift hamper every quarter</li>
+                            <li>Priority customer service (24/7 dedicated line)</li>
+                            <li>Exclusive invites to product launch events</li>
+                            <li>Free shipping on all orders</li>
+                            <li>Personalized beauty consultation annually</li>
+                            <li>Surprise birthday gifts</li>
+                            <a href="kingpayment.html" class="Btn">Buy Now</a>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Queen Card -->
+                <div class="card queen-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Queen Card</h3>
+                        <div class="card-price">Coming-Soon</div>
+                        <div class="card-duration">5 Year Membership</div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="benefits-list">
+                            <li>Early access to new launches (3 days before public)</li>
+                            <li>30% discount on all products</li>
+                            <li>Free gift hamper twice a year</li>
+                            <li>Priority customer service</li>
+                            <li>Invites to select product launch events</li>
+                            <li>Free shipping on orders above ₹999</li>
+                            <li>Personalized beauty consultation</li>
+                            <a href="queen.html" class="Btn">Buy Now</a>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- VIP Card -->
+                <div class="card vip-card">
+                    <div class="card-header">
+                        <h3 class="card-title">VIP Card</h3>
+                        <div class="card-price">Coming-Soon</div>
+                        <div class="card-duration">5 Year Membership</div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="benefits-list">
+                            <li>Early access to new launches (24 hours before public)</li>
+                            <li>20% discount on all products</li>
+                            <li>Free gift hamper annually</li>
+                            <li>Dedicated customer service</li>
+                            <li>Free shipping on orders above ₹1,499</li>
+                            <li>Birthday discounts</li>
+                            <a href="vip.html" class="Btn">Buy Now</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Cardholder Benefits</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="feature-title">Exclusive Access</h3>
+                    <p class="feature-desc">Be the first to try our newest products before they launch to the public, with special previews just for cardholders.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3 class="feature-title">Premium Discounts</h3>
+                    <p class="feature-desc">Enjoy significant savings on every purchase, with higher discounts for higher-tier cards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="feature-title">Luxury Gifts</h3>
+                    <p class="feature-desc">Receive exclusive gift hampers packed with full-size products and limited edition items.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section 
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Our Cardholders Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The King Card has been worth every rupee! I get all the new products before anyone else, and the discounts mean I actually save money in the long run."</p>
+                    <p class="testimonial-author">- Priya M., King Cardholder</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"As a Queen Card member, I love the quarterly gift hampers - they're always packed with products I genuinely use and love."</p>
+                    <p class="testimonial-author">- Rahul K., Queen Cardholder</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"The VIP Card gives me everything I need at an affordable price. The early access alone is worth it for me!"</p>
+                    <p class="testimonial-author">- Ananya S., VIP Cardholder</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Include your existing footer here -->
+        <footer class="footer">
+          <div class="footer-container">
+              <div class="footer-col">
+                  <div class="footer-logo">heysharlo</div>
+                  <p class="footer-text">new kundan puri civil lines 141001 ,punjab , india <br></p>
+                  <p>heysharloindia@gmail.com</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/heysharloindia?igsh=dGp2bjd5bzQxdmpx" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/g/1ARex5joqc/" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="https://youtube.com/@heysharloindia?si=vPjMia_FuygYcH1c" class="social-link"><i class="fab fa-youtube"></i></a>
+                           <a href="https://x.com/heysharloindia" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="../product/product.html">Products</a></li>
+                        <li class="footer-link"><a href="../about/aboutus.html">About Us</a></li>
+                        <li class="footer-link"><a href="../verify/verify.html">Verify</a></li>
+                        <li class="footer-link"><a href="../contest/contest.html">Contest</a></li>
+                        <li class="footer-link"><a href="../reward/reward.html">Reward</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Information</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="../support/faq.html">FAQ</a></li>
+                      <li class="footer-link"><a href="../privacy/policy.html">Policy</a></li>
+                      <li class="footer-link"><a href="../contactus.html">Contact</a></li>
+                        <li class="footer-link"><a href="../support/term&condtion.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Newsletter</h3>
+                    <p class="footer-text">Subscribe for exclusive offers and beauty insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 heysharlo. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff4d4d;"></i> in India</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
+    }
+    
+    // Initialize theme from localStorage
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
+    
+    // Add event listeners to both toggles
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleDarkMode);
+    }
+    
+    if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('click', toggleDarkMode);
+    }
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+        
+        // Desktop theme toggle
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleDarkMode);
+        }
+        
+        // Mobile theme toggle
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('click', toggleDarkMode);
+        }
+    
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            this.innerHTML = mobileMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+    }});
+    
+            
+            // Close mobile menu when clicking on links
+    document.querySelectorAll('.mobile-menu .nav-link, .mobile-menu .login-btn').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+    
+        // Navbar scroll effect
+       // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        }  });
+    
+        // Animate elements when they come into view
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.feature-card, .product-card, .review-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+    
+        // Set initial state for animated elements
+        document.querySelectorAll('.feature-card, .product-card, .review-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        });
+    
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

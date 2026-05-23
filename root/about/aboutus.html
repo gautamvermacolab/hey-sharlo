@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About heysharlo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
+    <style>
+        :root {
+            --royal-blue: #4876cf;
+            --emerald-aqua: #00c08b;
+            --sand-beige: #f0e5cf;
+            --charcoal-black: #1e1e1e;
+            --clean-white: #ffffff;
+            --deep-onyx: #111111;
+            --soft-teal: #a9f1df;
+            --glass-blur: blur(12px);
+            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Rainbow colors for fairy mode */
+            --rainbow-red: #ff6b6b;
+            --rainbow-orange: #ffa502;
+            --rainbow-yellow: #eccc68;
+            --rainbow-green: #2ed573;
+            --rainbow-blue: #1e90ff;
+            --rainbow-indigo: #5352ed;
+            --rainbow-violet: #cd84f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--sand-beige);
+            color: var(--deep-onyx);
+            overflow-x: hidden;
+            transition: var(--transition-all);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body.dark-mode {
+            background-color: var(--charcoal-black);
+            color: var(--clean-white);
+        }
+
+        /* Spider-Man Web Effect for Dark Mode */
+        .web-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .dark-mode .web-effect {
+            opacity: 0.3;
+        }
+
+        .web-line {
+            position: absolute;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+            width: 2px;
+            transform-origin: top center;
+            animation: webSwing 15s infinite ease-in-out;
+        }
+
+        @keyframes webSwing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(-3deg); }
+            75% { transform: rotate(2deg); }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition-all);
+            padding: 20px 0;
+            background: rgba(240, 229, 207, 0.8);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .navbar {
+            background: rgba(30, 30, 30, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text {
+            background: linear-gradient(to right, #4876cf, #00c08b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 5px 0;
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 24px;
+            border-radius: 12px;
+            background: var(--deep-onyx);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+            transition: var(--transition-all);
+            border: 1px solid rgba(72, 118, 207, 0.3);
+        }
+
+        .dark-mode .theme-toggle {
+            background: var(--sand-beige);
+            border: 1px solid rgba(0, 192, 139, 0.3);
+        }
+
+        .toggle-ball {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--sand-beige);
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode .toggle-ball {
+            background: var(--charcoal-black);
+            transform: translateX(26px);
+        }
+
+        /* About Container */
+        .about-container {
+            max-width: 1000px;
+            margin: 100px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition-all);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .about-container {
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 30px 0 15px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode h2 {
+            color: var(--emerald-aqua);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Fairy Character for Light Mode */
+        .ai-character {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: float 3s ease-in-out infinite;
+            border-radius: 50%;
+            background-color: var(--royal-blue);
+            border: 2px solid #fff;
+        }
+
+        .dark-mode .ai-character {
+            background-color: var(--emerald-aqua);
+        }
+
+        /* AI Icon Inside Bubble */
+        .ai-icon {
+            font-size: 1.8rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .ai-character:hover .ai-icon {
+            transform: scale(1.1);
+        }
+        /* Fairy Dust Trail */
+        .fairy-dust {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .dust-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--rainbow-violet);
+            opacity: 0;
+            animation: fairyDust 3s infinite;
+        }
+
+        @keyframes fairyDust {
+            0% { transform: translate(0, 0); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .ai-character:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        /* AI Chat Interface */
+        .ai-chat {
+            position: fixed;
+            bottom: 170px;
+            right: 30px;
+            width: 350px;
+            max-height: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .ai-chat.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dark-mode .ai-chat {
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+
+        .ai-chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .ai-chat-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-chat-title {
+            font-weight: 600;
+            color: var(--royal-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dark-mode .ai-chat-title {
+            color: var(--emerald-aqua);
+        }
+
+        .ai-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--deep-onyx);
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode .ai-close-btn {
+            color: var(--clean-white);
+        }
+
+        .ai-close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .ai-chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            padding-right: 10px;
+        }
+
+        .ai-message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ai-message-bot {
+            background: rgba(72, 118, 207, 0.1);
+            border-bottom-left-radius: 5px;
+            margin-right: auto;
+        }
+
+        .dark-mode .ai-message-bot {
+            background: rgba(0, 192, 139, 0.1);
+        }
+
+        .ai-message-user {
+            background: rgba(240, 229, 207, 0.5);
+            border-bottom-right-radius: 5px;
+            margin-left: auto;
+        }
+
+        .dark-mode .ai-message-user {
+            background: rgba(30, 30, 30, 0.5);
+        }
+
+        .ai-chat-input {
+            display: flex;
+        }
+
+        .ai-chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .ai-chat-input input {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--clean-white);
+        }
+
+        .ai-chat-input button {
+            margin-left: 10px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: none;
+            background: var(--royal-blue);
+            color: white;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .ai-chat-input button {
+            background: var(--emerald-aqua);
+        }
+
+        .ai-chat-input button:hover {
+            opacity: 0.9;
+        }
+
+        .ai-question-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .ai-question-btn {
+            padding: 8px 12px;
+            border-radius: 15px;
+            background: rgba(72, 118, 207, 0.1);
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .ai-question-btn {
+            background: rgba(0, 192, 139, 0.1);
+            color: var(--clean-white);
+        }
+
+        .ai-question-btn:hover {
+            background: rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .ai-question-btn:hover {
+            background: rgba(0, 192, 139, 0.2);
+        }
+
+        /* Cosmetic Brand Icons */
+        .cosmetic-icon {
+            font-size: 1.2rem;
+            margin-right: 5px;
+            background: linear-gradient(45deg, var(--rainbow-red), var(--rainbow-orange), var(--rainbow-yellow), var(--rainbow-green), var(--rainbow-blue), var(--rainbow-indigo), var(--rainbow-violet));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbowGlow 3s infinite alternate;
+        }
+
+        @keyframes rainbowGlow {
+            0% { filter: drop-shadow(0 0 2px var(--rainbow-red)); }
+            16% { filter: drop-shadow(0 0 2px var(--rainbow-orange)); }
+            32% { filter: drop-shadow(0 0 2px var(--rainbow-yellow)); }
+            48% { filter: drop-shadow(0 0 2px var(--rainbow-green)); }
+            64% { filter: drop-shadow(0 0 2px var(--rainbow-blue)); }
+            80% { filter: drop-shadow(0 0 2px var(--rainbow-indigo)); }
+            100% { filter: drop-shadow(0 0 2px var(--rainbow-violet)); }
+        }
+
+        /* Blur effect when chat is active */
+        .blur-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(5px);
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-all);
+        }
+
+        .blur-effect.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Team Section */
+        .team-section {
+            margin-top: 40px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition-all);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .team-member {
+            background: rgba(30, 30, 30, 0.7);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .team-member:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid var(--royal-blue);
+        }
+
+        .dark-mode .member-photo {
+            border-color: var(--emerald-aqua);
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .member-name {
+            color: var(--emerald-aqua);
+        }
+
+        .member-role {
+            font-size: 0.9rem;
+            color: var(--deep-onyx);
+            margin-bottom: 15px;
+        }
+
+        .dark-mode .member-role {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--deep-onyx);
+            font-size: 1.2rem;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .social-links a {
+            color: var(--clean-white);
+        }
+
+        .social-links a:hover {
+            color: var(--royal-blue);
+            transform: translateY(-3px);
+        }
+
+        .dark-mode .social-links a:hover {
+            color: var(--emerald-aqua);
+        }
+
+        /* Mission Section */
+        .mission-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(72, 118, 207, 0.1);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .mission-section {
+            background: rgba(0, 192, 139, 0.1);
+        }
+
+        .mission-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(72, 118, 207, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        .dark-mode .mission-section::before {
+            background: radial-gradient(circle, rgba(0, 192, 139, 0.05) 0%, transparent 70%);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-container {
+                padding: 30px;
+                margin: 100px 20px;
+            }
+            
+            .about-title {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .ai-character {
+                width: 80px;
+                height: 80px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .ai-chat {
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 120px;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-container {
+                padding: 20px;
+            }
+            
+            .about-title {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.4rem;
+            }
+            
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-text">heysharlo</a>
+            </div>
+            <div class="theme-toggle" id="theme-toggle">
+                <div class="toggle-ball"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Us Content -->
+    <div class="about-container">
+        <div class="about-content">
+            <h1 class="about-title">About heysharlo</h1>
+            
+            <p>Welcome to heysharlo, We're revolutionizing the makeup industry with cutting-edge technology and compassionate care of your skin.</p>
+            
+            <h2>Our Story</h2>
+            <p>Founded in 2026, heysharlo began as a small startup with a big vision: to make cosmetics items , affordable, and advanced for everyone.</p>
+            
+            <h2>What We Do</h2>
+            <ul>
+                <li>Our product is for mens and womens</li>
+                <li>Connect customer with luxury vides </li>
+                <li>Create best and quality products</li>
+            </ul>
+            
+            <div class="mission-section">
+                <h2>Our Mission</h2>
+                <p>To transform cosmetics delivery through technology, making it more personalized, efficient, and accessible to all. We believe everyone deserves good skin</p>
+            </div>
+            
+         <!--     <div class="team-section">
+                <h2>Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Sarah Johnson" class="member-photo">
+                        <h3 class="member-name">Dr. Sarah Johnson</h3>
+                        <p class="member-role">Chief Medical Officer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Raj Patel" class="member-photo">
+                        <h3 class="member-name">Raj Patel</h3>
+                        <p class="member-role">Lead AI Engineer</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Maria Gonzalez" class="member-photo">
+                        <h3 class="member-name">Maria Gonzalez</h3>
+                        <p class="member-role">Head of Product</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Our Values</h2>
+            <ul>
+                <li><strong>Innovation:</strong> Constantly pushing boundaries in medical technology</li>
+                <li><strong>Compassion:</strong> Putting patients at the heart of everything we do</li>
+                <li><strong>Integrity:</strong> Maintaining the highest ethical standards</li>
+                <li><strong>Collaboration:</strong> Working together with healthcare providers</li>
+                <li><strong>Accessibility:</strong> Making healthcare available to all</li>
+            </ul>
+        </div>
+    </div>  -->
+
+    <!-- AI Character -->
+    <div class="ai-character" id="ai-character"></div>
+
+    <!-- AI Chat Interface -->
+    <div class="ai-chat" id="ai-chat">
+        <div class="ai-chat-header">
+            <h3 class="ai-chat-title" id="ai-chat-title">Maya AI</h3>
+            <button class="ai-close-btn" id="ai-close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="ai-chat-messages" id="ai-chat-messages">
+            <div class="ai-message ai-message-bot">
+                Hello! I'm your heysharlo assistant. How can I help you today?
+            </div>
+        </div>
+        <div class="ai-question-suggestions">
+            <button class="ai-question-btn" data-question="What services does heysharlo offer?">Services</button>
+            <button class="ai-question-btn" data-question="How do I contact support?">Contact</button>
+            <button class="ai-question-btn" data-question="Tell me about the founders">Founders</button>
+            <button class="ai-question-btn" data-question="What makes heysharlo unique?">Unique Features</button>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="ai-user-input" placeholder="Type your question...">
+            <button id="ai-send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- Blur Effect -->
+    <div class="blur-effect" id="blur-effect"></div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const aiCharacter = document.getElementById('ai-character');
+        
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // Update AI character based on theme
+            if (isDarkMode) {
+                aiCharacter.classList.remove('light');
+                aiCharacter.classList.add('dark');
+                document.getElementById('ai-chat-title').textContent = "Memo AI";
+            } else {
+                aiCharacter.classList.remove('dark');
+                aiCharacter.classList.add('light');
+                document.getElementById('ai-chat-title').textContent = "Maya Assistant";
+            }
+        }
+        
+        // Initialize theme from localStorage
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            aiCharacter.classList.add('dark');
+            document.getElementById('ai-chat-title').textContent = "Memo AI";
+        } else {
+            aiCharacter.classList.add('light');
+        }
+        
+        // Add event listener to toggle
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleDarkMode);
+        }
+
+        // AI Chat Interaction
+        const aiChar = document.getElementById('ai-character');
+        const aiChat = document.getElementById('ai-chat');
+        const aiCloseBtn = document.getElementById('ai-close-btn');
+        const aiMessages = document.getElementById('ai-chat-messages');
+        const aiUserInput = document.getElementById('ai-user-input');
+        const aiSendBtn = document.getElementById('ai-send-btn');
+        const blurEffect = document.getElementById('blur-effect');
+        const questionBtns = document.querySelectorAll('.ai-question-btn');
+
+        // AI Responses
+        const aiResponses = {
+            "What services does heysharlo offer?": "heysharlo offers a range of services including Cosmetices Products ",
+            "How do I contact support?": "You can contact our support team by emailing heysharloindia@gmail.com MED-MAKE. Our team is available 24/7 to assist you with any questions or concerns.",
+            "Tell me about the founders": "heysharlo was founded by a team of medical professionals and tech entrepreneurs who saw the need for better experience. Our founders include Vishal (founder ), Gautam (CEO)",
+            "What makes heysharlo unique?": "What sets heysharlo apart is our combination of cutting-edge AI technology. We don't just provide tools - we create solutions that truly understand and address the needs of both Man,s and Girl,s",
+            "default": "I'm sorry, I didn't understand that question. Could you please rephrase it or ask about our services, team, or mission?"
+        };
+
+        // Toggle chat
+        aiChar.addEventListener('click', () => {
+            aiChat.classList.toggle('active');
+            blurEffect.classList.toggle('active');
+            
+            // Focus input when chat opens
+            if (aiChat.classList.contains('active')) {
+                setTimeout(() => {
+                    aiUserInput.focus();
+                }, 300);
+            }
+        });
+
+        aiCloseBtn.addEventListener('click', () => {
+            aiChat.classList.remove('active');
+            blurEffect.classList.remove('active');
+        });
+
+        // Send message
+        function sendMessage() {
+            const message = aiUserInput.value.trim();
+            if (message) {
+                // Add user message
+                addMessage(message, 'user');
+                aiUserInput.value = '';
+                
+                // Simulate typing
+                setTimeout(() => {
+                    const response = aiResponses[message] || aiResponses['default'];
+                    addMessage(response, 'bot');
+                }, 800);
+            }
+        }
+
+        // Add message to chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('ai-message', `ai-message-${sender}`);
+            messageDiv.textContent = text;
+            aiMessages.appendChild(messageDiv);
+            aiMessages.scrollTop = aiMessages.scrollHeight;
+        }
+
+        // Send on button click or Enter key
+        aiSendBtn.addEventListener('click', sendMessage);
+        aiUserInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Question suggestions
+        questionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const question = btn.getAttribute('data-question');
+                aiUserInput.value = question;
+                aiUserInput.focus();
+            });
+        });
+
+        // Initial animation for AI character
+        setTimeout(() => {
+            aiChar.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                aiChar.style.transform = 'scale(1)';
+            }, 300);
+        }, 1000);
+    </script>
+</body>
+</html>

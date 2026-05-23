@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs | Heyshorlo - Gender-Neutral Luxury Cosmetics</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" href="img/heyshorlologo.png" type="image/x-icon">
+    <style>
+        :root {
+            --royal-blue: #4876cf;
+            --emerald-aqua: #00c08b;
+            --sand-beige: #f0e5cf;
+            --charcoal-black: #1e1e1e;
+            --clean-white: #ffffff;
+            --deep-onyx: #111111;
+            --soft-teal: #a9f1df;
+            --glass-blur: blur(12px);
+            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--sand-beige);
+            color: var(--deep-onyx);
+            overflow-x: hidden;
+            transition: var(--transition-all);
+        }
+
+        body.dark-mode {
+            background-color: var(--charcoal-black);
+            color: var(--clean-white);
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--charcoal-black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .logo-animation {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            animation: rotate 4s linear infinite;
+        }
+
+        .logo-circle:nth-child(1) {
+            border-top-color: var(--royal-blue);
+            animation-delay: 0.1s;
+        }
+
+        .logo-circle:nth-child(2) {
+            border-top-color: var(--emerald-aqua);
+            animation-delay: 0.2s;
+        }
+
+        .logo-circle:nth-child(3) {
+            border-top-color: var(--soft-teal);
+            animation-delay: 0.3s;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .preloader-text {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--clean-white);
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition-all);
+            padding: 20px 0;
+            background: rgba(240, 229, 207, 0.8);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .navbar {
+            background: rgba(30, 30, 30, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text {
+            background: linear-gradient(to right, #4876cf, #00c08b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 5px 0;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            padding: 12px 30px;
+            margin: 0 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            border: 1px solid rgba(72, 118, 207, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .dark-mode .nav-links {
+            background: rgba(30, 30, 30, 0.1);
+            border: 1px solid rgba(0, 192, 139, 0.2);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--deep-onyx);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition-all);
+            padding: 8px 0;
+        }
+
+        .dark-mode .nav-link {
+            color: var(--clean-white);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #4876cf, #00c08b);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .login-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            background: transparent;
+            color: var(--deep-onyx);
+            border: 1.5px solid rgba(72, 118, 207, 0.3);
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition-all);
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .dark-mode .login-btn {
+            color: var(--clean-white);
+            border-color: rgba(0, 192, 139, 0.3);
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(to right, #4876cf, #00c08b);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(72, 118, 207, 0.3);
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 24px;
+            border-radius: 12px;
+            background: var(--deep-onyx);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+            transition: var(--transition-all);
+            border: 1px solid rgba(72, 118, 207, 0.3);
+        }
+
+        .dark-mode .theme-toggle {
+            background: var(--sand-beige);
+            border: 1px solid rgba(0, 192, 139, 0.3);
+        }
+
+        .toggle-ball {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--sand-beige);
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode .toggle-ball {
+            background: var(--charcoal-black);
+            transform: translateX(26px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--deep-onyx);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .dark-mode .mobile-menu-btn {
+            color: var(--clean-white);
+        }
+
+        /* Navbar Scroll Effect */
+        .navbar.scrolled {
+            padding: 10px 0;
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            background-color: rgba(240, 229, 207, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .navbar.scrolled {
+            background-color: rgba(30, 30, 30, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--sand-beige);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-all);
+            z-index: 999;
+            padding: 80px 30px 30px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .mobile-menu {
+            background: var(--charcoal-black);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .mobile-menu .nav-link {
+            padding: 12px 0;
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu .login-btn {
+            margin-top: 30px;
+            text-align: center;
+            padding: 12px;
+        }
+
+        .mobile-theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding: 15px 0;
+            border-top: 1px solid rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .mobile-theme-toggle {
+            border-top: 1px solid rgba(0, 192, 139, 0.2);
+        }
+
+        @media (max-width: 992px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .nav-center {
+                display: none;
+            }
+            
+            .nav-right {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* FAQ Main Content */
+        .faq-hero {
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+            margin-top: 80px;
+            background: linear-gradient(135deg, rgba(72, 118, 207, 0.2) 0%, rgba(0, 192, 139, 0.2) 100%);
+        }
+
+        .dark-mode .faq-hero {
+            background: linear-gradient(135deg, rgba(72, 118, 207, 0.1) 0%, rgba(0, 192, 139, 0.1) 100%);
+        }
+
+        .faq-hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .faq-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .faq-hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.8s forwards;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 1.1s forwards;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .search-input {
+            background: rgba(30, 30, 30, 0.9);
+            color: var(--clean-white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 8px 25px rgba(72, 118, 207, 0.3);
+        }
+
+        .dark-mode .search-input:focus {
+            box-shadow: 0 8px 25px rgba(0, 192, 139, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--royal-blue);
+            cursor: pointer;
+        }
+
+        .dark-mode .search-icon {
+            color: var(--emerald-aqua);
+        }
+
+        /* FAQ Sections */
+        .faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .faq-section {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .faq-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .section-header {
+            border-bottom: 2px solid rgba(0, 192, 139, 0.2);
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--royal-blue), var(--emerald-aqua));
+            border-radius: 50%;
+            color: var(--clean-white);
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--royal-blue);
+            margin: 0;
+        }
+
+        .dark-mode .section-title {
+            color: var(--emerald-aqua);
+        }
+
+        /* FAQ Accordion */
+        .accordion {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .accordion {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid rgba(72, 118, 207, 0.1);
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .accordion-item {
+            border-bottom: 1px solid rgba(0, 192, 139, 0.1);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .accordion-header {
+            background: rgba(30, 30, 30, 0.8);
+        }
+
+        .accordion-header:hover {
+            background: rgba(72, 118, 207, 0.05);
+        }
+
+        .dark-mode .accordion-header:hover {
+            background: rgba(0, 192, 139, 0.05);
+        }
+
+        .accordion-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--deep-onyx);
+            margin: 0;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .accordion-title {
+            color: var(--clean-white);
+        }
+
+        .accordion-icon {
+            transition: var(--transition-all);
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .accordion-icon {
+            color: var(--emerald-aqua);
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dark-mode .accordion-content {
+            background: rgba(30, 30, 30, 0.9);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-body {
+            padding: 0 25px;
+        }
+
+        .accordion-text {
+            padding: 20px 0;
+            color: var(--deep-onyx);
+            line-height: 1.7;
+        }
+
+        .dark-mode .accordion-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(72, 118, 207, 0.1) 0%, rgba(0, 192, 139, 0.1) 100%);
+            border-radius: 20px;
+            margin-top: 60px;
+        }
+
+        .dark-mode .contact-cta {
+            background: linear-gradient(135deg, rgba(72, 118, 207, 0.05) 0%, rgba(0, 192, 139, 0.05) 100%);
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .contact-title {
+            color: var(--emerald-aqua);
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: var(--clean-white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-all);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode .contact-btn:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--sand-beige);
+            padding: 60px 40px 30px;
+            position: relative;
+        }
+
+        .dark-mode .footer {
+            background-color: var(--charcoal-black);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--royal-blue), transparent);
+            opacity: 0.3;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--deep-onyx);
+            margin-bottom: 20px;
+        }
+
+        .dark-mode .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .footer-title {
+            color: var(--emerald-aqua);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 10px;
+        }
+
+        .footer-link a {
+            color: var(--deep-onyx);
+            text-decoration: none;
+            transition: var(--transition-all);
+            font-size: 0.9rem;
+        }
+
+        .dark-mode .footer-link a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-link a:hover {
+            color: var(--royal-blue);
+            padding-left: 5px;
+        }
+
+        .dark-mode .footer-link a:hover {
+            color: var(--emerald-aqua);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid rgba(72, 118, 207, 0.3);
+            border-radius: 5px 0 0 5px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: var(--transition-all);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .dark-mode .newsletter-input {
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(0, 192, 139, 0.3);
+            color: var(--clean-white);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 10px rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .newsletter-input:focus {
+            border-color: var(--emerald-aqua);
+            box-shadow: 0 0 10px rgba(0, 192, 139, 0.2);
+        }
+
+        .newsletter-btn {
+            padding: 10px 15px;
+            background: var(--royal-blue);
+            color: var(--clean-white);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: var(--transition-all);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--emerald-aqua);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(72, 118, 207, 0.1);
+            color: var(--royal-blue);
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .social-link {
+            background: rgba(0, 192, 139, 0.1);
+            color: var(--emerald-aqua);
+        }
+
+        .social-link:hover {
+            background: var(--royal-blue);
+            color: var(--clean-white);
+            transform: translateY(-5px);
+        }
+
+        .dark-mode .social-link:hover {
+            background: var(--emerald-aqua);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(72, 118, 207, 0.1);
+            font-size: 0.8rem;
+            color: var(--deep-onyx);
+        }
+
+        .dark-mode .footer-bottom {
+            border-top: 1px solid rgba(0, 192, 139, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .faq-hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .faq-hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title, .contact-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .faq-hero {
+                height: 50vh;
+                margin-top: 70px;
+            }
+            
+            .faq-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .section-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .faq-container {
+                padding: 60px 20px;
+            }
+            
+            .contact-cta {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .faq-hero-title {
+                font-size: 2rem;
+            }
+            
+            .faq-hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .accordion-header {
+                padding: 15px 20px;
+            }
+            
+            .accordion-title {
+                font-size: 1rem;
+            }
+            
+            .contact-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }    
+
+        /* AI Assistant Styles */
+        .ai-assistant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .ai-assistant.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .ai-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--royal-blue), var(--emerald-aqua));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 3px solid white;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: float 4s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .ai-toggle {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .ai-toggle:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .ai-toggle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+            filter: blur(10px);
+            opacity: 0.5;
+            z-index: -1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .ai-toggle.active {
+            transform: rotateY(180deg);
+        }
+
+        .ai-chat-container {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 320px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transform: scale(0.5);
+            transform-origin: bottom right;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 0;
+        }
+
+        .dark-mode .ai-chat-container {
+            background: rgba(30, 30, 30, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .ai-toggle.active + .ai-chat-container {
+            transform: scale(1);
+            opacity: 1;
+            max-height: 500px;
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-chat-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .ai-chat-body {
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .ai-message {
+            background: rgba(72, 118, 207, 0.1);
+            border-radius: 15px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .dark-mode .ai-message {
+            background: rgba(0, 192, 139, 0.1);
+        }
+
+        .ai-quick-questions {
+            margin-top: 15px;
+        }
+
+        .ai-question {
+            display: inline-block;
+            background: rgba(72, 118, 207, 0.1);
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin: 5px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .ai-question:hover {
+            background: rgba(72, 118, 207, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .dark-mode .ai-question {
+            background: rgba(0, 192, 139, 0.1);
+        }
+
+        .dark-mode .ai-question:hover {
+            background: rgba(0, 192, 139, 0.2);
+        }
+
+        .ai-typing {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(72, 118, 207, 0.05);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .dark-mode .ai-typing {
+            background: rgba(0, 192, 139, 0.05);
+        }
+
+        .ai-typing span {
+            height: 8px;
+            width: 8px;
+            background: var(--royal-blue);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+
+        .dark-mode .ai-typing span {
+            background: var(--emerald-aqua);
+        }
+
+        .ai-typing span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .ai-typing span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        .ai-typing-indicator {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: rgba(72, 118, 207, 0.05);
+        border-radius: 20px;
+        margin-bottom: 10px;
+        width: fit-content;
+    }
+    
+    .dark-mode .ai-typing-indicator {
+        background: rgba(0, 192, 139, 0.05);
+    }
+    
+    .ai-typing-indicator span {
+        height: 8px;
+        width: 8px;
+        background: var(--royal-blue);
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 2px;
+        animation: bounce 1.5s infinite ease-in-out;
+    }
+    
+    .dark-mode .ai-typing-indicator span {
+        background: var(--emerald-aqua);
+    }
+    
+    .ai-typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    
+    .ai-typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+    
+    .ai-follow-up {
+        background: rgba(72, 118, 207, 0.05);
+        border-radius: 15px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+    
+    .dark-mode .ai-follow-up {
+        background: rgba(0, 192, 139, 0.05);
+    }
+    
+    .ai-follow-up p {
+        margin: 0 0 10px 0;
+        font-size: 0.9rem;
+    }
+    
+    .ai-follow-up-btn {
+        background: rgba(72, 118, 207, 0.1);
+        border: none;
+        border-radius: 20px;
+        padding: 15px 15px;
+        margin-right: 8px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .ai-follow-up-btn:hover {
+        background: rgba(72, 118, 207, 0.2);
+    }
+    
+    .dark-mode .ai-follow-up-btn {
+        background: rgba(0, 192, 139, 0.1);
+    }
+    
+    .dark-mode .ai-follow-up-btn:hover {
+        background: rgba(0, 192, 139, 0.2);
+    }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+ .table-container {
+            max-height: 200px; /* Adjusted max height for vertical scrolling */
+            overflow: auto; /* Enables both horizontal and vertical scrolling */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            margin: 20px 0; /* Add margin for spacing */
+        }
+        table {
+            width: 100%; /* Make the table take full width */
+            border-collapse: collapse; /* Remove space between borders */
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">HEYSHORLO</span>
+            </div>
+            <div class="nav-center">
+                <div class="nav-links">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../product/product.html" class="nav-link">Products</a>
+            <a href="../verify/verify.html" class="nav-link">Verify</a>
+            <a href="../contest/contest.html" class="nav-link">Contest</a>
+            <a href="../reward/reward.html" class="nav-link">Reward</a>
+            <a href="../login/login.html" class="login-btn">Login</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="login.html" class="login-btn">Login</a>
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-nav-links">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../product/product.html" class="nav-link">Products</a>
+            <a href="../verify/verify.html" class="nav-link">Verify</a>
+            <a href="../contest/contest.html" class="nav-link">Contest</a>
+            <a href="../reward/reward.html" class="nav-link">Reward</a>
+            <a href="../login/login.html" class="login-btn">Login</a>
+            <div class="mobile-theme-toggle">
+                <span>Dark Mode</span>
+                <div class="theme-toggle" id="mobile-theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Hero Section -->
+    <section class="faq-hero">
+        <div class="faq-hero-content">
+            <h1 class="faq-hero-title">Frequently Asked Questions</h1>
+            <p class="faq-hero-subtitle">Find answers to all your questions about Heyshorlo products, rewards, contests and more</p>
+        </div>
+    </section>
+
+    <!-- FAQ Main Content -->
+    <div class="faq-container">
+        <!-- Rewards Section -->
+        <section class="faq-section" id="rewards">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h2 class="section-title">Rewards Program</h2>
+            </div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">How does the Heyshorlo Rewards Program work?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                The reward system is exclusively available for users who participate in the contest. There are no other options on the website through which users can claim rewards.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">How will I receive my reward?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                The winner of the contest will be contacted via social media or email within 48 hours. The reward will be provided either as cash or in the form of a coupon, depending on the specific terms of the contest.
+  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Do rewards  expire?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                If the user does not respond or contact Heyshorlo customer support within 48 hours, the prize will be withdrawn, and the company will reserve the right to that prize.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Can I combine reward with other discounts?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                In most cases, yes! You can combine your reward with seasonal sales and promotional discounts. However, reward cannot be combined with certain exclusive offers or limited-time deals. The checkout page will always show you the best possible combination of discounts available for your order.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Will any documents be required to claim the reward?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                Yes, basic identification or verification documents may be required to confirm your identity before the reward is issued. The specific requirements will be communicated at the time of contact.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contests Section -->
+        <section class="faq-section" id="contests">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h2 class="section-title">Contests & Giveaways</h2>
+            </div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">How often does Heyshorlo run contests?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                We run contests and giveaways monthly, with special seasonal contests around major holidays. Our monthly contests typically run from the 1st to the 30th of each month, with winners announced with in 24hours after 30th. You can check our Contest page or follow us on social media for announcements about upcoming contests.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">How do I enter Heyshorlo contests?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                To participate in the contest, the user must create an engagement video and upload it on social media using the hashtags #heyshorloindia and #heyshorloindiacontest.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">What kind of prizes can I win?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                The first-place winner will receive a **Premium Card**, the second and third-place winners will receive a **Silver Card**, 
+                                and participants ranked 4th to 15th will receive a **Brown Card**. Each card comes with a unique gift and exciting offers.
+                                 If you would like to see the details, please visit the contest page.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">what is the rule of contest?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                               As per the Rule & Regulation in contest page and The user must maintain their position until the end of the month and must still be
+                               in that position during the last 48 hours. If they move from their position before the 48 hours, they will not 
+                               receive the reward, even if they are in the top rank. The company is using this method to prevent fake views and fake followers.
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Can I enter multiple times?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                Each user is allowed to enter the contest only once. If any user is found engaging in fake activity or using multiple IDs to
+                                 manipulate views, they will be permanently banned from all Heyshorlo contests.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">what is the view cut system ?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                         <p id="description">Heyshorlo company brings a fair and balanced view system so that every creator gets a chance to reach the top.
+                             Therefore, a view cutoff will apply for those with 10k+ followers, as shown in the example below. However, no creator will 
+                             receive more than 1 million views, as the maximum view cut limit is 1 million views.</p>
+<div class="table-container">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Followers Range</th>
+                <th>Cut Per 1K Followers</th>
+                <th>Total Cut Views (Calculated)</th>
+                <th>Actual View Cut (Max 10L Limit)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0 – 10,000</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>10,001 – 50,000</td>
+                <td>500</td>
+                <td>50 × 500 = 25,000 views</td>
+                <td>25,000</td>
+            </tr>
+            <tr>
+                <td>50,001 – 100,000</td>
+                <td>700</td>
+                <td>100 × 700 = 70,000 views</td>
+                <td>70,000</td>
+            </tr>
+            <tr>
+                <td>100,001 – 200,000</td>
+                <td>1,200</td>
+                <td>200 × 1,200 = 240,000 views</td>
+                <td>240,000</td>
+            </tr>
+            <tr>
+                <td>200,001 – 300,000</td>
+                <td>1,400</td>
+                <td>300 × 1,400 = 420,000 views</td>
+                <td>420,000</td>
+            </tr>
+            <tr>
+                <td>300,001 – 400,000</td>
+                <td>1,600</td>
+                <td>400 × 1,600 = 640,000 views</td>
+                <td>640,000</td>
+            </tr>
+            <tr>
+                <td>400,001 – 500,000</td>
+                <td>1,800</td>
+                <td>500 × 1,800 = 900,000 views</td>
+                <td>900,000</td>
+            </tr>
+            <tr>
+                <td>500,001 – 600,000</td>
+                <td>2,000</td>
+                <td>600 × 2,000 = 1,200,000 views</td>
+             <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>600,001 – 700,000</td>
+                <td>2,300</td>
+                <td>700 × 2,300 = 1,610,000 views</td>
+               <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>700,001 – 800,000</td>
+                <td>3,000</td>
+                <td>800 × 3,000 = 2,400,000 views</td>
+                 <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>800,001 – 900,000</td>
+                <td>3,500</td>
+                <td>900 × 3,500 = 3,150,000 views</td>
+                  <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>900,001 – 1,000,000</td>
+                <td>4,000</td>
+                <td>1,000 × 4,000 = 4,000,000 views</td>
+                 <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>1,000,001 – 2,000,000</td>
+                <td>5,000</td>
+                <td>2,000 × 5,000 = 10,000,000 views</td>
+                 <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>2,000,001 – 7,000,000</td>
+                <td>5,500</td>
+                <td>7,000 × 5,500 = 38,500,000 views</td>
+                 <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>7,000,001 – 8,000,000</td>
+                <td>6,000</td>
+                <td>8,000 × 6,000 = 48,000,000 views</td>
+                 <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>8,000,001 – 9,000,000</td>
+                <td>6,500</td>
+                <td>9,000 × 6,500 = 58,500,000 views</td>
+                <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>9,000,001 – 10,000,000</td>
+                <td>7,000</td>
+                <td>10,000 × 7,000 = 70,000,000 views</td>
+                  <td>Max 10,00,000 views</td>
+            </tr>
+            <tr>
+                <td>10,000,001+</td>
+                <td>7,500</td>
+                <td>-</td>
+                  <td>Max 10,00,000 views</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="faq-section" id="products">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h2 class="section-title">Products</h2>
+            </div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Are Heyshorlo products cruelty-free?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                Absolutely! Heyshorlo is 100% cruelty-free. We never test our products or ingredients on animals, and we don't work with suppliers who conduct animal testing. All our products carry these certifications, which you can verify on our packaging or website.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Are your products vegan?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                About 85% of our product line is vegan, and we're working to make this 100%. All vegan products are clearly marked with a green "V" symbol on our website and packaging. Our non-vegan products may contain ingredients like beeswax or carmine, which we're actively seeking plant-based alternatives for.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">How can I verify my Heyshorlo product is authentic?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                Every Heyshorlo product has a unique verification code under the packaging. You can enter this code on our <a href="verify.html">Verify Product</a> page to confirm authenticity. Authentic products will display full product details and manufacturing date. If you suspect a counterfeit, please contact us immediately with the product details.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">What's your return policy?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                              No, we not offer any kind  of return policy 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">Do you offer samples or testers?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                Yes! We offer sample sizes of most products for ₹99 each. You can also request free samples with every order (limit 1 per order and order should be more then 1999). Our physical stores provide free testers for all products without any charges . We encourage trying before buying to ensure you love the product as much as we do!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shipping Section -->
+        <section class="faq-section" id="shipping">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h2 class="section-title">PARTNER</h2>
+            </div>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">How can I become a distributor, retailer, or financier?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                The distributor , retailer, or financier can apply on our website by registering under the "Apply as Distributor" , "Apply as retailer" ,"Apply as financier" section. Our team will contact them, and after completing the necessary documentation, they can become an authorized Heyshorlo distributor , retailer or financier.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">what document will need for distributor? </h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                1. Business Registration
+                                2. Tax Identification Number (TIN)
+                                3. Bank Account Details
+                                4. Identification Proof
+                                5. Address Proof
+                                6. Financial Documents
+                                7. Experience or References
+                                8. Distribution Plan
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">what document will need for retailer ?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                1. Business Registration
+2. Tax Identification Number (TIN)
+3. Bank Account Details
+4. Identification Proof
+5. Address Proof
+6. Financial Documents
+7. Retail License (if required)
+8. Store/Website Details
+9. Sales Tax Registration (if applicable)
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3 class="accordion-title">What documents are required to become a financier ?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p class="accordion-text">
+                                1. Business Registration
+                                2. Tax Identification Number (TIN)
+                                3. Bank Account Details
+                                4. Identification Proof
+                                5. Address Proof
+                                6. Financial Documents
+                                7. Franchise Agreement
+                                8. Franchise Experience or References
+                                9. Legal Documents (e.g., lease agreement for premises)
+                                10. Proof of Investment Capability
+                                11. Franchisee Application Form
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="contact-cta">
+            <h2 class="contact-title">Still have questions?</h2>
+            <p class="contact-text">Our customer care team is available 24/7 to help with any other questions you might have about our products, rewards program, or contests.</p>
+            <a href="mailto:heyshorloindia@gmail.com" class="contact-btn">Contact Us</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+        <footer class="footer">
+          <div class="footer-container">
+              <div class="footer-col">
+                  <div class="footer-logo">HEYSHORLO</div>
+                  <p class="footer-text">new kundan puri civil lines 141001 ,punjab , india <br></p>
+                  <p>heyshorloindia@gmail.com</p>
+                </p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/heyshorloindia?igsh=dGp2bjd5bzQxdmpx" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/g/1ARex5joqc/" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="https://youtube.com/@heyshorloindia?si=vPjMia_FuygYcH1c" class="social-link"><i class="fab fa-youtube"></i></a>
+                       <a href="https://x.com/heyshorloindia" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+                     <div class="footer-col">
+                  <h3 class="footer-title">Quick Links</h3>
+                  <ul class="footer-links">
+                      <li class="footer-link"><a href="../product/product.html">Products</a></li>
+                      <li class="footer-link"><a href="../about/aboutus.html">About Us</a></li>
+                      <li class="footer-link"><a href="../verify/verify.html">Verify</a></li>
+                      <li class="footer-link"><a href="../contest/contest.html">Contest</a></li>
+                      <li class="footer-link"><a href="../reward/reward.html">Reward</a></li>
+                  </ul>
+              </div>
+              <div class="footer-col">
+                  <h3 class="footer-title">Information</h3>
+                  <ul class="footer-links">
+                      <li class="footer-link"><a href="faq.html">FAQ</a></li>
+                      <li class="footer-link"><a href="../privacy/policy.html">privacy</a></li>
+                      <li class="footer-link"><a href="mailto:heysharloindia@gmail.com">contact</a></li>
+                      <li class="footer-link"><a href="../support/term&condtion.html">Terms & Conditions</a></li>
+                  </ul>
+              </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Newsletter</h3>
+                <p class="footer-text">
+                    Subscribe to get 10% off your first order and updates on new products and exclusive offers.
+                </p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address">
+                    <button type="submit" class="newsletter-btn">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Heyshorlo. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff4d4d;"></i> in India</p>
+        </div>
+    </footer>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant" id="ai-assistant">
+        <div class="ai-toggle" id="ai-toggle">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="ai-chat-container" id="ai-chat">
+            <div class="ai-chat-header">
+                <i class="fas fa-robot"></i>
+                <h3>Heyshorlo Assistant</h3>
+            </div>
+            <div class="ai-chat-body">
+                <div class="ai-message">
+                    Hi there! I'm Maya, your Heyshorlo assistant. How can I help you today?
+                </div>
+                <div class="ai-quick-questions">
+                    <div class="ai-question" data-question="rewards">Can accounts with 10K followers participate?</div>
+                    <div class="ai-question" data-question="verify">How can I know if the product is original?</div>
+                    <div class="ai-question" data-question="card">How can I get the King, Queen, or VIP card?</div>
+                    <div class="ai-question" data-question="origan">Is Heyshorlo is an Indian brand ?</div>
+                    <div class="ai-question" data-question="platform">Where can I buy the product?</div>
+                    <div class="ai-question" data-question="direct">can I buy the product directly from Heyshorlo's website?</div>
+                    <div class="ai-question" data-question="credit">Will the partner receive credit?</div>
+                </div>
+            </div>
+            <div class="ai-typing">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+// Theme Toggle
+const themeToggle = document.getElementById('theme-toggle');
+const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+const body = document.body;
+
+function toggleTheme() {
+    body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+}
+
+themeToggle.addEventListener('click', toggleTheme);
+mobileThemeToggle.addEventListener('click', toggleTheme);
+
+// Set initial theme
+const savedTheme = localStorage.getItem('theme') || 'light';
+if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+}
+
+// Mobile Menu
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+mobileMenuBtn.addEventListener('click', function() {
+    mobileMenu.classList.toggle('active');
+    mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+});
+
+// Navbar Scroll Effect
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// FAQ Accordion
+const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+accordionHeaders.forEach(header => {
+    header.addEventListener('click', function() {
+        const item = this.parentNode;
+        const isActive = item.classList.contains('active');
+        
+        // Close all items first
+        document.querySelectorAll('.accordion-item').forEach(el => {
+            el.classList.remove('active');
+        });
+        
+        // Open current if it was closed
+        if (!isActive) {
+            item.classList.add('active');
+        }
+    });
+});
+
+// Scroll Animation for FAQ Sections
+const faqSections = document.querySelectorAll('.faq-section');
+
+function checkVisibility() {
+    faqSections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (sectionTop < windowHeight - 100) {
+            section.classList.add('visible');
+        }
+    });
+}
+
+window.addEventListener('scroll', checkVisibility);
+window.addEventListener('load', checkVisibility);
+
+// AI Assistant
+const aiAssistant = document.getElementById('ai-assistant');
+const aiToggle = document.getElementById('ai-toggle');
+const aiChat = document.getElementById('ai-chat');
+const aiQuestions = document.querySelectorAll('.ai-question');
+const aiChatBody = document.querySelector('.ai-chat-body');
+
+// Show AI Assistant after page load
+setTimeout(() => {
+    aiAssistant.classList.add('visible');
+}, 3000);
+
+// Toggle AI Chat
+aiToggle.addEventListener('click', function() {
+    this.classList.toggle('active');
+});
+
+// AI Question Responses
+const responses = {
+    rewards: "Yes, accounts with 10K or more followers are eligible to participate in the contest. However, for every additional 1K followers beyond 10K, the views will be adjusted to ensure fair competition.",
+    verify: "You can verify the product by visiting our official Verify page and entering the 12-digit unique code printed on the product. This will confirm whether the item is original and officially from Heyshorlo.",
+    card: "You can purchase Heyshorlo king , queen , VIP card from our ofline store to ensure authenticity and quality. Avoid third-party sellers unless they are listed as authorized. Buying from the website also gives you access to offers, support, and verification options",
+    origan: "Yes, heyshorlo is an india brand from punjab .",
+    platform: "You can buy our product from platforms like Amazon, Flipkart, and Meesho.",
+    direct: "Yes, you can buy the product directly from the Heyshorlo website. However, our website will redirect you to other platforms like Amazon, Flipkart, or Meesho, where you can complete your purchase.",
+    credit: "Yes, distributors, retailers, and franchisees will receive credit. The time duration will depend on the partner category and the specific order details."
+};
+
+// Function to add message to chat
+function addMessage(text, isUser = false) {
+    const message = document.createElement('div');
+    message.className = 'ai-message' + (isUser ? ' user-message' : '');
+    message.textContent = text;
+    if (isUser) {
+        message.style.marginLeft = 'auto';
+        message.style.background = 'rgba(72, 118, 207, 0.2)';
+    }
+    aiChatBody.appendChild(message);
+    aiChatBody.scrollTop = aiChatBody.scrollHeight;
+}
+
+// Function to show typing indicator
+function showTyping() {
+    const typingIndicator = document.createElement('div');
+    typingIndicator.className = 'ai-typing-indicator';
+    typingIndicator.innerHTML = `
+        <span></span>
+        <span></span>
+        <span></span>
+    `;
+    aiChatBody.appendChild(typingIndicator);
+    aiChatBody.scrollTop = aiChatBody.scrollHeight;
+    return typingIndicator;
+}
+
+// Function to hide typing indicator
+function hideTyping(indicator) {
+    indicator.remove();
+}
+
+// Function to show follow up question
+function showFollowUp() {
+    const followUp = document.createElement('div');
+    followUp.className = 'ai-follow-up';
+    followUp.innerHTML = `
+        <p>Do you have any other questions?</p>
+        <button class="ai-follow-up-btn">Yes, I need more help</button>
+        <button class="ai-follow-up-btn">No, I'm good</button>
+    `;
+    aiChatBody.appendChild(followUp);
+    aiChatBody.scrollTop = aiChatBody.scrollHeight;
+
+    // Add event listeners to buttons
+    followUp.querySelectorAll('.ai-follow-up-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.textContent.includes("Yes")) {
+                addMessage("Yes, I need more help", true);
+                showQuickQuestions();
+                followUp.remove();
+            } else {
+                addMessage("No, I'm good", true);
+                addMessage("Great! Feel free to ask me anything anytime. Just click on my icon!", false);
+                followUp.remove();
+            }
+        });
+    });
+}
+
+// Function to show quick questions
+function showQuickQuestions() {
+    const quickQuestions = document.createElement('div');
+    quickQuestions.className = 'ai-quick-questions';
+    quickQuestions.innerHTML = `
+                    <div class="ai-question" data-question="rewards">Can accounts with 10K followers participate?</div>
+                    <div class="ai-question" data-question="verify">How can I know if the product is original?</div>
+                    <div class="ai-question" data-question="card">How can I get the King, Queen, or VIP card?</div>
+                    <div class="ai-question" data-question="origan">Is Heyshorlo is an Indian brand ?</div>
+                    <div class="ai-question" data-question="platform">Where can I buy the product?</div>
+                    <div class="ai-question" data-question="direct">can I buy the product directly from Heyshorlo's website?</div>
+                    <div class="ai-question" data-question="credit">Will the partner receive credit?</div>
+    `;
+    aiChatBody.appendChild(quickQuestions);
+    aiChatBody.scrollTop = aiChatBody.scrollHeight;
+
+    // Add event listeners to new questions
+    quickQuestions.querySelectorAll('.ai-question').forEach(question => {
+        question.addEventListener('click', handleQuestionClick);
+    });
+}
+
+// Function to handle question click
+function handleQuestionClick() {
+    const questionType = this.getAttribute('data-question');
+    const questionText = this.textContent;
+    
+    // Hide all quick questions
+    document.querySelectorAll('.ai-quick-questions').forEach(el => el.remove());
+    
+    // Add user question
+    addMessage(questionText, true);
+    
+    // Show typing indicator
+    const typingIndicator = showTyping();
+    
+    // After delay, show response
+    setTimeout(() => {
+        hideTyping(typingIndicator);
+        addMessage(responses[questionType]);
+        
+        // Show follow up question
+        setTimeout(() => {
+            showFollowUp();
+        }, 500);
+    }, 1500);
+}
+
+// Initial setup
+aiQuestions.forEach(question => {
+    question.addEventListener('click', handleQuestionClick);
+});
+
+document.head.appendChild(style);
+aiQuestions.forEach(question => {
+    question.addEventListener('click', function() {
+        const questionType = this.getAttribute('data-question');
+        const chatBody = document.querySelector('.ai-chat-body');
+        
+        // Create user message
+        const userMessage = document.createElement('div');
+        userMessage.className = 'ai-message user-message';
+        userMessage.textContent = this.textContent;
+        userMessage.style.marginLeft = 'auto';
+        userMessage.style.background = 'rgba(72, 118, 207, 0.2)';
+        chatBody.appendChild(userMessage);
+        
+        // Show typing indicator
+        const typingIndicator = document.querySelector('.ai-typing');
+        typingIndicator.style.display = 'flex';
+        
+        // Scroll to bottom
+        chatBody.scrollTop = chatBody.scrollHeight;
+        
+        // After delay, show response
+        setTimeout(() => {
+            typingIndicator.style.display = 'none';
+            
+            const responseMessage = document.createElement('div');
+            responseMessage.className = 'ai-message';
+            responseMessage.textContent = responses[questionType];
+            chatBody.appendChild(responseMessage);
+            
+            // Scroll to bottom again
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1500);
+    });
+});
+
+// Search functionality
+const searchInput = document.querySelector('.search-input');
+searchInput.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    
+    if (searchTerm.length > 2) {
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            const question = item.querySelector('.accordion-title').textContent.toLowerCase();
+            const answer = item.querySelector('.accordion-text').textContent.toLowerCase();
+            
+            if (question.includes(searchTerm) ){
+                item.style.display = 'block';
+                item.querySelector('.accordion-content').style.display = 'block';
+            } else if (answer.includes(searchTerm)) {
+                item.style.display = 'block';
+                item.querySelector('.accordion-content').style.display = 'block';
+                // Highlight matching text in answer
+                const answerElement = item.querySelector('.accordion-text');
+                answerElement.innerHTML = answerElement.textContent.replace(
+                    new RegExp(searchTerm, 'gi'),
+                    match => `<span class="highlight">${match}</span>`
+                );
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    } else {
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            item.style.display = 'block';
+            item.querySelector('.accordion-content').style.display = 'none';
+            // Remove any highlights
+            const answerElement = item.querySelector('.accordion-text');
+            if (answerElement) {
+                answerElement.innerHTML = answerElement.textContent;
+            }
+        });
+    }
+});
+
+// Smooth scrolling for FAQ sections
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.mobile-nav-links .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    });
+});
+     
+</script>
+</head>
+<body>
+
+    

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - HeySharlo</title>
+  <style>
+    :root {
+      --royal-blue: #4876cf;
+      --emerald-aqua: #00c08b;
+      --sand-beige: #f0e5cf;
+      --charcoal-black: #1e1e1e;
+      --clean-white: #ffffff;
+      --deep-onyx: #111111;
+      --soft-teal: #a9f1df;
+      --glass-blur: blur(12px);
+      --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--royal-blue), var(--emerald-aqua));
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: var(--clean-white);
+    }
+
+    .contact-container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transition: var(--transition-all);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: var(--clean-white);
+    }
+
+    p {
+      color: var(--soft-teal);
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: var(--deep-onyx);
+      color: var(--clean-white);
+      transition: var(--transition-all);
+    }
+
+    input:focus, textarea:focus {
+      border: 1px solid var(--soft-teal);
+      background: var(--charcoal-black);
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: var(--emerald-aqua);
+      color: var(--charcoal-black);
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition-all);
+    }
+
+    button:hover {
+      background: var(--soft-teal);
+    }
+
+    .confirmation {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.4);
+      color: var(--sand-beige);
+      display: none;
+      font-size: 0.95rem;
+      border-left: 4px solid var(--emerald-aqua);
+    }
+
+    .contact-email {
+      margin-top: 15px;
+      font-weight: bold;
+      color: var(--soft-teal);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <p>Got a question? We’d love to hear from you.</p>
+    <form id="contactForm">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="confirmation" id="confirmationMessage">
+      Thank you for contacting us! <br>
+      Please reach out directly at: <span class="contact-email">heysharloindia@gmail.com</span>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const message = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.style.display = 'none';
+      message.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

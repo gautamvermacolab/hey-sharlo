@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heysharlo | Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
+    <style>
+        :root {
+            --royal-blue: #4876cf;
+            --emerald-aqua: #00c08b;
+            --sand-beige: #f0e5cf;
+            --charcoal-black: #1e1e1e;
+            --clean-white: #ffffff;
+            --deep-onyx: #111111;
+            --soft-teal: #a9f1df;
+            --glass-blur: blur(12px);
+            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--sand-beige);
+            color: var(--deep-onyx);
+            overflow-x: hidden;
+            transition: var(--transition-all);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        body.dark-mode {
+            background-color: var(--charcoal-black);
+            color: var(--clean-white);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition-all);
+            padding: 20px 0;
+            background: rgba(240, 229, 207, 0.8);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .navbar {
+            background: rgba(30, 30, 30, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text {
+            background: linear-gradient(to right, #4876cf, #00c08b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 5px 0;
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 24px;
+            border-radius: 12px;
+            background: var(--deep-onyx);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+            transition: var(--transition-all);
+            border: 1px solid rgba(72, 118, 207, 0.3);
+        }
+
+        .dark-mode .theme-toggle {
+            background: var(--sand-beige);
+            border: 1px solid rgba(0, 192, 139, 0.3);
+        }
+
+        .toggle-ball {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--sand-beige);
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode .toggle-ball {
+            background: var(--charcoal-black);
+            transform: translateX(26px);
+        }
+
+        /* Login Container */
+        .auth-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition-all);
+            margin-top: 80px;
+        }
+
+        .dark-mode .auth-container {
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .auth-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(72, 118, 207, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .auth-input {
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(0, 192, 139, 0.3);
+            color: var(--clean-white);
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 10px rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .auth-input:focus {
+            border-color: var(--emerald-aqua);
+            box-shadow: 0 0 10px rgba(0, 192, 139, 0.2);
+        }
+
+        .auth-label {
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            color: var(--deep-onyx);
+            transition: var(--transition-all);
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0 5px;
+        }
+
+        .dark-mode .auth-label {
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(30, 30, 30, 0.9);
+        }
+
+        .auth-input:focus + .auth-label,
+        .auth-input:not(:placeholder-shown) + .auth-label {
+            top: -10px;
+            font-size: 0.8rem;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .auth-input:focus + .auth-label,
+        .dark-mode .auth-input:not(:placeholder-shown) + .auth-label {
+            color: var(--emerald-aqua);
+        }
+
+        .auth-btn {
+            padding: 15px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: var(--clean-white);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(72, 118, 207, 0.3);
+        }
+
+        .dark-mode .auth-btn:hover {
+            box-shadow: 0 10px 20px rgba(0, 192, 139, 0.3);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .auth-toggle {
+            color: var(--royal-blue);
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .auth-toggle {
+            color: var(--emerald-aqua);
+        }
+
+        .auth-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            text-align: right;
+            font-size: 0.9rem;
+            margin-top: -15px;
+        }
+
+        .forgot-link {
+            color: var(--royal-blue);
+            text-decoration: none;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .forgot-link {
+            color: var(--emerald-aqua);
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 0.9rem;
+            margin-top: -15px;
+            text-align: center;
+        }
+
+        .success-message {
+            color: var(--emerald-aqua);
+            font-size: 0.9rem;
+            margin-top: -15px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: 30px 20px;
+                margin: 80px 20px;
+            }
+            
+            .auth-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-title {
+                font-size: 1.5rem;
+            }
+            
+            .auth-input {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-text">heysharlo</a>
+            </div>
+            <div class="theme-toggle" id="theme-toggle">
+                <div class="toggle-ball"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="auth-container" id="login-container">
+        <h1 class="auth-title">Welcome Back</h1>
+        <form class="auth-form" id="login-form">
+            <div class="input-group">
+                <input type="email" id="login-email" class="auth-input" placeholder=" " required>
+                <label for="login-email" class="auth-label">Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" class="auth-input" placeholder=" " required>
+                <label for="login-password" class="auth-label">Password</label>
+            </div>
+            <div class="forgot-password">
+                <a href="#" class="forgot-link" id="forgot-password">Forgot Password?</a>
+            </div>
+            <p class="error-message" id="login-error"></p>
+            <button type="submit" class="auth-btn">Login</button>
+        </form>
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="#" class="auth-toggle" id="show-register">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Register Form (Hidden by default) -->
+    <div class="auth-container" id="register-container" style="display: none;">
+        <h1 class="auth-title">Create Account</h1>
+        <form class="auth-form" id="register-form">
+            <div class="input-group">
+                <input type="text" id="register-name" class="auth-input" placeholder=" " required>
+                <label for="register-name" class="auth-label">Full Name</label>
+            </div>
+            <div class="input-group">
+                <input type="email" id="register-email" class="auth-input" placeholder=" " required>
+                <label for="register-email" class="auth-label">Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="register-password" class="auth-input" placeholder=" " required>
+                <label for="register-password" class="auth-label">Password</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="register-confirm" class="auth-input" placeholder=" " required>
+                <label for="register-confirm" class="auth-label">Confirm Password</label>
+            </div>
+            <p class="error-message" id="register-error"></p>
+            <p class="success-message" id="register-success"></p>
+            <button type="submit" class="auth-btn">Register</button>
+        </form>
+        <div class="auth-footer">
+            <p>Already have an account? <a href="#" class="auth-toggle" id="show-login">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Forgot Password Form (Hidden by default) -->
+    <div class="auth-container" id="forgot-container" style="display: none;">
+        <h1 class="auth-title">Reset Password</h1>
+        <form class="auth-form" id="forgot-form">
+            <div class="input-group">
+                <input type="email" id="forgot-email" class="auth-input" placeholder=" " required>
+                <label for="forgot-email" class="auth-label">Email</label>
+            </div>
+            <p class="error-message" id="forgot-error"></p>
+            <p class="success-message" id="forgot-success"></p>
+            <button type="submit" class="auth-btn">Send Reset Link</button>
+        </form>
+        <div class="auth-footer">
+            <p>Remember your password? <a href="#" class="auth-toggle" id="show-login-from-forgot">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Firebase and App Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCwQHJfzyW0kzw6W1iUDQan_vDL-BtBIg",
+            authDomain: "heysharlodatabase.firebaseapp.com",
+            databaseURL: "https://heysharlodatabase-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "heysharlodatabase",
+            storageBucket: "heysharlodatabase.firebasestorage.app",
+            messagingSenderId: "868380366943",
+            appId: "1:868380366943:web:b82dbe4225f6aafd0423ea",
+            measurementId: "G-J6X58E0K90"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+        
+        // Initialize theme from localStorage
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+        
+        // Add event listener to toggle
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleDarkMode);
+        }
+
+        // Form Toggle Functions
+        document.getElementById('show-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('register-container').style.display = 'block';
+            document.getElementById('forgot-container').style.display = 'none';
+        });
+
+        document.getElementById('show-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('register-container').style.display = 'none';
+            document.getElementById('forgot-container').style.display = 'none';
+        });
+
+        document.getElementById('forgot-password').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('register-container').style.display = 'none';
+            document.getElementById('forgot-container').style.display = 'block';
+        });
+
+        document.getElementById('show-login-from-forgot').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('register-container').style.display = 'none';
+            document.getElementById('forgot-container').style.display = 'none';
+        });
+
+        // Login Function
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const errorElement = document.getElementById('login-error');
+            
+            errorElement.textContent = '';
+            
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                })
+                .catch((error) => {
+                    errorElement.textContent = error.message;
+                });
+        });
+
+        // Register Function
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm').value;
+            const errorElement = document.getElementById('register-error');
+            const successElement = document.getElementById('register-success');
+            
+            errorElement.textContent = '';
+            successElement.textContent = '';
+            
+            if (password !== confirmPassword) {
+                errorElement.textContent = 'Passwords do not match';
+                return;
+            }
+            
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Update user profile with name
+                    return userCredential.user.updateProfile({
+                        displayName: name
+                    });
+                })
+                .then(() => {
+                    successElement.textContent = 'Registration successful! Redirecting...';
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    errorElement.textContent = error.message;
+                });
+        });
+
+        // Forgot Password Function
+        document.getElementById('forgot-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('forgot-email').value;
+            const errorElement = document.getElementById('forgot-error');
+            const successElement = document.getElementById('forgot-success');
+            
+            errorElement.textContent = '';
+            successElement.textContent = '';
+            
+            auth.sendPasswordResetEmail(email)
+                .then(() => {
+                    successElement.textContent = 'Password reset email sent. Check your inbox.';
+                })
+                .catch((error) => {
+                    errorElement.textContent = error.message;
+                });
+        });
+
+        // Check if user is already logged in
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

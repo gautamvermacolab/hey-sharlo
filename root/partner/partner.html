@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heysharlo Partner Program | Become Our Distributor/Retailer/Franchise</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
+    <style>
+        :root {
+            --royal-blue: #4876cf;
+            --emerald-aqua: #00c08b;
+            --sand-beige: #f0e5cf;
+            --charcoal-black: #1e1e1e;
+            --clean-white: #ffffff;
+            --deep-onyx: #111111;
+            --soft-teal: #a9f1df;
+            --glass-blur: blur(12px);
+            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--sand-beige);
+            color: var(--deep-onyx);
+            overflow-x: hidden;
+            transition: var(--transition-all);
+        }
+
+        body.dark-mode {
+            background-color: var(--charcoal-black);
+            color: var(--clean-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: var(--transition-all);
+    padding: 20px 0;
+    background: rgba(240, 229, 207, 0.8);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .navbar {
+    background: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo-text {
+    background: linear-gradient(to right, #4876cf, #00c08b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 5px 0;
+}
+
+.nav-center {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding: 12px 30px;
+    margin: 0 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    border: 1px solid rgba(72, 118, 207, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.dark-mode .nav-links {
+    background: rgba(30, 30, 30, 0.1);
+    border: 1px solid rgba(0, 192, 139, 0.2);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    position: relative;
+    color: var(--deep-onyx);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: var(--transition-all);
+    padding: 8px 0;
+}
+
+.dark-mode .nav-link {
+    color: var(--clean-white);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #4876cf, #00c08b);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.login-btn {
+    padding: 10px 25px;
+    border-radius: 25px;
+    background: transparent;
+    color: var(--deep-onyx);
+    border: 1.5px solid rgba(72, 118, 207, 0.3);
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-all);
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.dark-mode .login-btn {
+    color: var(--clean-white);
+    border-color: rgba(0, 192, 139, 0.3);
+}
+
+.login-btn:hover {
+    background: linear-gradient(to right, #4876cf, #00c08b);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(72, 118, 207, 0.3);
+}
+
+.theme-toggle {
+    width: 50px;
+    height: 24px;
+    border-radius: 12px;
+    background: var(--deep-onyx);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 3px;
+    transition: var(--transition-all);
+    border: 1px solid rgba(72, 118, 207, 0.3);
+}
+
+.dark-mode .theme-toggle {
+    background: var(--sand-beige);
+    border: 1px solid rgba(0, 192, 139, 0.3);
+}
+
+.toggle-ball {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--sand-beige);
+    transition: transform 0.3s ease;
+}
+
+.dark-mode .toggle-ball {
+    background: var(--charcoal-black);
+    transform: translateX(26px);
+}
+
+
+
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--deep-onyx);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.dark-mode .mobile-menu-btn {
+    color: var(--clean-white);
+}
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    padding: 10px 0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(240, 229, 207, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu-btn {
+        display: none;
+    }
+    .mobile-menu{
+display: none;
+    }
+/* Mobile Nav */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    .nav-center {
+        display: none;
+    }
+    
+    .nav-right {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    /* Mobile menu styles */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--deep-onyx);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.dark-mode .mobile-menu-btn {
+    color: var(--clean-white);
+}
+
+/* Mobile Menu - Hidden by default */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--sand-beige);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-all);
+    z-index: 999;
+    padding: 80px 30px 30px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .mobile-menu {
+    background: var(--charcoal-black);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.mobile-menu .nav-link {
+    padding: 12px 0;
+    font-size: 1.1rem;
+}
+
+.mobile-menu .login-btn {
+    margin-top: 30px;
+    text-align: center;
+    padding: 12px;
+}
+
+.mobile-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 15px 0;
+    border-top: 1px solid rgba(72, 118, 207, 0.2);
+}
+
+.dark-mode .mobile-theme-toggle {
+    border-top: 1px solid rgba(0, 192, 139, 0.2);
+}
+
+/* Show mobile menu button only on mobile */
+@media (max-width: 992px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-center,
+    .nav-right {
+        display: none;
+    }
+    
+    .logo {
+        flex: none;
+    }
+}
+}
+
+
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    padding: 15px 0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(240, 229, 207, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(30, 30, 30, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Nav */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--sand-beige);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: var(--transition-all);
+        z-index: 999;
+    }
+    
+    .dark-mode .nav-links {
+        background: var(--charcoal-black);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .login-btn {
+        margin-top: 20px;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .theme-toggle {
+        margin-left: 0;
+    }
+}
+
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    padding: 10px 0;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(240, 229, 207, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(30, 30, 30, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Nav */
+@media (max-width: 992px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--sand-beige);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: var(--transition-all);
+        z-index: 999;
+        backdrop-filter: var(--glass-blur);
+        left: auto;
+        transform: none;
+    }
+    
+    .dark-mode .nav-links {
+        background: var(--charcoal-black);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .theme-toggle {
+        position: static;
+        margin-left: auto;
+        margin-right: 20px;
+    }
+}
+
+        /* Partner Header */
+        .partner-header {
+            text-align: center;
+            padding: 80px 0 40px;
+            background: linear-gradient(135deg, rgba(72, 118, 207, 0.1) 0%, rgba(0, 192, 139, 0.1) 100%);
+        }
+
+        .partner-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-top: 30px;
+        }
+
+        .partner-subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 60px 0;
+            background-color: var(--sand-beige);
+        }
+
+        .dark-mode .benefits-section {
+            background-color: var(--charcoal-black);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+        }
+
+        .benefits-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .benefit-tab {
+            padding: 12px 25px;
+            background: rgba(72, 118, 207, 0.1);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-all);
+            font-weight: 500;
+            border: 1px solid rgba(72, 118, 207, 0.3);
+        }
+
+        .dark-mode .benefit-tab {
+            background: rgba(0, 192, 139, 0.1);
+            border-color: rgba(0, 192, 139, 0.3);
+        }
+
+        .benefit-tab.active {
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: var(--clean-white);
+            border-color: transparent;
+        }
+
+        .benefit-content {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .benefit-content {
+            background: rgba(30, 30, 30, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .benefit-content.active {
+            display: block;
+        }
+
+        .benefit-list {
+            list-style-type: none;
+        }
+
+        .benefit-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+
+        .benefit-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--emerald-aqua);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .register-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: var(--clean-white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition-all);
+            margin-top: 30px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--sand-beige);
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .modal-content {
+            background-color: var(--charcoal-black);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .close-modal {
+            color: var(--emerald-aqua);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .form-title {
+            color: var(--emerald-aqua);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-label.required::after {
+            content: ' *';
+            color: #e74c3c;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(72, 118, 207, 0.3);
+            border-radius: 8px;
+            font-family: 'Sora', sans-serif;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .form-input {
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(0, 192, 139, 0.3);
+            color: var(--clean-white);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 10px rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .form-input:focus {
+            border-color: var(--emerald-aqua);
+            box-shadow: 0 0 10px rgba(0, 192, 139, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 2px dashed rgba(72, 118, 207, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .file-upload {
+            border-color: rgba(0, 192, 139, 0.3);
+        }
+
+        .file-upload:hover {
+            border-color: var(--royal-blue);
+        }
+
+        .dark-mode .file-upload:hover {
+            border-color: var(--emerald-aqua);
+        }
+
+        .file-upload i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .file-upload i {
+            color: var(--emerald-aqua);
+        }
+
+        .file-upload input {
+            display: none;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: var(--clean-white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-all);
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+
+                /* Footer */
+                .footer {
+            background-color: var(--sand-beige);
+            padding: 60px 40px 30px;
+            position: relative;
+        }
+
+        .dark-mode .footer {
+            background-color: var(--charcoal-black);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--royal-blue), transparent);
+            opacity: 0.3;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--deep-onyx);
+            margin-bottom: 20px;
+        }
+
+        .dark-mode .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--royal-blue);
+        }
+
+        .dark-mode .footer-title {
+            color: var(--emerald-aqua);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 10px;
+        }
+
+        .footer-link a {
+            color: var(--deep-onyx);
+            text-decoration: none;
+            transition: var(--transition-all);
+            font-size: 0.9rem;
+        }
+
+        .dark-mode .footer-link a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-link a:hover {
+            color: var(--royal-blue);
+            padding-left: 5px;
+        }
+
+        .dark-mode .footer-link a:hover {
+            color: var(--emerald-aqua);
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid rgba(72, 118, 207, 0.3);
+            border-radius: 5px 0 0 5px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: var(--transition-all);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .dark-mode .newsletter-input {
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(0, 192, 139, 0.3);
+            color: var(--clean-white);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 10px rgba(72, 118, 207, 0.2);
+        }
+
+        .dark-mode .newsletter-input:focus {
+            border-color: var(--emerald-aqua);
+            box-shadow: 0 0 10px rgba(0, 192, 139, 0.2);
+        }
+
+        .newsletter-btn {
+            padding: 10px 15px;
+            background: var(--royal-blue);
+            color: var(--clean-white);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: var(--transition-all);
+            font-family: 'Sora', sans-serif;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--emerald-aqua);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(72, 118, 207, 0.1);
+            color: var(--royal-blue);
+            transition: var(--transition-all);
+        }
+
+        .dark-mode .social-link {
+            background: rgba(0, 192, 139, 0.1);
+            color: var(--emerald-aqua);
+        }
+
+        .social-link:hover {
+            background: var(--royal-blue);
+            color: var(--clean-white);
+            transform: translateY(-5px);
+        }
+
+        .dark-mode .social-link:hover {
+            background: var(--emerald-aqua);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(72, 118, 207, 0.1);
+            font-size: 0.8rem;
+            color: var(--deep-onyx);
+        }
+
+        .dark-mode .footer-bottom {
+            border-top: 1px solid rgba(0, 192, 139, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .partner-title {
+                font-size: 2.2rem;
+            }
+            
+            .partner-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .modal-content {
+                margin: 20px auto;
+                padding: 20px;
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .partner-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .benefit-tab {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .benefit-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include your existing navbar here -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">heysharlo</span>
+            </div>
+            <div class="nav-center">
+                <div class="nav-links" id="nav-links">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../product/product.html" class="nav-link">Products</a>
+                    <a href="../verify/verify.html" class="nav-link">Verify</a>
+                    <a href="../contest/contest.html" class="nav-link">Contest</a>
+                    <a href="../reward/reward.html" class="nav-link">Reward</a>
+                    <a href="../contactus.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="../login/login.html" class="login-btn">Login</a>
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu (hidden by default) -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-nav-links">
+         <a href="../index.html" class="nav-link">Home</a>
+         <a href="../product/product.html" class="nav-link">Products</a>
+          <a href="../verify/verify.html" class="nav-link">Verify</a>
+         <a href="../contest/contest.html" class="nav-link">Contest</a>
+        <a href="../reward/reward.html" class="nav-link">Reward</a>
+          <a href="mailto:heysharloindia@gmail.com" class="nav-link">Contact</a>
+            <div class="mobile-theme-toggle">
+                <span>Dark Mode</span>
+                <div class="theme-toggle" id="mobile-theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Partner Header -->
+    <header class="partner-header">
+        <div class="container">
+            <h1 class="partner-title">Become a heysharlo Partner</h1>
+            <p class="partner-subtitle">Join our network of distributors, retailers, and franchisees to grow your business with India's fastest growing gender-neutral cosmetics brand</p>
+        </div>
+    </header>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">Why Partner With heysharlo?</h2>
+            
+            <div class="benefits-tabs">
+                <div class="benefit-tab active" data-tab="distributor">Distributor</div>
+                <div class="benefit-tab" data-tab="retailer">Retailer</div>
+                <div class="benefit-tab" data-tab="franchise">Franchise</div>
+            </div>
+            
+            <div class="benefit-content active" id="distributor-content">
+                <ul class="benefit-list">
+                    <li>Exclusive territory rights for distribution</li>
+                    <li>Higher profit margins with bulk purchase discounts</li>
+                    <li>Priority access to new product launches</li>
+                    <li>Dedicated account manager for support</li>
+                    <li>Marketing collateral and POS materials provided</li>
+                    <li>Training programs for your sales team</li>
+                    <li>Access to our distributor portal with real-time analytics</li>
+                    <li>Co-branded promotional campaigns</li>
+                    <li>Quarterly business performance reviews</li>
+                    <li>Inventory management support</li>
+                    <li>Flexible payment terms for established partners</li>
+                    <li>Annual performance bonuses</li>
+                    <li>Exclusive distributor events</li>
+                    <li>Early access to product training</li>
+                    <li>Competitive credit periods</li>
+                </ul>
+                <button class="register-btn" data-type="distributor">Register as Distributor</button>
+            </div>
+            
+            <div class="benefit-content" id="retailer-content">
+                <ul class="benefit-list">
+                    <li>Competitive wholesale pricing</li>
+                    <li>Free product display units</li>
+                    <li>Regular promotional materials</li>
+                    <li>Featured listing on our store locator</li>
+                    <li>Co-op advertising support</li>
+                    <li>Exclusive retailer discounts</li>
+                    <li>Seasonal promotional packages</li>
+                    <li>Priority restocking during high demand</li>
+                    <li>Retail staff training programs</li>
+                    <li>Visual merchandising support</li>
+                    <li>Quarterly incentive programs</li>
+                    <li>Special launch kits for new products</li>
+                    <li>Flexible return policy</li>
+                    <li>Dedicated retailer support line</li>
+                    <li>Invitations to retailer-only events</li>
+                </ul>
+                <button class="register-btn" data-type="retailer">Register as Retailer</button>
+            </div>
+            
+            <div class="benefit-content" id="franchise-content">
+                <ul class="benefit-list">
+                    <li>Complete business model with proven success</li>
+                    <li>Exclusive territory protection</li>
+                    <li>Comprehensive training program</li>
+                    <li>Store design and setup support</li>
+                    <li>Ongoing operational support</li>
+                    <li>Marketing and advertising support</li>
+                    <li>Access to proprietary systems</li>
+                    <li>Inventory management guidance</li>
+                    <li>Staff recruitment and training</li>
+                    <li>Grand opening promotional package</li>
+                    <li>Ongoing product training</li>
+                    <li>Regular business performance reviews</li>
+                    <li>Technology and IT support</li>
+                    <li>National brand recognition</li>
+                    <li>Continuous product innovation</li>
+                </ul>
+                <button class="register-btn" data-type="franchise">Apply for Franchise</button>
+            </div>
+        </div>
+    </section>
+
+<!-- Distributor Modal -->
+<div class="modal" id="distributor-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="form-title">Distributor Registration</h2>
+        <form id="distributor-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label required">Full Name</label>
+                    <input type="text" class="form-input" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">Phone Number</label>
+                    <input type="tel" class="form-input" name="phone" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required">Email Address</label>
+                <input type="email" class="form-input" name="email" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label required">Business Name</label>
+                    <input type="text" class="form-input" name="businessName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">GST Number</label>
+                    <input type="text" class="form-input" name="gstNumber" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required">Full Address</label>
+                <textarea class="form-input" name="address" required></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label required">City</label>
+                    <input type="text" class="form-input" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">State</label>
+                    <input type="text" class="form-input" name="state" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <input type="checkbox" id="distributor-terms" required>
+                <label for="distributor-terms">I agree to the terms and conditions</label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </div>
+</div>
+
+<!-- Retailer Modal -->
+<div class="modal" id="retailer-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="form-title">Retailer Registration</h2>
+        <form id="retailer-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label required">Full Name</label>
+                    <input type="text" class="form-input" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">Phone Number</label>
+                    <input type="tel" class="form-input" name="phone" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required">Email Address</label>
+                <input type="email" class="form-input" name="email" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label required">Shop Name</label>
+                    <input type="text" class="form-input" name="shopName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">GST Number (if any)</label>
+                    <input type="text" class="form-input" name="gstNumber">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required">Shop Address</label>
+                <textarea class="form-input" name="address" required></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label required">City</label>
+                    <input type="text" class="form-input" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">State</label>
+                    <input type="text" class="form-input" name="state" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <input type="checkbox" id="retailer-terms" required>
+                <label for="retailer-terms">I agree to the terms and conditions</label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </div>
+</div>
+
+<!-- Franchise Modal -->
+<div class="modal" id="franchise-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="form-title">Franchise Application</h2>
+        <form id="franchise-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label required">Full Name</label>
+                    <input type="text" class="form-input" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">Phone Number</label>
+                    <input type="tel" class="form-input" name="phone" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required">Email Address</label>
+                <input type="email" class="form-input" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required">Company Name</label>
+                <input type="text" class="form-input" name="companyName" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required">Proposed Location</label>
+                <textarea class="form-input" name="proposedLocation" required></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label required">City</label>
+                    <input type="text" class="form-input" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">State</label>
+                    <input type="text" class="form-input" name="state" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label required">Investment Capacity (₹)</label>
+                <input type="number" class="form-input" name="investment" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="checkbox" id="franchise-terms" required>
+                <label for="franchise-terms">I agree to the terms and conditions</label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </div>
+</div>
+
+        <!-- Footer -->
+        <footer class="footer">
+          <div class="footer-container">
+              <div class="footer-col">
+                  <div class="footer-logo">heysharlo</div>
+                  <p class="footer-text">new kundan puri civil lines 141001 ,punjab , india <br></p>
+                  <p>heysharloindia@gmail.com</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/heysharloindia?igsh=dGp2bjd5bzQxdmpx" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/g/1ARex5joqc/" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="https://youtube.com/@heysharloindia?si=vPjMia_FuygYcH1c" class="social-link"><i class="fab fa-youtube"></i></a>
+                           <a href="https://x.com/heysharloindia" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="../product/product.html">Products</a></li>
+                        <li class="footer-link"><a href="../about/aboutus.html">About Us</a></li>
+                        <li class="footer-link"><a href="../verify/verify.html">Verify</a></li>
+                        <li class="footer-link"><a href="../contest/contest.html">Contest</a></li>
+                        <li class="footer-link"><a href="../reward/reward.html">Reward</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Information</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="../support/faq.html">FAQ</a></li>
+                      <li class="footer-link"><a href="../privacy/policy.html">Policy</a></li>
+                      <li class="footer-link"><a href="../contactus.html">Contact</a></li>
+                        <li class="footer-link"><a href="../support/term&condtion.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                  <div class="footer-col">
+                      <h3 class="footer-title">Newsletter</h3>
+                      <p class="footer-text">Subscribe for exclusive offers and beauty insights.</p>
+                      <form class="newsletter-form">
+                          <input type="email" placeholder="Your Email" class="newsletter-input" required>
+                          <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                      </form>
+                  </div>
+              </div>
+              <div class="footer-bottom">
+                <p>&copy; 2025 heysharlo. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #ff4d4d;"></i> in India</p>
+              </div>
+          </footer>
+
+<script>
+    // Theme Toggle and Mobile Menu
+const themeToggle = document.getElementById('theme-toggle');
+const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+}
+
+// Initialize theme from localStorage
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+}
+
+// Add event listeners to both toggles
+if (themeToggle) themeToggle.addEventListener('click', toggleDarkMode);
+if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleDarkMode);
+
+// Mobile Menu Toggle
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
+        this.innerHTML = mobileMenu.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+}
+
+// Close mobile menu when clicking on links
+document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    });
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Benefit Tabs Functionality
+const benefitTabs = document.querySelectorAll('.benefit-tab');
+const benefitContents = document.querySelectorAll('.benefit-content');
+
+benefitTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        // Remove active class from all tabs and contents
+        benefitTabs.forEach(t => t.classList.remove('active'));
+        benefitContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        
+        // Show corresponding content
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(`${tabId}-content`).classList.add('active');
+    });
+});
+
+// Modal Functionality
+const registerBtns = document.querySelectorAll('.register-btn');
+const modals = document.querySelectorAll('.modal');
+const closeModalBtns = document.querySelectorAll('.close-modal');
+
+// Open modal when register button is clicked
+registerBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const modalType = btn.getAttribute('data-type');
+        document.getElementById(`${modalType}-modal`).style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Close modal when X is clicked
+closeModalBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.closest('.modal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+});
+
+// Close modal when clicking outside modal content
+modals.forEach(modal => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+
+// Form Submission Handler
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form type
+        const formType = form.id.includes('distributor') ? 'Distributor' : 
+                       form.id.includes('retailer') ? 'Retailer' : 'Franchise';
+        
+        // Collect all form data
+        const formInputs = form.querySelectorAll('input, textarea, select');
+        let emailBody = `New ${formType} Application Details:\n\n`;
+        let hasEmptyFields = false;
+        
+        // Build email body and validate
+        formInputs.forEach(input => {
+            if (input.type !== 'checkbox' && input.type !== 'submit') {
+                if (input.required && !input.value.trim()) {
+                    input.style.borderColor = '#e74c3c';
+                    hasEmptyFields = true;
+                } else {
+                    input.style.borderColor = ''; // Reset border color
+                    emailBody += `${input.name || input.id}: ${input.value}\n`;
+                }
+            } else if (input.type === 'checkbox' && input.required && !input.checked) {
+                hasEmptyFields = true;
+                input.nextElementSibling.style.color = '#e74c3c';
+            }
+        });
+        
+        if (hasEmptyFields) {
+            alert('Please fill all required fields (marked in red)');
+            return;
+        }
+        
+        // Create email subject
+        const fullName = form.querySelector('[name="fullName"]')?.value || 'Unknown';
+        const subject = `New ${formType} Application - ${fullName}`;
+        
+        // Create mailto link
+        const mailtoLink = `mailto:heysharloindia@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+        
+        // Open user's email client
+        window.location.href = mailtoLink;
+        
+        // Show confirmation
+        alert('Your application details have been prepared. Please check your email client and click send to submit your application to heysharlo.');
+        
+        // Close the modal
+        form.closest('.modal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        // Reset form
+        form.reset();
+    });
+});
+
+// Highlight empty required fields when user tries to submit
+document.querySelectorAll('form input, form textarea, form select').forEach(input => {
+    input.addEventListener('input', function() {
+        if (this.required && this.value.trim()) {
+            this.style.borderColor = '';
+        }
+        if (this.type === 'checkbox' && this.required) {
+            this.nextElementSibling.style.color = '';
+        }
+    });
+});
+</script>
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
