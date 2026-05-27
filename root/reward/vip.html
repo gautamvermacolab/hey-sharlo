@@ -3,37 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Card Membership</title>
+    <title>HeySharlo - VIP Card Membership</title>
+    <!-- FontAwesome for the mobile menu icon and checkmarks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* --- CSS Variables for Theming --- */
         :root {
-            --royal-blue: #4876cf;
+            /* Core Colors for VIP Card */
+            --royal-blue: #4876cf; 
             --emerald-aqua: #00c08b;
             --sand-beige: #f0e5cf;
-            --charcoal-black: #1e1e1e;
             --clean-white: #ffffff;
-            --deep-onyx: #111111;
-            --soft-teal: #a9f1df;
-            --glass-blur: blur(12px);
-            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --btn-grad: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
+            --transition-all: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Dark Theme (Default) */
+            --bg-color: #111111;
+            --card-bg: rgba(30, 30, 30, 0.6);
+            --card-border: #f0e5cf; /* VIP Card uses sand beige for borders */
+            --text-main: #f0e5cf;
+            --text-muted: #a0998a;
+            --nav-pill-bg: rgba(240, 229, 207, 0.05);
+            --nav-pill-border: rgba(240, 229, 207, 0.2);
+            --list-border: rgba(240, 229, 207, 0.15);
+            --toggle-bg: #f0e5cf;
+            --toggle-ball: #111111;
+            --glass-blur: blur(16px);
+        }
+
+        /* Light Theme Overrides */
+        body.light-mode {
+            --bg-color: #f1efe7; 
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-border: #d4c9b3; /* Slightly darker sand for visibility in light mode */
+            --text-main: #1a1a1a;
+            --text-muted: #555555;
+            --nav-pill-bg: rgba(0, 0, 0, 0.03);
+            --nav-pill-border: rgba(0, 0, 0, 0.15);
+            --list-border: rgba(0, 0, 0, 0.1);
+            --toggle-bg: #1a1a1a;
+            --toggle-ball: #f1efe7;
+        }
+
+        /* --- Base Reset & Typography --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--deep-onyx);
-            color: var(--sand-beige);
-            margin: 0;
-            padding: 20px;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: var(--transition-all);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            padding: 20px 40px;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: var(--glass-blur);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            background: var(--nav-pill-bg);
+            border: 1px solid var(--nav-pill-border);
+            padding: 12px 35px;
+            border-radius: 50px;
+            transition: var(--transition-all);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--royal-blue);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .login-btn {
+            border: 1px solid var(--nav-pill-border);
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition-all);
+        }
+
+        .login-btn:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+        }
+
+        /* Custom Toggle Switch */
+        .theme-toggle {
+            width: 54px;
+            height: 28px;
+            background-color: var(--toggle-bg);
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition-all);
+            display: flex;
+            align-items: center;
+            padding: 3px;
+        }
+
+        .toggle-ball {
+            width: 22px;
+            height: 22px;
+            background-color: var(--toggle-ball);
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.light-mode .toggle-ball {
+            transform: translateX(26px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* --- Main Content & VIP Card --- */
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
         }
 
         .card-container {
+            width: 100%;
             max-width: 600px;
-            margin: 40px auto;
-            background: rgba(30, 30, 30, 0.8);
+            background: var(--card-bg);
             backdrop-filter: var(--glass-blur);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--sand-beige);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            transition: var(--transition-all);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle beige glow effect behind VIP card */
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(240, 229, 207, 0.05) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         .card-header {
@@ -42,114 +215,322 @@
         }
 
         .card-title {
-            font-size: 2.5rem;
-            color: var(--sand-beige);
-            margin: 0;
+            font-size: 2.8rem;
+            color: var(--card-border); /* Adapts to light/dark mode */
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        body.light-mode .card-title {
+            color: var(--text-main);
+        }
+
+        .coming-soon {
+            background-color: var(--royal-blue);
+            color: var(--clean-white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .card-subtitle {
             color: var(--royal-blue);
             font-style: italic;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         .benefits-list {
             list-style-type: none;
             padding: 0;
+            margin-bottom: 35px;
         }
 
         .benefits-list li {
-            padding: 10px 0;
-            border-bottom: 1px dashed rgba(240, 229, 207, 0.3);
+            padding: 14px 0;
+            border-bottom: 1px dashed var(--list-border);
             display: flex;
             align-items: center;
+            font-size: 1.05rem;
+        }
+
+        .benefits-list li:last-child {
+            border-bottom: none;
         }
 
         .benefits-list li:before {
-            content: "✓";
+            content: "\f00c"; /* FontAwesome check */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
             color: var(--royal-blue);
-            margin-right: 10px;
+            margin-right: 15px;
+            font-size: 1.1rem;
         }
 
-     /* From Uiverse.io by vinodjangid07 */ 
-.Btn {
-  width: 140px;
-  height: 40px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
-  background-size: 250%;
-  background-position: left;
-  color: #ffd277;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition-duration: 1s;
-  overflow: hidden;
-}
+        /* Button from Uiverse */
+        .subscribe-btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
 
-.Btn::before {
-  position: absolute;
-  content: "SUBSCRIBE";
-  color: #ffd277;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 97%;
-  height: 90%;
-  border-radius: 8px;
-  transition-duration: 1s;
-  background-color: rgba(0, 0, 0, 0.842);
-  background-size: 200%;
-}
-
-.Btn:hover {
-  background-position: right;
-  transition-duration: 1s;
-}
-
-.Btn:hover::before {
-  background-position: right;
-  transition-duration: 1s;
-}
-
-.Btn:active {
-  transform: scale(0.95);
-}
-
-        .coming-soon {
-            display: inline-block;
-            background-color: var(--royal-blue);
-            color: var(--clean-white);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-left: 10px;
+        .Btn {
+            width: 100%;
+            max-width: 280px;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            background: var(--btn-grad);
+            background-size: 250%;
+            background-position: left;
+            color: #ffd277;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition-duration: 1s;
+            overflow: hidden;
             font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .Btn::before {
+            position: absolute;
+            content: "SUBSCRIBE NOW";
+            color: #ffd277;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 97%;
+            height: 90%;
+            border-radius: 8px;
+            transition-duration: 1s;
+            background-color: rgba(17, 17, 17, 0.95);
+            background-size: 200%;
+        }
+
+        .Btn:hover {
+            background-position: right;
+            transition-duration: 1s;
+        }
+
+        .Btn:hover::before {
+            background-position: right;
+            transition-duration: 1s;
+        }
+
+        .Btn:active {
+            transform: scale(0.95);
+        }
+
+        .terms-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* --- Mobile Menu --- */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            padding: 20px;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            border-bottom: 1px solid var(--nav-pill-border);
+            z-index: 99;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-nav-links .nav-link {
+            padding: 10px;
+            border-bottom: 1px solid var(--list-border);
+        }
+
+        .mobile-theme-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            .nav-center, .nav-right .login-btn, .nav-right .theme-toggle {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card-title {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 5px;
+            }
+            .card-container {
+                padding: 25px 20px;
+            }
+            .benefits-list li {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="card-container">
-        <div class="card-header">
-            <h1 class="card-title">VIP Card <span class="coming-soon">Coming Soon</span></h1>
-            <p class="card-subtitle">5 Year Membership</p>
-        </div>
-        
-        <ul class="benefits-list">
-            <li>Early access to new launches (24 hours before public)</li>
-            <li>20% discount on all products</li>
-            <li>Free gift hamper annually</li>
-            <li>Dedicated customer service</li>
-            <li>Free shipping on orders above ₹1,499</li>
-            <li>Birthday discounts</li>
-        </ul>
 
-<!-- Replace the form section with this -->
-<div class="subscribe-btn-container">
-    <a href="https://rzp.io/rzp/4o7kqffp" class="Btn">Subscribe</a>
-</div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#" class="logo-text">HeySharlo</a>
+            </div>
+            
+            <!-- Desktop Links -->
+            <div class="nav-center">
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="product/product.html" class="nav-link">Products</a>
+                    <a href="verify/verify.html" class="nav-link">Verify</a>
+                    <a href="contest/contest.html" class="nav-link">Contest</a>
+                    <a href="reward/reward.html" class="nav-link">Reward</a>
+                    <a href="contactus.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+            
+            <!-- Desktop Right Actions -->
+            <div class="nav-right">
+                <a href="login/login.html" class="login-btn">Login</a>
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+
+            <!-- Hamburger Menu -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="product/product.html" class="nav-link">Products</a>
+            <a href="verify/verify.html" class="nav-link">Verify</a>
+            <a href="contest/contest.html" class="nav-link">Contest</a>
+            <a href="reward/reward.html" class="nav-link">Reward</a>
+            <a href="login/login.html" class="login-btn">Login</a>
+            <div class="mobile-theme-toggle">
+                <span>Theme Mode</span>
+                <div class="theme-toggle" id="mobile-theme-toggle">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Main Content Card -->
+    <main>
+        <div class="card-container">
+            <div class="card-header">
+                <h1 class="card-title">VIP Card <span class="coming-soon">Coming Soon</span></h1>
+                <p class="card-subtitle">Essential 5-Year Membership Tier</p>
+                <p class="card-description">
+                    Step into the VIP circle. Enjoy 24-hour early access, exclusive product discounts, and dedicated support for a seamless beauty experience.
+                </p>
+            </div>
+            
+            <ul class="benefits-list">
+                <li>Early access to new launches (24 hours before public)</li>
+                <li>Flat 20% discount on all products</li>
+                <li>Free exclusive gift hamper delivered annually</li>
+                <li>Dedicated customer service support</li>
+                <li>Free shipping on all orders above ₹1,499</li>
+                <li>Special discounts on your birthday</li>
+            </ul>
+
+            <div class="subscribe-btn-container">
+                <a href="https://rzp.io/rzp/4o7kqffp" class="Btn"></a>
+                <span class="terms-text">*Membership auto-renews after 5 years. Terms and conditions apply.</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // --- Theme Toggle Logic ---
+        const themeToggleDesktop = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('mobile-theme-toggle');
+        const body = document.body;
+
+        function toggleTheme() {
+            body.classList.toggle('light-mode');
+            // Save preference to localStorage
+            const isLight = body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+
+        themeToggleDesktop.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // Check for saved user preference on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                body.classList.add('light-mode');
+            }
+        });
+
+        // --- Mobile Menu Logic ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            // Toggle icon between bars and close (X)
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
 </body>
 </html>
