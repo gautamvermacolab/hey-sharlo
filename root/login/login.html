@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>heysharlo | Login</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
+    <title>HeySharlo | Bento Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
     <style>
+        /* --- Color Palette (Unchanged) --- */
         :root {
             --royal-blue: #4876cf;
             --emerald-aqua: #00c08b;
-            --sand-beige: #f0e5cf;
+            --sand-beige: #f3ebd8;
             --charcoal-black: #1e1e1e;
             --clean-white: #ffffff;
             --deep-onyx: #111111;
             --soft-teal: #a9f1df;
-            --glass-blur: blur(12px);
-            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
@@ -28,379 +27,438 @@
 
         body {
             font-family: 'Sora', sans-serif;
-            background-color: var(--sand-beige);
+            background: linear-gradient(135deg, var(--sand-beige) 0%, #ffffff 100%);
             color: var(--deep-onyx);
-            overflow-x: hidden;
-            transition: var(--transition-all);
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
+            display: flex;
+            transition: var(--transition-smooth);
+            overflow-x: hidden;
         }
 
         body.dark-mode {
-            background-color: var(--charcoal-black);
+            background: linear-gradient(135deg, var(--deep-onyx) 0%, var(--charcoal-black) 100%);
             color: var(--clean-white);
         }
 
-        /* Navbar */
-        .navbar {
-            position: fixed;
+        /* --- Dashboard Layout --- */
+        .dashboard-wrapper {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition-all);
-            padding: 20px 0;
-            background: rgba(240, 229, 207, 0.8);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            height: 100vh;
         }
 
-        .dark-mode .navbar {
-            background: rgba(30, 30, 30, 0.8);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        .dark-mode .sidebar {
+            background: rgba(30, 30, 30, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
+        .brand-logo {
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: 800;
+            text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .logo-text {
-            background: linear-gradient(to right, #4876cf, #00c08b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            padding: 5px 0;
-        }
-
-        .theme-toggle {
-            width: 50px;
-            height: 24px;
-            border-radius: 12px;
-            background: var(--deep-onyx);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding: 0 3px;
-            transition: var(--transition-all);
-            border: 1px solid rgba(72, 118, 207, 0.3);
-        }
-
-        .dark-mode .theme-toggle {
-            background: var(--sand-beige);
-            border: 1px solid rgba(0, 192, 139, 0.3);
-        }
-
-        .toggle-ball {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--sand-beige);
-            transition: transform 0.3s ease;
-        }
-
-        .dark-mode .toggle-ball {
-            background: var(--charcoal-black);
-            transform: translateX(26px);
-        }
-
-        /* Login Container */
-        .auth-container {
-            width: 100%;
-            max-width: 500px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: var(--transition-all);
-            margin-top: 80px;
-        }
-
-        .dark-mode .auth-container {
-            background: rgba(30, 30, 30, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        .auth-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
             background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            text-decoration: none;
+            margin-bottom: 50px;
+            display: block;
         }
 
-        .auth-form {
+        .nav-menu {
+            list-style: none;
+            flex: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 15px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 20px;
+            color: var(--charcoal-black);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .dark-mode .nav-link {
+            color: var(--sand-beige);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--clean-white);
+            color: var(--royal-blue);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .dark-mode .nav-link:hover, .dark-mode .nav-link.active {
+            background: var(--charcoal-black);
+            color: var(--emerald-aqua);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .sidebar-footer {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .input-group {
-            position: relative;
-        }
-
-        .auth-input {
+        .logout-btn {
+            background: rgba(255, 77, 77, 0.1);
+            color: #ff4d4d;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
             width: 100%;
-            padding: 15px 20px;
-            border: 1px solid rgba(72, 118, 207, 0.3);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.8);
-            font-family: 'Sora', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition-all);
         }
 
-        .dark-mode .auth-input {
-            background: rgba(30, 30, 30, 0.8);
-            border-color: rgba(0, 192, 139, 0.3);
-            color: var(--clean-white);
+        .logout-btn:hover {
+            background: #ff4d4d;
+            color: white;
         }
 
-        .auth-input:focus {
-            outline: none;
-            border-color: var(--royal-blue);
-            box-shadow: 0 0 10px rgba(72, 118, 207, 0.2);
+        /* --- Theme Toggle Switch --- */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        .dark-mode .auth-input:focus {
-            border-color: var(--emerald-aqua);
-            box-shadow: 0 0 10px rgba(0, 192, 139, 0.2);
+        .theme-toggle {
+            width: 54px;
+            height: 28px;
+            border-radius: 30px;
+            background: var(--charcoal-black);
+            cursor: pointer;
+            position: relative;
+            padding: 4px;
+            transition: var(--transition-smooth);
         }
 
-        .auth-label {
-            position: absolute;
-            left: 20px;
-            top: 15px;
-            color: var(--deep-onyx);
-            transition: var(--transition-all);
-            pointer-events: none;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 0 5px;
+        .dark-mode .theme-toggle {
+            background: var(--sand-beige);
         }
 
-        .dark-mode .auth-label {
-            color: rgba(255, 255, 255, 0.7);
-            background: rgba(30, 30, 30, 0.9);
+        .toggle-ball {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--clean-white);
+            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
 
-        .auth-input:focus + .auth-label,
-        .auth-input:not(:placeholder-shown) + .auth-label {
-            top: -10px;
-            font-size: 0.8rem;
+        .dark-mode .toggle-ball {
+            background: var(--deep-onyx);
+            transform: translateX(26px);
+        }
+
+        /* --- Main Content Area (Bento Box) --- */
+        .main-content {
+            flex: 1;
+            padding: 50px 60px;
+            max-width: 1200px;
+        }
+
+        .header-section {
+            margin-bottom: 40px;
+        }
+
+        .greeting {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .greeting span {
             color: var(--royal-blue);
         }
-
-        .dark-mode .auth-input:focus + .auth-label,
-        .dark-mode .auth-input:not(:placeholder-shown) + .auth-label {
+        
+        .dark-mode .greeting span {
             color: var(--emerald-aqua);
         }
 
-        .auth-btn {
-            padding: 15px;
-            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
-            color: var(--clean-white);
-            border: none;
-            border-radius: 10px;
-            font-family: 'Sora', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-all);
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
         }
 
-        .auth-btn:hover {
-            transform: translateY(-3px);
+        .dark-mode .subtitle {
+            color: #aaa;
+        }
+
+        /* Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            display: none; /* Hidden until loaded */
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bento-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark-mode .bento-card {
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .dark-mode .bento-card:hover {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Specific Card Sizings */
+        .card-profile { grid-column: span 2; display: flex; flex-direction: row; align-items: center; gap: 30px;}
+        .card-stats { grid-column: span 1; }
+        .card-action { grid-column: span 3; background: linear-gradient(135deg, var(--royal-blue), var(--emerald-aqua)); color: white; border: none;}
+
+        /* Card Content Styles */
+        .avatar-huge {
+            width: 100px;
+            height: 100px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--royal-blue), var(--soft-teal));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 800;
             box-shadow: 0 10px 20px rgba(72, 118, 207, 0.3);
         }
 
-        .dark-mode .auth-btn:hover {
-            box-shadow: 0 10px 20px rgba(0, 192, 139, 0.3);
+        .profile-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
         }
 
-        .auth-footer {
-            text-align: center;
-            margin-top: 20px;
+        .profile-details p {
+            color: #666;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dark-mode .profile-details p { color: #ccc; }
+
+        .card-title {
             font-size: 0.9rem;
-        }
-
-        .auth-toggle {
+            text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--royal-blue);
-            cursor: pointer;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .dark-mode .card-title { color: var(--emerald-aqua); }
+
+        .stat-group {
+            margin-bottom: 20px;
+        }
+        .stat-group:last-child { margin-bottom: 0; }
+        
+        .stat-label { font-size: 0.85rem; color: #777; margin-bottom: 4px; }
+        .dark-mode .stat-label { color: #999; }
+        .stat-value { font-weight: 600; font-size: 1.1rem; }
+
+        .edit-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 1.1rem;
             font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition-all);
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .edit-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.02);
         }
 
-        .dark-mode .auth-toggle {
-            color: var(--emerald-aqua);
-        }
-
-        .auth-toggle:hover {
-            text-decoration: underline;
-        }
-
-        .forgot-password {
-            text-align: right;
-            font-size: 0.9rem;
-            margin-top: -15px;
-        }
-
-        .forgot-link {
+        .loading-state {
+            text-align: center;
+            padding: 100px;
+            font-size: 1.5rem;
             color: var(--royal-blue);
-            text-decoration: none;
-            transition: var(--transition-all);
         }
 
-        .dark-mode .forgot-link {
-            color: var(--emerald-aqua);
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card-profile { grid-column: span 2; }
+            .card-stats { grid-column: span 2; }
+            .card-action { grid-column: span 2; }
         }
 
-        .forgot-link:hover {
-            text-decoration: underline;
-        }
-
-        .error-message {
-            color: #ff4d4d;
-            font-size: 0.9rem;
-            margin-top: -15px;
-            text-align: center;
-        }
-
-        .success-message {
-            color: var(--emerald-aqua);
-            font-size: 0.9rem;
-            margin-top: -15px;
-            text-align: center;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .auth-container {
-                padding: 30px 20px;
-                margin: 80px 20px;
+            .dashboard-wrapper {
+                flex-direction: column;
             }
-            
-            .auth-title {
-                font-size: 1.8rem;
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 20px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
             }
-        }
-
-        @media (max-width: 480px) {
-            .auth-title {
-                font-size: 1.5rem;
-            }
-            
-            .auth-input {
-                padding: 12px 15px;
-            }
+            .brand-logo { margin-bottom: 20px; text-align: center; }
+            .nav-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;}
+            .nav-link span { display: none; } /* Hide text, show only icons on mobile nav */
+            .nav-link { padding: 12px; }
+            .main-content { padding: 30px 20px; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .card-profile { grid-column: span 1; flex-direction: column; text-align: center; }
+            .card-action { grid-column: span 1; }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="../index.html" class="logo-text">heysharlo</a>
-            </div>
-            <div class="theme-toggle" id="theme-toggle">
-                <div class="toggle-ball"></div>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Login Form -->
-    <div class="auth-container" id="login-container">
-        <h1 class="auth-title">Welcome Back</h1>
-        <form class="auth-form" id="login-form">
-            <div class="input-group">
-                <input type="email" id="login-email" class="auth-input" placeholder=" " required>
-                <label for="login-email" class="auth-label">Email</label>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <a href="../index.html" class="brand-logo">HeySharlo</a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-th-large"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Return Home</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="theme-switch-wrapper">
+                    <span>Dark Mode</span>
+                    <div class="theme-toggle" id="theme-toggle">
+                        <div class="toggle-ball"></div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
             </div>
-            <div class="input-group">
-                <input type="password" id="login-password" class="auth-input" placeholder=" " required>
-                <label for="login-password" class="auth-label">Password</label>
+        </aside>
+
+        <main class="main-content">
+            <div class="header-section">
+                <h1 class="greeting">Hello, <span id="welcome-name">...</span></h1>
+                <p class="subtitle">Here is a quick overview of your account.</p>
             </div>
-            <div class="forgot-password">
-                <a href="#" class="forgot-link" id="forgot-password">Forgot Password?</a>
+
+            <div class="loading-state" id="loading-state">
+                <i class="fas fa-circle-notch fa-spin"></i> Syncing your profile...
             </div>
-            <p class="error-message" id="login-error"></p>
-            <button type="submit" class="auth-btn">Login</button>
-        </form>
-        <div class="auth-footer">
-            <p>Don't have an account? <a href="#" class="auth-toggle" id="show-register">Register</a></p>
-        </div>
+
+            <div class="bento-grid" id="bento-grid">
+                
+                <div class="bento-card card-profile">
+                    <div class="avatar-huge" id="main-avatar">U</div>
+                    <div class="profile-details">
+                        <h3 id="display-name">Loading...</h3>
+                        <p><i class="fas fa-envelope"></i> <span id="display-email">Loading...</span></p>
+                        <p style="margin-top: 10px; color: var(--emerald-aqua); font-size: 0.9rem; font-weight: 600;">
+                            <i class="fas fa-check-circle"></i> Active Member
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bento-card card-stats">
+                    <h4 class="card-title"><i class="fas fa-history"></i> Account Activity</h4>
+                    <div class="stat-group">
+                        <div class="stat-label">Member Since</div>
+                        <div class="stat-value" id="display-created">...</div>
+                    </div>
+                    <div class="stat-group">
+                        <div class="stat-label">Last Login</div>
+                        <div class="stat-value" id="display-lastlogin">...</div>
+                    </div>
+                </div>
+
+                <div class="bento-card card-action">
+                    <h3 style="margin-bottom: 10px;">Personalize Profile</h3>
+                    <p style="opacity: 0.9; margin-bottom: 20px;">Keep your identity up to date for a customized experience.</p>
+                    <button class="edit-btn" id="edit-name-btn">
+                        <i class="fas fa-user-edit"></i> Edit Display Name
+                    </button>
+                </div>
+
+            </div>
+        </main>
     </div>
 
-    <!-- Register Form (Hidden by default) -->
-    <div class="auth-container" id="register-container" style="display: none;">
-        <h1 class="auth-title">Create Account</h1>
-        <form class="auth-form" id="register-form">
-            <div class="input-group">
-                <input type="text" id="register-name" class="auth-input" placeholder=" " required>
-                <label for="register-name" class="auth-label">Full Name</label>
-            </div>
-            <div class="input-group">
-                <input type="email" id="register-email" class="auth-input" placeholder=" " required>
-                <label for="register-email" class="auth-label">Email</label>
-            </div>
-            <div class="input-group">
-                <input type="password" id="register-password" class="auth-input" placeholder=" " required>
-                <label for="register-password" class="auth-label">Password</label>
-            </div>
-            <div class="input-group">
-                <input type="password" id="register-confirm" class="auth-input" placeholder=" " required>
-                <label for="register-confirm" class="auth-label">Confirm Password</label>
-            </div>
-            <p class="error-message" id="register-error"></p>
-            <p class="success-message" id="register-success"></p>
-            <button type="submit" class="auth-btn">Register</button>
-        </form>
-        <div class="auth-footer">
-            <p>Already have an account? <a href="#" class="auth-toggle" id="show-login">Login</a></p>
-        </div>
-    </div>
-
-    <!-- Forgot Password Form (Hidden by default) -->
-    <div class="auth-container" id="forgot-container" style="display: none;">
-        <h1 class="auth-title">Reset Password</h1>
-        <form class="auth-form" id="forgot-form">
-            <div class="input-group">
-                <input type="email" id="forgot-email" class="auth-input" placeholder=" " required>
-                <label for="forgot-email" class="auth-label">Email</label>
-            </div>
-            <p class="error-message" id="forgot-error"></p>
-            <p class="success-message" id="forgot-success"></p>
-            <button type="submit" class="auth-btn">Send Reset Link</button>
-        </form>
-        <div class="auth-footer">
-            <p>Remember your password? <a href="#" class="auth-toggle" id="show-login-from-forgot">Login</a></p>
-        </div>
-    </div>
-
-    <!-- Firebase and App Scripts -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
     <script>
-        // Firebase configuration
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDCwQHJfzyW0kzw6W1iUDQan_vDL-BtBIg",
             authDomain: "heysharlodatabase.firebaseapp.com",
@@ -412,138 +470,92 @@
             measurementId: "G-J6X58E0K90"
         };
 
-        // Initialize Firebase
+        // Initialize
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
-        // Theme Toggle
+        // DOM Elements
+        const welcomeName = document.getElementById('welcome-name');
+        const mainAvatar = document.getElementById('main-avatar');
+        const displayName = document.getElementById('display-name');
+        const displayEmail = document.getElementById('display-email');
+        const displayCreated = document.getElementById('display-created');
+        const displayLastLogin = document.getElementById('display-lastlogin');
+        
+        const loadingState = document.getElementById('loading-state');
+        const bentoGrid = document.getElementById('bento-grid');
+        const logoutBtn = document.getElementById('logout-btn');
+        const editNameBtn = document.getElementById('edit-name-btn');
+
+        // Formatter
+        function formatDate(dateString) {
+            if (!dateString) return "N/A";
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) + 
+                   ' at ' + date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Check Auth State
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                const userName = user.displayName || 'User';
+                
+                // Populate Data
+                welcomeName.textContent = userName.split(' ')[0]; // First name only for greeting
+                mainAvatar.textContent = userName.charAt(0).toUpperCase();
+                displayName.textContent = userName;
+                displayEmail.textContent = user.email;
+                
+                displayCreated.textContent = formatDate(user.metadata.creationTime);
+                displayLastLogin.textContent = formatDate(user.metadata.lastSignInTime);
+
+                // Reveal UI
+                loadingState.style.display = 'none';
+                bentoGrid.style.display = 'grid';
+            } else {
+                // Redirect if not logged in
+                window.location.href = 'login.html'; 
+            }
+        });
+
+        // Logout
+        logoutBtn.addEventListener('click', () => {
+            auth.signOut().then(() => {
+                window.location.href = 'login.html';
+            }).catch(console.error);
+        });
+
+        // Edit Profile
+        editNameBtn.addEventListener('click', () => {
+            const currentName = displayName.textContent;
+            const newName = prompt("Update your display name:", currentName === 'User' ? '' : currentName);
+            
+            if (newName && newName.trim() !== "" && newName !== currentName) {
+                const user = auth.currentUser;
+                user.updateProfile({ displayName: newName.trim() }).then(() => {
+                    displayName.textContent = newName.trim();
+                    welcomeName.textContent = newName.trim().split(' ')[0];
+                    mainAvatar.textContent = newName.trim().charAt(0).toUpperCase();
+                }).catch((error) => {
+                    alert("Error updating: " + error.message);
+                });
+            }
+        });
+
+        // Theme Toggle Logic
         const themeToggle = document.getElementById('theme-toggle');
         
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
         }
         
-        // Initialize theme from localStorage
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('dark-mode');
         }
         
-        // Add event listener to toggle
-        if (themeToggle) {
-            themeToggle.addEventListener('click', toggleDarkMode);
-        }
-
-        // Form Toggle Functions
-        document.getElementById('show-register').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('login-container').style.display = 'none';
-            document.getElementById('register-container').style.display = 'block';
-            document.getElementById('forgot-container').style.display = 'none';
-        });
-
-        document.getElementById('show-login').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('login-container').style.display = 'block';
-            document.getElementById('register-container').style.display = 'none';
-            document.getElementById('forgot-container').style.display = 'none';
-        });
-
-        document.getElementById('forgot-password').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('login-container').style.display = 'none';
-            document.getElementById('register-container').style.display = 'none';
-            document.getElementById('forgot-container').style.display = 'block';
-        });
-
-        document.getElementById('show-login-from-forgot').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('login-container').style.display = 'block';
-            document.getElementById('register-container').style.display = 'none';
-            document.getElementById('forgot-container').style.display = 'none';
-        });
-
-        // Login Function
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            const errorElement = document.getElementById('login-error');
-            
-            errorElement.textContent = '';
-            
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Redirect to dashboard
-                    window.location.href = 'dashboard.html';
-                })
-                .catch((error) => {
-                    errorElement.textContent = error.message;
-                });
-        });
-
-        // Register Function
-        document.getElementById('register-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-            const confirmPassword = document.getElementById('register-confirm').value;
-            const errorElement = document.getElementById('register-error');
-            const successElement = document.getElementById('register-success');
-            
-            errorElement.textContent = '';
-            successElement.textContent = '';
-            
-            if (password !== confirmPassword) {
-                errorElement.textContent = 'Passwords do not match';
-                return;
-            }
-            
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Update user profile with name
-                    return userCredential.user.updateProfile({
-                        displayName: name
-                    });
-                })
-                .then(() => {
-                    successElement.textContent = 'Registration successful! Redirecting...';
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1500);
-                })
-                .catch((error) => {
-                    errorElement.textContent = error.message;
-                });
-        });
-
-        // Forgot Password Function
-        document.getElementById('forgot-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('forgot-email').value;
-            const errorElement = document.getElementById('forgot-error');
-            const successElement = document.getElementById('forgot-success');
-            
-            errorElement.textContent = '';
-            successElement.textContent = '';
-            
-            auth.sendPasswordResetEmail(email)
-                .then(() => {
-                    successElement.textContent = 'Password reset email sent. Check your inbox.';
-                })
-                .catch((error) => {
-                    errorElement.textContent = error.message;
-                });
-        });
-
-        // Check if user is already logged in
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                window.location.href = 'dashboard.html';
-            }
-        });
+        themeToggle.addEventListener('click', toggleDarkMode);
     </script>
 </body>
 </html>
