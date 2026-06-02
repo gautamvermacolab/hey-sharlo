@@ -3,717 +3,2128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heysharlo | Dashboard</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
+    <title>HeySharlo | Professional User Dashboard</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
+    <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
+    
     <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & THEME SETUP
+           ========================================================================== */
         :root {
+            /* Core Brand Colors */
             --royal-blue: #4876cf;
+            --royal-blue-hover: #3a5eb0;
             --emerald-aqua: #00c08b;
-            --sand-beige: #f0e5cf;
-            --charcoal-black: #1e1e1e;
-            --clean-white: #ffffff;
-            --deep-onyx: #111111;
+            --emerald-aqua-hover: #00a074;
             --soft-teal: #a9f1df;
+            
+            /* Light Theme Defaults */
+            --bg-main: #f4f6f8;
+            --bg-card: #ffffff;
+            --bg-sidebar: #ffffff;
+            --text-primary: #1e1e1e;
+            --text-secondary: #637381;
+            --text-muted: #919eab;
+            --border-color: rgba(145, 158, 171, 0.24);
+            --border-color-light: rgba(145, 158, 171, 0.12);
+            --shadow-sm: 0 1px 2px 0 rgba(145, 158, 171, 0.16);
+            --shadow-md: 0 4px 8px 0 rgba(145, 158, 171, 0.16);
+            --shadow-lg: 0 12px 24px -4px rgba(145, 158, 171, 0.16);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            
+            /* Status Colors */
+            --success: #22c55e;
+            --success-bg: rgba(34, 197, 94, 0.16);
+            --warning: #f59e0b;
+            --warning-bg: rgba(245, 158, 11, 0.16);
+            --error: #ef4444;
+            --error-bg: rgba(239, 68, 68, 0.16);
+            --info: #3b82f6;
+            --info-bg: rgba(59, 130, 246, 0.16);
+
+            /* Effects */
             --glass-blur: blur(12px);
-            --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: all 0.2s ease;
+            --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Layout */
+            --sidebar-width: 280px;
+            --header-height: 80px;
         }
 
+        /* Dark Theme Overrides */
+        body.dark-mode {
+            --bg-main: #111111;
+            --bg-card: #1e1e1e;
+            --bg-sidebar: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #919eab;
+            --text-muted: #637381;
+            --border-color: rgba(255, 255, 255, 0.12);
+            --border-color-light: rgba(255, 255, 255, 0.05);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.6);
+            --glass-bg: rgba(30, 30, 30, 0.8);
+        }
+
+        /* ==========================================================================
+           2. RESET & BASE STYLES
+           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Sora', sans-serif;
-            background-color: var(--sand-beige);
-            color: var(--deep-onyx);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
             overflow-x: hidden;
-            transition: var(--transition-all);
+            transition: background-color 0.3s ease, color 0.3s ease;
             min-height: 100vh;
-        }
-
-        body.dark-mode {
-            background-color: var(--charcoal-black);
-            color: var(--clean-white);
-        }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition-all);
-            padding: 20px 0;
-            background: rgba(240, 229, 207, 0.8);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .dark-mode .navbar {
-            background: rgba(30, 30, 30, 0.8);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
             display: flex;
-            justify-content: space-between;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+
+        input, select, textarea {
+            font-family: inherit;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           3. LAYOUT STRUCTURE
+           ========================================================================== */
+        .app-container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ==========================================================================
+           4. SIDEBAR STYLES
+           ========================================================================== */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            border-right: 1px dashed var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-normal);
+            z-index: 100;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            height: var(--header-height);
+            display: flex;
             align-items: center;
+            padding: 0 24px;
+            border-bottom: 1px dashed var(--border-color-light);
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .brand-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
             letter-spacing: 1px;
-        }
-
-        .logo-text {
-            background: linear-gradient(to right, #4876cf, #00c08b);
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            padding: 5px 0;
-            text-decoration: none;
         }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 30px;
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 16px;
         }
 
-        .nav-list {
-            display: flex;
-            list-style: none;
-            gap: 25px;
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            padding: 0 12px;
+            letter-spacing: 1.2px;
+        }
+
+        .nav-item {
+            margin-bottom: 4px;
         }
 
         .nav-link {
-            color: var(--deep-onyx);
-            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--text-secondary);
             font-weight: 500;
-            transition: var(--transition-all);
-            position: relative;
+            transition: var(--transition-fast);
         }
 
-        .dark-mode .nav-link {
-            color: var(--clean-white);
+        .nav-link i {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
         }
 
         .nav-link:hover {
-            color: var(--royal-blue);
-        }
-
-        .dark-mode .nav-link:hover {
-            color: var(--emerald-aqua);
+            background-color: rgba(145, 158, 171, 0.08);
+            color: var(--text-primary);
         }
 
         .nav-link.active {
+            background-color: rgba(72, 118, 207, 0.1);
+            color: var(--royal-blue);
             font-weight: 600;
         }
 
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+        .dark-mode .nav-link.active {
+            background-color: rgba(0, 192, 139, 0.1);
+            color: var(--emerald-aqua);
         }
 
-        .nav-right {
+        .sidebar-footer {
+            padding: 24px 16px;
+            border-top: 1px dashed var(--border-color-light);
+        }
+
+        .upgrade-card {
+            background: linear-gradient(135deg, rgba(72, 118, 207, 0.1), rgba(0, 192, 139, 0.1));
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(72, 118, 207, 0.2);
+        }
+
+        .upgrade-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .upgrade-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+
+        .upgrade-btn {
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            width: 100%;
+            transition: var(--transition-fast);
+        }
+
+        .upgrade-btn:hover {
+            box-shadow: 0 8px 16px rgba(72, 118, 207, 0.24);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           5. MAIN CONTENT & HEADER
+           ========================================================================== */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            height: var(--header-height);
+            background-color: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 90;
+            border-bottom: 1px dashed var(--border-color-light);
+        }
+
+        .header-left {
             display: flex;
             align-items: center;
             gap: 20px;
         }
 
-        .user-dropdown {
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .search-bar {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 16px 12px 48px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 0 4px rgba(72, 118, 207, 0.1);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition-fast);
             position: relative;
         }
 
-        .user-btn {
+        .icon-btn:hover {
+            background-color: rgba(145, 158, 171, 0.1);
+            color: var(--text-primary);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--error);
+            border: 2px solid var(--bg-card);
+        }
+
+        .theme-toggle {
+            width: 54px;
+            height: 28px;
+            border-radius: 20px;
+            background-color: rgba(145, 158, 171, 0.2);
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition-normal);
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: none;
-            border: none;
-            color: var(--deep-onyx);
-            font-family: 'Sora', sans-serif;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition-all);
+            padding: 4px;
         }
 
-        .dark-mode .user-btn {
-            color: var(--clean-white);
+        .toggle-knob {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: var(--warning);
         }
 
-        .user-avatar {
+        .dark-mode .toggle-knob {
+            transform: translateX(26px);
+            background-color: var(--charcoal-black);
+            color: var(--soft-teal);
+        }
+
+        .user-menu-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 4px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-fast);
+        }
+
+        .user-menu-btn:hover {
+            background-color: rgba(145, 158, 171, 0.08);
+        }
+
+        .avatar-circle {
             width: 36px;
             height: 36px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--royal-blue), var(--emerald-aqua));
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1rem;
         }
 
-        .dropdown-menu {
+        .user-greeting {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 12px;
+        }
+
+        .user-greeting span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .user-greeting strong {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        /* Notifications Dropdown */
+        .notifications-panel {
             position: absolute;
-            right: 0;
-            top: 50px;
-            min-width: 200px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 0;
+            top: 70px;
+            right: 120px;
+            width: 360px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: var(--transition-all);
-            z-index: 1001;
+            transform: translateY(10px);
+            transition: var(--transition-normal);
+            z-index: 100;
+            overflow: hidden;
         }
 
-        .dark-mode .dropdown-menu {
-            background: rgba(30, 30, 30, 0.95);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-        }
-
-        .user-dropdown:hover .dropdown-menu {
+        .notifications-panel.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
 
-        .dropdown-item {
-            padding: 10px 20px;
-            color: var(--deep-onyx);
-            text-decoration: none;
-            display: block;
-            transition: var(--transition-all);
+        .notify-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .dark-mode .dropdown-item {
-            color: var(--clean-white);
+        .notify-header h3 {
+            font-size: 1.1rem;
         }
 
-        .dropdown-item:hover {
-            background: rgba(72, 118, 207, 0.1);
+        .mark-read {
+            font-size: 0.8rem;
             color: var(--royal-blue);
-        }
-
-        .dark-mode .dropdown-item:hover {
-            background: rgba(0, 192, 139, 0.1);
-            color: var(--emerald-aqua);
-        }
-
-        .dropdown-divider {
-            height: 1px;
-            background: rgba(72, 118, 207, 0.2);
-            margin: 5px 0;
-        }
-
-        .dark-mode .dropdown-divider {
-            background: rgba(0, 192, 139, 0.2);
-        }
-
-        .theme-toggle {
-            width: 50px;
-            height: 24px;
-            border-radius: 12px;
-            background: var(--deep-onyx);
             cursor: pointer;
+        }
+
+        .notify-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .notify-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color-light);
+            display: flex;
+            gap: 16px;
+            transition: var(--transition-fast);
+        }
+
+        .notify-item:hover {
+            background-color: rgba(145, 158, 171, 0.04);
+        }
+
+        .notify-item.unread {
+            background-color: rgba(72, 118, 207, 0.04);
+        }
+
+        .notify-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            padding: 0 3px;
-            transition: var(--transition-all);
-            border: 1px solid rgba(72, 118, 207, 0.3);
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .dark-mode .theme-toggle {
-            background: var(--sand-beige);
-            border: 1px solid rgba(0, 192, 139, 0.3);
+        .notify-icon.order { background: var(--info-bg); color: var(--info); }
+        .notify-icon.promo { background: var(--warning-bg); color: var(--warning); }
+        .notify-icon.system { background: var(--success-bg); color: var(--success); }
+
+        .notify-content h4 {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
         }
 
-        .toggle-ball {
-            width: 18px;
-            height: 18px;
+        .notify-content p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .notify-content span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           6. PAGE CONTENT AREA
+           ========================================================================== */
+        .page-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .page-breadcrumb i {
+            font-size: 0.7rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--shadow-md);
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(145, 158, 171, 0.08);
+        }
+
+        /* ==========================================================================
+           7. DASHBOARD COMPONENTS (CARDS, CHARTS)
+           ========================================================================== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color-light);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition-normal);
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
-            background: var(--sand-beige);
-            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
         }
 
-        .dark-mode .toggle-ball {
-            background: var(--charcoal-black);
-            transform: translateX(26px);
+        .stat-icon.blue { background: rgba(72, 118, 207, 0.16); color: var(--royal-blue); }
+        .stat-icon.green { background: rgba(0, 192, 139, 0.16); color: var(--emerald-aqua); }
+        .stat-icon.orange { background: var(--warning-bg); color: var(--warning); }
+        .stat-icon.purple { background: rgba(168, 85, 247, 0.16); color: #a855f7; }
+
+        .stat-content h4 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 4px;
         }
 
-        /* Dashboard Container */
-        .dashboard-container {
-            max-width: 1400px;
-            margin: 100px auto 50px;
-            padding: 0 40px;
+        .stat-content h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
 
-        .dashboard-header {
-            margin-bottom: 40px;
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color-light);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* Chart Placeholder styling */
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+
+        #activityChart {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Original User Profile Section Refined */
+        .profile-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
 
-        .dashboard-title {
+        .profile-avatar-large {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--royal-blue), var(--emerald-aqua));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-weight: 700;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 16px rgba(72, 118, 207, 0.3);
+            border: 4px solid var(--bg-card);
         }
 
-        .dashboard-subtitle {
-            font-size: 1.2rem;
-            color: var(--deep-onyx);
-            opacity: 0.8;
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
-        .dark-mode .dashboard-subtitle {
-            color: var(--clean-white);
+        .profile-email {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
         }
 
-        .user-card {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: var(--transition-all);
-        }
-
-        .dark-mode .user-card {
-            background: rgba(30, 30, 30, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        .user-info {
-            margin-bottom: 20px;
+        .info-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .info-row {
             display: flex;
-            margin-bottom: 15px;
-            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed var(--border-color-light);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         .info-label {
-            font-weight: 600;
-            width: 150px;
-            color: var(--royal-blue);
-        }
-
-        .dark-mode .info-label {
-            color: var(--emerald-aqua);
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .info-value {
-            flex: 1;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
-        .editable-field {
+        /* ==========================================================================
+           8. DATA TABLES (ORDERS SECTION)
+           ========================================================================== */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .data-table th {
+            padding: 16px 24px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: rgba(145, 158, 171, 0.04);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 16px 24px;
+            border-bottom: 1px dashed var(--border-color-light);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: rgba(145, 158, 171, 0.02);
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-processing { background: var(--warning-bg); color: var(--warning); }
+        .badge-shipped { background: var(--info-bg); color: var(--info); }
+        .badge-delivered { background: var(--success-bg); color: var(--success); }
+        .badge-cancelled { background: var(--error-bg); color: var(--error); }
+
+        .table-action-btn {
+            color: var(--text-secondary);
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition-fast);
+        }
+
+        .table-action-btn:hover {
+            background-color: rgba(145, 158, 171, 0.1);
+            color: var(--royal-blue);
+        }
+
+        /* Filters */
+        .filter-tabs {
+            display: flex;
+            gap: 16px;
+            padding: 0 24px 24px;
+            border-bottom: 1px solid var(--border-color-light);
+            margin-bottom: 24px;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-fast);
+        }
+
+        .filter-tab:hover {
+            background-color: rgba(145, 158, 171, 0.08);
+        }
+
+        .filter-tab.active {
+            background-color: var(--text-primary);
+            color: var(--bg-main);
+            border-color: var(--text-primary);
+        }
+
+        /* ==========================================================================
+           9. SUBSCRIPTIONS SECTION
+           ========================================================================== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 24px;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 40px 32px;
+            text-align: center;
+            border: 1px solid var(--border-color-light);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            transition: var(--transition-normal);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--emerald-aqua);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 32px;
+            transform: translateY(-50%);
+            background: var(--emerald-aqua);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .tier-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 32px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
         }
 
-        .edit-btn {
-            background: none;
-            border: none;
-            color: var(--royal-blue);
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: var(--transition-all);
-        }
-
-        .dark-mode .edit-btn {
+        .pricing-features li i {
             color: var(--emerald-aqua);
+            font-size: 1.2rem;
         }
 
-        .edit-btn:hover {
-            opacity: 0.8;
+        /* ==========================================================================
+           10. SETTINGS FORMS
+           ========================================================================== */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
         }
 
-        .name-input {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1px solid rgba(72, 118, 207, 0.3);
-            border-radius: 6px;
-            font-family: 'Sora', sans-serif;
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        .dark-mode .name-input {
-            background: rgba(30, 30, 30, 0.8);
-            border-color: rgba(0, 192, 139, 0.3);
-            color: var(--clean-white);
-        }
-
-        .save-btn {
-            padding: 8px 15px;
-            background: var(--royal-blue);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-family: 'Sora', sans-serif;
-            cursor: pointer;
-            transition: var(--transition-all);
-        }
-
-        .dark-mode .save-btn {
-            background: var(--emerald-aqua);
-        }
-
-        .save-btn:hover {
-            opacity: 0.9;
-        }
-
-        .cancel-btn {
-            padding: 8px 15px;
-            background: none;
-            color: var(--royal-blue);
-            border: 1px solid var(--royal-blue);
-            border-radius: 6px;
-            font-family: 'Sora', sans-serif;
-            cursor: pointer;
-            transition: var(--transition-all);
-        }
-
-        .dark-mode .cancel-btn {
-            color: var(--emerald-aqua);
-            border-color: var(--emerald-aqua);
-        }
-
-        .cancel-btn:hover {
-            background: rgba(72, 118, 207, 0.1);
-        }
-
-        .dark-mode .cancel-btn:hover {
-            background: rgba(0, 192, 139, 0.1);
-        }
-
-        .action-buttons {
+        .settings-nav {
             display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .action-btn {
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-family: 'Sora', sans-serif;
-            font-size: 1rem;
+        .settings-tab {
+            padding: 12px 16px;
+            border-radius: 8px;
             font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-all);
-            text-decoration: none;
-            display: inline-block;
+            color: var(--text-secondary);
+            text-align: left;
+            transition: var(--transition-fast);
         }
 
-        .primary-btn {
-            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
-            color: var(--clean-white);
-            border: none;
+        .settings-tab:hover {
+            background-color: rgba(145, 158, 171, 0.08);
         }
 
-        .primary-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(72, 118, 207, 0.3);
-        }
-
-        .dark-mode .primary-btn:hover {
-            box-shadow: 0 10px 20px rgba(0, 192, 139, 0.3);
-        }
-
-        .secondary-btn {
-            background: transparent;
+        .settings-tab.active {
+            background-color: rgba(72, 118, 207, 0.1);
             color: var(--royal-blue);
-            border: 2px solid var(--royal-blue);
         }
 
-        .dark-mode .secondary-btn {
-            color: var(--emerald-aqua);
-            border-color: var(--emerald-aqua);
+        .form-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border-color-light);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
         }
 
-        .secondary-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(72, 118, 207, 0.2);
+        .form-section h3 {
+            margin-bottom: 24px;
+            font-size: 1.2rem;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color-light);
         }
 
-        .dark-mode .secondary-btn:hover {
-            box-shadow: 0 10px 20px rgba(0, 192, 139, 0.2);
+        .form-group {
+            margin-bottom: 24px;
         }
 
-        /* Responsive */
-        @media (max-width: 992px) {
-            .nav-list {
-                display: none;
-            }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 0 4px rgba(72, 118, 207, 0.1);
+        }
+
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px dashed var(--border-color-light);
+        }
+
+        .toggle-label-text h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .toggle-label-text p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Checkbox style toggle */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(145, 158, 171, 0.48);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--emerald-aqua);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        /* ==========================================================================
+           11. SKELETON LOADERS
+           ========================================================================== */
+        .skeleton {
+            background: linear-gradient(90deg, var(--border-color-light) 25%, var(--border-color) 50%, var(--border-color-light) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
+        }
+
+        .skeleton-text {
+            height: 16px;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        .skeleton-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ==========================================================================
+           12. RESPONSIVE DESIGN
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .settings-grid { grid-template-columns: 1fr; gap: 24px; }
+            .settings-nav { flex-direction: row; overflow-x: auto; padding-bottom: 8px; }
         }
 
         @media (max-width: 768px) {
-            .dashboard-container {
-                padding: 0 20px;
-                margin-top: 80px;
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                box-shadow: var(--shadow-lg);
             }
-            
-            .dashboard-title {
-                font-size: 2rem;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .info-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .info-label {
-                margin-bottom: 5px;
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .dashboard-title {
-                font-size: 1.8rem;
-            }
-            
-            .dashboard-subtitle {
-                font-size: 1rem;
-            }
-            
-            .user-card {
-                padding: 20px;
-            }
-            
-            .nav-container {
-                padding: 0 20px;
-            }
+            .sidebar.show { left: 0; }
+            .mobile-toggle { display: block; }
+            .search-bar { display: none; }
+            .header { padding: 0 20px; }
+            .page-content { padding: 24px 20px; }
+            .form-row { grid-template-columns: 1fr; }
+            .notifications-panel { right: 20px; width: 320px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="index.html" class="logo-text">HEYSHARLO</a>
+
+<div class="app-container">
+    <!-- =======================================================================
+         SIDEBAR NAVIGATION
+         ======================================================================= -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="brand-logo">HEYSHARLO</a>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="nav-section">
+                <div class="nav-section-title">Overview</div>
+                <div class="nav-item">
+                    <button class="nav-link active" onclick="switchTab('dashboard', this)">
+                        <i class="fas fa-chart-pie"></i> Dashboard
+                    </button>
+                </div>
+                <div class="nav-item">
+                    <button class="nav-link" onclick="switchTab('orders', this)">
+                        <i class="fas fa-shopping-bag"></i> My Orders
+                    </button>
+                </div>
             </div>
-            
-                
-                <div class="nav-right">
-                    <div class="user-dropdown">
-                        <button class="user-btn">
-                            <div class="user-avatar" id="user-avatar">U</div>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-item"><i class="fas fa-user"></i> Profile</div>
-                            <div onclick="window.location.href='../prelaunch/prelaunch.html'"  class="dropdown-item"><i class="fa-solid fa-handshake"></i>pre-launch</div>
-                            <div class="dropdown-divider"></div>
-                            <a href="../index.html" class="dropdown-item" id="nav-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                        </div>
-                    </div>
-                    
-                    <div class="theme-toggle" id="theme-toggle">
-                        <div class="toggle-ball"></div>
-                    </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <div class="nav-item">
+                    <button class="nav-link" onclick="switchTab('subscriptions', this)">
+                        <i class="fas fa-crown"></i> Subscriptions
+                    </button>
+                </div>
+                <div class="nav-item">
+                    <button class="nav-link" onclick="switchTab('settings', this)">
+                        <i class="fas fa-cog"></i> Settings
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Explore</div>
+                <div class="nav-item">
+                    <a href="../product/product.html" class="nav-link">
+                        <i class="fas fa-store"></i> Shop Products
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="../reward/reward.html" class="nav-link">
+                        <i class="fas fa-gift"></i> Rewards
+                    </a>
                 </div>
             </div>
         </div>
-    </nav>
 
-    <!-- Dashboard Content -->
-    <div class="dashboard-container">
-        <div class="dashboard-header">
-            <h1 class="dashboard-title">Profile</h1>
-            <p class="dashboard-subtitle">Welcome, ji  </p>
+        <div class="sidebar-footer">
+            <div class="upgrade-card">
+                <h4>King Card Pre-Launch</h4>
+                <p>Get exclusive early access and 40% off.</p>
+                <button class="upgrade-btn" onclick="window.location.href='../prelaunch/prelaunch.html'">Explore Now</button>
+            </div>
         </div>
-        
-        <div class="user-card">
-            <div class="user-info">
-                <div class="info-row">
-                    <span class="info-label">Name:</span>
-                    <div class="info-value">
-                        <div id="name-display">
-                            <span id="user-name">Loading...</span>
-                            <button class="edit-btn" id="edit-name-btn"><i class="fas fa-edit"></i> Edit</button>
+    </aside>
+
+    <!-- =======================================================================
+         MAIN CONTENT AREA
+         ======================================================================= -->
+    <main class="main-wrapper">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search orders, products...">
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- Theme Toggle -->
+                <div class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+                    <div class="toggle-knob"><i class="fas fa-moon"></i></div>
+                </div>
+
+                <!-- Notifications -->
+                <button class="icon-btn" onclick="toggleNotifications(event)">
+                    <i class="far fa-bell"></i>
+                    <span class="notification-badge"></span>
+                </button>
+
+                <!-- Notifications Panel -->
+                <div class="notifications-panel" id="notifications-panel">
+                    <div class="notify-header">
+                        <h3>Notifications</h3>
+                        <span class="mark-read">Mark all as read</span>
+                    </div>
+                    <div class="notify-list" id="notify-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- User Dropdown -->
+                <div class="user-dropdown">
+                    <button class="user-menu-btn" onclick="toggleUserMenu(event)">
+                        <div class="avatar-circle" id="header-avatar">U</div>
+                        <div class="user-greeting">
+                            <span>Hello,</span>
+                            <strong id="header-name">Loading...</strong>
                         </div>
-                        <div id="name-edit" style="display: none;">
-                            <div class="editable-field">
-                                <input type="text" id="name-input" class="name-input">
-                                <button class="save-btn" id="save-name-btn">Save</button>
-                                <button class="cancel-btn" id="cancel-name-btn">Cancel</button>
+                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: var(--text-muted)"></i>
+                    </button>
+                    
+                    <div class="dropdown-menu" id="user-menu">
+                        <a href="#" class="dropdown-item" onclick="switchTab('settings', document.querySelector('[onclick*=\'settings\']'))"><i class="fas fa-user-circle"></i> My Profile</a>
+                        <a href="../prelaunch/prelaunch.html" class="dropdown-item"><i class="fas fa-rocket"></i> Pre-Launch</a>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" onclick="logoutUser()" style="width: 100%; text-align: left;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- DYNAMIC PAGE CONTENT -->
+        <div class="page-content" id="page-content">
+            
+            <!-- ===============================================================
+                 TAB 1: DASHBOARD OVERVIEW
+                 =============================================================== -->
+            <div id="tab-dashboard" class="tab-pane active">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Dashboard</h1>
+                        <div class="page-breadcrumb">
+                            <span>Home</span> <i class="fas fa-chevron-right"></i> <span>Overview</span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="window.location.href='../product/product.html'">
+                            <i class="fas fa-plus"></i> New Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-shopping-bag"></i></div>
+                        <div class="stat-content">
+                            <h4>Total Orders</h4>
+                            <h2 id="stat-orders">--</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green"><i class="fas fa-wallet"></i></div>
+                        <div class="stat-content">
+                            <h4>Total Spent</h4>
+                            <h2 id="stat-spent">₹--</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-star"></i></div>
+                        <div class="stat-content">
+                            <h4>Loyalty Points</h4>
+                            <h2 id="stat-points">--</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple"><i class="fas fa-crown"></i></div>
+                        <div class="stat-content">
+                            <h4>Active Tier</h4>
+                            <h2 id="stat-tier">Standard</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-layout">
+                    <!-- Chart Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Purchase Activity</h3>
+                            <select style="padding: 4px 8px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-main); color: var(--text-primary)">
+                                <option>This Year</option>
+                                <option>Last Year</option>
+                            </select>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <!-- HTML5 Canvas for Chart generation via JS -->
+                                <canvas id="activityChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Section (Enhanced from Original) -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Profile Details</h3>
+                            <button class="btn btn-outline" style="padding: 4px 12px; font-size: 0.8rem;" onclick="switchTab('settings', document.querySelector('[onclick*=\'settings\']'))">Edit</button>
+                        </div>
+                        <div class="card-body profile-wrapper">
+                            <div class="profile-avatar-large" id="profile-avatar">U</div>
+                            <h3 class="profile-name" id="profile-name">Loading...</h3>
+                            <p class="profile-email" id="profile-email">loading@email.com</p>
+                            
+                            <div class="info-list">
+                                <div class="info-row">
+                                    <span class="info-label">Member Since</span>
+                                    <span class="info-value" id="profile-created">--</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Last Active</span>
+                                    <span class="info-value" id="profile-last-login">--</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Status</span>
+                                    <span class="info-value"><span class="badge badge-delivered">Verified</span></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="info-row">
-                    <span class="info-label">Email:</span>
-                    <span class="info-value" id="user-email">Loading...</span>
+            </div>
+
+            <!-- ===============================================================
+                 TAB 2: MY ORDERS
+                 =============================================================== -->
+            <div id="tab-orders" class="tab-pane">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">My Orders</h1>
+                        <div class="page-breadcrumb">
+                            <span>Home</span> <i class="fas fa-chevron-right"></i> <span>Orders</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="info-row">
-                    <span class="info-label">Account Created:</span>
-                    <span class="info-value" id="user-created">Loading...</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Last Login:</span>
-                    <span class="info-value" id="user-last-login">Loading...</span>
+
+                <div class="card">
+                    <div class="card-header" style="padding-bottom: 0; border-bottom: none;">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" onclick="filterOrders('All', this)">All Orders</button>
+                            <button class="filter-tab" onclick="filterOrders('Processing', this)">Processing</button>
+                            <button class="filter-tab" onclick="filterOrders('Shipped', this)">Shipped</button>
+                            <button class="filter-tab" onclick="filterOrders('Delivered', this)">Delivered</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            
-            <div class="action-buttons">
-                <a href="../index.html" class="action-btn primary-btn">
-                    <i class="fas fa-home"></i> Back to Home
-                </a>
+
+            <!-- ===============================================================
+                 TAB 3: SUBSCRIPTIONS
+                 =============================================================== -->
+            <div id="tab-subscriptions" class="tab-pane">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Elite Memberships</h1>
+                        <div class="page-breadcrumb">
+                            <span>Home</span> <i class="fas fa-chevron-right"></i> <span>Subscriptions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- VIP Card -->
+                    <div class="pricing-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6941/6941697.png" alt="VIP" class="tier-icon" style="filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1))">
+                        <h3>VIP Card</h3>
+                        <div class="price">₹1,999 <span>/ 5 yrs</span></div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 24-hour early access</li>
+                            <li><i class="fas fa-check"></i> 20% flat discount</li>
+                            <li><i class="fas fa-check"></i> Annual gift hamper</li>
+                            <li><i class="fas fa-check"></i> Free shipping above ₹1,499</li>
+                        </ul>
+                        <button class="btn btn-outline" style="width: 100%;">Upgrade to VIP</button>
+                    </div>
+
+                    <!-- Queen Card -->
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <img src="https://cdn-icons-png.flaticon.com/512/2829/2829069.png" alt="Queen" class="tier-icon" style="filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1))">
+                        <h3>Queen Card</h3>
+                        <div class="price">₹4,999 <span>/ 5 yrs</span></div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 3-day early access</li>
+                            <li><i class="fas fa-check"></i> 30% flat discount</li>
+                            <li><i class="fas fa-check"></i> Bi-annual gift hamper</li>
+                            <li><i class="fas fa-check"></i> Personal beauty consultation</li>
+                        </ul>
+                        <button class="btn btn-primary" style="width: 100%;">Upgrade to Queen</button>
+                    </div>
+
+                    <!-- King Card -->
+                    <div class="pricing-card">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1045/1045152.png" alt="King" class="tier-icon" style="filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1))">
+                        <h3>King Card</h3>
+                        <div class="price">₹9,999 <span>/ 5 yrs</span></div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 1-week early access</li>
+                            <li><i class="fas fa-check"></i> 40% flat discount</li>
+                            <li><i class="fas fa-check"></i> Quarterly luxury hamper</li>
+                            <li><i class="fas fa-check"></i> 24/7 Priority line</li>
+                        </ul>
+                        <button class="btn btn-outline" style="width: 100%; border-color: var(--royal-blue); color: var(--royal-blue);">Explore King Tier</button>
+                    </div>
+                </div>
             </div>
+
+            <!-- ===============================================================
+                 TAB 4: SETTINGS
+                 =============================================================== -->
+            <div id="tab-settings" class="tab-pane">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Account Settings</h1>
+                        <div class="page-breadcrumb">
+                            <span>Home</span> <i class="fas fa-chevron-right"></i> <span>Settings</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-nav">
+                        <button class="settings-tab active" onclick="switchSettingsSection('personal', this)">Personal Info</button>
+                        <button class="settings-tab" onclick="switchSettingsSection('security', this)">Security</button>
+                        <button class="settings-tab" onclick="switchSettingsSection('notifications', this)">Notifications</button>
+                    </div>
+
+                    <div class="settings-content">
+                        <!-- Personal Info -->
+                        <div id="setting-personal" class="form-section">
+                            <h3>Personal Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" id="setting-name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" id="setting-email" class="form-control" disabled style="background: rgba(145, 158, 171, 0.1);">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" placeholder="+91 xxxxx xxxxx">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Shipping Address</label>
+                                <textarea class="form-control" rows="3" placeholder="Enter your full address..."></textarea>
+                            </div>
+                            <button class="btn btn-primary" onclick="savePersonalInfo()">Save Changes</button>
+                        </div>
+
+                        <!-- Security -->
+                        <div id="setting-security" class="form-section" style="display: none;">
+                            <h3>Security Settings</h3>
+                            <div class="form-group">
+                                <label class="form-label">Current Password</label>
+                                <input type="password" class="form-control" placeholder="••••••••">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">New Password</label>
+                                    <input type="password" class="form-control" placeholder="••••••••">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-control" placeholder="••••••••">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">Update Password</button>
+                            
+                            <h3 style="margin-top: 40px;">Two-Factor Authentication</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 16px;">Add an extra layer of security to your account.</p>
+                            <button class="btn btn-outline">Enable 2FA</button>
+                        </div>
+
+                        <!-- Notifications -->
+                        <div id="setting-notifications" class="form-section" style="display: none;">
+                            <h3>Notification Preferences</h3>
+                            
+                            <div class="toggle-switch">
+                                <div class="toggle-label-text">
+                                    <h4>Order Updates</h4>
+                                    <p>Receive emails about your order status.</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="toggle-switch">
+                                <div class="toggle-label-text">
+                                    <h4>Promotions & Offers</h4>
+                                    <p>Get notified about sales and new product launches.</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="toggle-switch" style="border-bottom: none;">
+                                <div class="toggle-label-text">
+                                    <h4>Membership Alerts</h4>
+                                    <p>Updates regarding your subscription tier benefits.</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </main>
+</div>
 
-    <!-- Firebase and App Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
-    <script>
-        // Firebase configuration (same as login)
-     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDCwQHJfzyW0kzw6W1iUDQan_vDL-BtBIg",
-  authDomain: "medmakedatabase.firebaseapp.com",
-  databaseURL: "https://medmakedatabase-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "medmakedatabase",
-  storageBucket: "medmakedatabase.firebasestorage.app",
-  messagingSenderId: "868380366943",
-  appId: "1:868380366943:web:b82dbe4225f6aafd0423ea",
-  measurementId: "G-J6X58E0K90"
-};
+<!-- ==========================================================================
+     FIREBASE & LOGIC SCRIPTS
+     ========================================================================== -->
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+<script>
+    /* --------------------------------------------------------------------------
+       1. FIREBASE INITIALIZATION
+       -------------------------------------------------------------------------- */
+    const firebaseConfig = {
+        apiKey: "AIzaSyDCwQHJfzyW0kzw6W1iUDQan_vDL-BtBIg",
+        authDomain: "medmakedatabase.firebaseapp.com",
+        databaseURL: "https://medmakedatabase-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "medmakedatabase",
+        storageBucket: "medmakedatabase.firebasestorage.app",
+        messagingSenderId: "868380366943",
+        appId: "1:868380366943:web:b82dbe4225f6aafd0423ea",
+        measurementId: "G-J6X58E0K90"
+    };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    let currentUser = null;
 
-        // Theme Toggle (same as login)
-        const themeToggle = document.getElementById('theme-toggle');
+    /* --------------------------------------------------------------------------
+       2. UI TOGGLES & THEME
+       -------------------------------------------------------------------------- */
+    // Theme logic
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
         
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
+        // Change toggle icon
+        const knob = document.querySelector('.toggle-knob i');
+        if(isDarkMode) {
+            knob.classList.remove('fa-moon');
+            knob.classList.add('fa-sun');
+        } else {
+            knob.classList.remove('fa-sun');
+            knob.classList.add('fa-moon');
         }
         
-        // Initialize theme from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
+        // Re-render chart to match theme colors
+        drawChart();
+    }
+
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.toggle-knob i').classList.replace('fa-moon', 'fa-sun');
+    }
+
+    // Sidebar logic (Mobile)
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('show');
+    }
+
+    // Dropdowns
+    function toggleUserMenu(e) {
+        e.stopPropagation();
+        document.getElementById('user-menu').classList.toggle('show');
+        document.getElementById('notifications-panel').classList.remove('active');
+        
+        // Simple inline style toggle since we didn't add a specific class for opacity
+        const menu = document.getElementById('user-menu');
+        if(menu.style.opacity === '1') {
+            menu.style.opacity = '0';
+            menu.style.visibility = 'hidden';
+            menu.style.transform = 'translateY(-10px)';
+        } else {
+            menu.style.opacity = '1';
+            menu.style.visibility = 'visible';
+            menu.style.transform = 'translateY(0)';
+        }
+    }
+
+    function toggleNotifications(e) {
+        e.stopPropagation();
+        document.getElementById('notifications-panel').classList.toggle('active');
+        // Hide user menu
+        const menu = document.getElementById('user-menu');
+        menu.style.opacity = '0';
+        menu.style.visibility = 'hidden';
+    }
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', (e) => {
+        const userMenu = document.getElementById('user-menu');
+        const notifPanel = document.getElementById('notifications-panel');
+        
+        if (!e.target.closest('.user-dropdown')) {
+            userMenu.style.opacity = '0';
+            userMenu.style.visibility = 'hidden';
+        }
+        if (!e.target.closest('.header-right')) {
+            notifPanel.classList.remove('active');
         }
         
-        // Add event listener to toggle
-        if (themeToggle) {
-            themeToggle.addEventListener('click', toggleDarkMode);
+        // Auto close sidebar on mobile if clicking outside
+        if (window.innerWidth <= 768 && !e.target.closest('.sidebar') && !e.target.closest('.mobile-toggle')) {
+            document.getElementById('sidebar').classList.remove('show');
+        }
+    });
+
+    /* --------------------------------------------------------------------------
+       3. TAB NAVIGATION
+       -------------------------------------------------------------------------- */
+    function switchTab(tabId, element) {
+        // Update nav links
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        if(element) element.classList.add('active');
+
+        // Hide all panes
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+        
+        // Show selected pane
+        document.getElementById('tab-' + tabId).classList.add('active');
+        
+        // Close sidebar on mobile
+        if(window.innerWidth <= 768) {
+            document.getElementById('sidebar').classList.remove('show');
         }
 
-        // Display User Info
-        let currentUser = null;
+        // Trigger specific logic based on tab
+        if(tabId === 'dashboard') drawChart();
+        if(tabId === 'orders' && !ordersRendered) renderOrdersTable();
+    }
+
+    function switchSettingsSection(sectionId, element) {
+        document.querySelectorAll('.settings-tab').forEach(tab => tab.classList.remove('active'));
+        element.classList.add('active');
         
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                currentUser = user;
-                
-                // Update avatar with initials
-                const name = user.displayName || 'User';
-                const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
-                document.getElementById('user-avatar').textContent = initials;
-                
-                // Display user info
-                document.getElementById('user-name').textContent = name;
-                document.getElementById('user-email').textContent = user.email;
-                
-                // Format creation date
-                if (user.metadata.creationTime) {
-                    const creationDate = new Date(user.metadata.creationTime);
-                    document.getElementById('user-created').textContent = creationDate.toLocaleDateString() + ' at ' + creationDate.toLocaleTimeString();
+        document.querySelectorAll('.form-section').forEach(sec => sec.style.display = 'none');
+        document.getElementById('setting-' + sectionId).style.display = 'block';
+    }
+
+    /* --------------------------------------------------------------------------
+       4. AUTHENTICATION & DATA POPULATION
+       -------------------------------------------------------------------------- */
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            currentUser = user;
+            populateUserData(user);
+            generateMockData();
+        } else {
+            // Uncomment in production:
+            // window.location.href = 'index.html';
+            
+            // For demo purposes if run without active session, populate with dummy data
+            populateUserData({
+                displayName: "Guest User",
+                email: "guest@heysharlo.com",
+                metadata: {
+                    creationTime: new Date().toISOString(),
+                    lastSignInTime: new Date().toISOString()
                 }
-                
-                // Format last login date
-                if (user.metadata.lastSignInTime) {
-                    const lastLoginDate = new Date(user.metadata.lastSignInTime);
-                    document.getElementById('user-last-login').textContent = lastLoginDate.toLocaleDateString() + ' at ' + lastLoginDate.toLocaleTimeString();
-                }
-            } else {
-                // No user is signed in, redirect to login
-                window.location.href = 'index.html';
-            }
-        });
-
-        // Name Edit Functionality
-        document.getElementById('edit-name-btn').addEventListener('click', function() {
-            document.getElementById('name-display').style.display = 'none';
-            document.getElementById('name-edit').style.display = 'block';
-            document.getElementById('name-input').value = currentUser.displayName || '';
-        });
-
-        document.getElementById('cancel-name-btn').addEventListener('click', function() {
-            document.getElementById('name-display').style.display = 'block';
-            document.getElementById('name-edit').style.display = 'none';
-        });
-
-        document.getElementById('save-name-btn').addEventListener('click', function() {
-            const newName = document.getElementById('name-input').value.trim();
-            if (newName && currentUser) {
-                currentUser.updateProfile({
-                    displayName: newName
-                }).then(() => {
-                    document.getElementById('user-name').textContent = newName;
-                    document.getElementById('user-avatar').textContent = newName.split(' ').map(n => n[0]).join('').toUpperCase();
-                    document.getElementById('name-display').style.display = 'block';
-                    document.getElementById('name-edit').style.display = 'none';
-                }).catch((error) => {
-                    console.error('Error updating name:', error);
-                    alert('Failed to update name. Please try again.');
-                });
-            }
-        });
-
-        // Logout Function
-        function logout() {
-            auth.signOut().then(() => {
-                window.location.href = 'index.html';
-            }).catch((error) => {
-                console.error('Logout error:', error);
             });
+            generateMockData();
         }
+    });
 
-        document.getElementById('logout-btn').addEventListener('click', logout);
-        document.getElementById('nav-logout').addEventListener('click', function(e) {
-            e.preventDefault();
-            logout();
+    function populateUserData(user) {
+        const name = user.displayName || 'Guest User';
+        const initials = name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+        
+        // Header
+        document.getElementById('header-name').textContent = name.split(' ')[0];
+        document.getElementById('header-avatar').textContent = initials;
+        
+        // Profile Card
+        document.getElementById('profile-name').textContent = name;
+        document.getElementById('profile-email').textContent = user.email;
+        document.getElementById('profile-avatar').textContent = initials;
+        
+        // Settings Form
+        document.getElementById('setting-name').value = name;
+        document.getElementById('setting-email').value = user.email;
+
+        // Dates
+        if (user.metadata && user.metadata.creationTime) {
+            const date = new Date(user.metadata.creationTime);
+            document.getElementById('profile-created').textContent = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        if (user.metadata && user.metadata.lastSignInTime) {
+            const login = new Date(user.metadata.lastSignInTime);
+            document.getElementById('profile-last-login').textContent = "Today at " + login.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+    }
+
+    function savePersonalInfo() {
+        const newName = document.getElementById('setting-name').value.trim();
+        const btn = document.querySelector('#setting-personal .btn-primary');
+        const origText = btn.textContent;
+        
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        
+        if (newName && currentUser) {
+            currentUser.updateProfile({ displayName: newName }).then(() => {
+                populateUserData({...currentUser, displayName: newName});
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Saved';
+                    setTimeout(() => btn.textContent = origText, 2000);
+                }, 800);
+            }).catch((error) => {
+                console.error(error);
+                btn.textContent = 'Error';
+                setTimeout(() => btn.textContent = origText, 2000);
+            });
+        } else {
+            // Mock simulation for guest
+            setTimeout(() => {
+                document.getElementById('header-name').textContent = newName.split(' ')[0];
+                document.getElementById('profile-name').textContent = newName;
+                document.getElementById('profile-avatar').textContent = newName[0].toUpperCase();
+                document.getElementById('header-avatar').textContent = newName[0].toUpperCase();
+                btn.innerHTML = '<i class="fas fa-check"></i> Saved';
+                setTimeout(() => btn.textContent = origText, 2000);
+            }, 800);
+        }
+    }
+
+    function logoutUser() {
+        auth.signOut().then(() => {
+            window.location.href = 'index.html';
         });
-    </script>
+    }
+
+    /* --------------------------------------------------------------------------
+       5. MOCK DATA GENERATION (Notifications, Stats, Orders)
+       -------------------------------------------------------------------------- */
+    const mockOrders = [
+        { id: "#ORD-9021", date: "Oct 12, 2026", items: 3, total: "₹4,250", status: "Processing" },
+        { id: "#ORD-8943", date: "Oct 05, 2026", items: 1, total: "₹1,200", status: "Shipped" },
+        { id: "#ORD-8812", date: "Sep 28, 2026", items: 5, total: "₹8,900", status: "Delivered" },
+        { id: "#ORD-8750", date: "Sep 15, 2026", items: 2, total: "₹3,400", status: "Delivered" },
+        { id: "#ORD-8622", date: "Aug 30, 2026", items: 1, total: "₹950", status: "Cancelled" },
+        { id: "#ORD-8510", date: "Aug 12, 2026", items: 4, total: "₹5,600", status: "Delivered" },
+    ];
+
+    const mockNotifications = [
+        { type: "order", title: "Order Shipped", desc: "Your order #ORD-8943 is on the way.", time: "2 hours ago", unread: true },
+        { type: "promo", title: "Flash Sale Alert", desc: "Get 20% off all lipsticks today only!", time: "5 hours ago", unread: true },
+        { type: "system", title: "Security Update", desc: "New login detected from Ludhiana, PB.", time: "1 day ago", unread: false },
+        { type: "order", title: "Order Delivered", desc: "Your order #ORD-8812 has been delivered.", time: "2 weeks ago", unread: false }
+    ];
+
+    let ordersRendered = false;
+
+    function generateMockData() {
+        // Animate stats
+        animateValue("stat-orders", 0, 42, 1000);
+        animateValue("stat-spent", 0, 24300, 1500, "₹");
+        animateValue("stat-points", 0, 1250, 1200);
+        
+        // Render Notifications
+        renderNotifications();
+        
+        // Initial chart draw
+        setTimeout(drawChart, 500);
+    }
+
+    function animateValue(id, start, end, duration, prefix = "") {
+        const obj = document.getElementById(id);
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            // Ease out cubic
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(easeOut * (end - start) + start);
+            obj.innerHTML = prefix + current.toLocaleString();
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    function renderNotifications() {
+        const list = document.getElementById('notify-list');
+        list.innerHTML = '';
+        let unreadCount = 0;
+
+        mockNotifications.forEach(n => {
+            if(n.unread) unreadCount++;
+            
+            let iconClass = "fa-bell";
+            if(n.type === 'order') iconClass = "fa-box";
+            if(n.type === 'promo') iconClass = "fa-tag";
+            if(n.type === 'system') iconClass = "fa-shield-alt";
+
+            const html = `
+                <div class="notify-item ${n.unread ? 'unread' : ''}">
+                    <div class="notify-icon ${n.type}">
+                        <i class="fas ${iconClass}"></i>
+                    </div>
+                    <div class="notify-content">
+                        <h4>${n.title}</h4>
+                        <p>${n.desc}</p>
+                        <span>${n.time}</span>
+                    </div>
+                </div>
+            `;
+            list.insertAdjacentHTML('beforeend', html);
+        });
+
+        // Update badge
+        const badge = document.querySelector('.notification-badge');
+        if(unreadCount > 0) {
+            badge.style.display = 'block';
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+
+    function renderOrdersTable(filter = 'All') {
+        const tbody = document.getElementById('orders-table-body');
+        
+        // Show Skeletons first to look professional
+        tbody.innerHTML = Array(5).fill(`
+            <tr>
+                <td><div class="skeleton skeleton-text"></div></td>
+                <td><div class="skeleton skeleton-text"></div></td>
+                <td><div class="skeleton skeleton-text"></div></td>
+                <td><div class="skeleton skeleton-text"></div></td>
+                <td><div class="skeleton skeleton-text" style="width: 60px;"></div></td>
+                <td><div class="skeleton skeleton-avatar" style="width: 30px; height: 30px;"></div></td>
+            </tr>
+        `).join('');
+
+        setTimeout(() => {
+            tbody.innerHTML = '';
+            const filtered = filter === 'All' ? mockOrders : mockOrders.filter(o => o.status === filter);
+            
+            if(filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 40px; color: var(--text-muted)">No orders found for this filter.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(order => {
+                let badgeClass = '';
+                switch(order.status) {
+                    case 'Processing': badgeClass = 'badge-processing'; break;
+                    case 'Shipped': badgeClass = 'badge-shipped'; break;
+                    case 'Delivered': badgeClass = 'badge-delivered'; break;
+                    case 'Cancelled': badgeClass = 'badge-cancelled'; break;
+                }
+
+                const html = `
+                    <tr>
+                        <td style="font-weight: 600; color: var(--royal-blue);">${order.id}</td>
+                        <td>${order.date}</td>
+                        <td>${order.items} Items</td>
+                        <td style="font-weight: 600;">${order.total}</td>
+                        <td><span class="badge ${badgeClass}">${order.status}</span></td>
+                        <td>
+                            <button class="table-action-btn" title="View Details"><i class="fas fa-eye"></i></button>
+                            <button class="table-action-btn" title="Download Invoice"><i class="fas fa-download"></i></button>
+                        </td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML('beforeend', html);
+            });
+            ordersRendered = true;
+        }, 600); // 600ms fake loading
+    }
+
+    function filterOrders(status, btn) {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        renderOrdersTable(status);
+    }
+
+    /* --------------------------------------------------------------------------
+       6. CUSTOM CANVAS CHART RENDERING 
+       (Written purely in JS to avoid external heavy libraries & add technical depth)
+       -------------------------------------------------------------------------- */
+    function drawChart() {
+        const canvas = document.getElementById('activityChart');
+        if(!canvas) return;
+        
+        const ctx = canvas.getContext('2d');
+        
+        // Handle responsive canvas scaling
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        
+        const width = canvas.width;
+        const height = canvas.height;
+        
+        // Theme variables for chart
+        const isDark = document.body.classList.contains('dark-mode');
+        const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+        const textColor = isDark ? '#919eab' : '#637381';
+        const lineColor = '#4876cf';
+        const gradientColorTop = isDark ? 'rgba(72, 118, 207, 0.4)' : 'rgba(72, 118, 207, 0.2)';
+        
+        // Mock Data: Jan to Dec purchases
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const data = [1200, 1900, 1500, 2200, 1800, 3100, 2800, 3500, 2900, 4200, 3800, 5000];
+        
+        const padding = { top: 20, right: 20, bottom: 30, left: 50 };
+        const chartWidth = width - padding.left - padding.right;
+        const chartHeight = height - padding.top - padding.bottom;
+        
+        const maxData = Math.max(...data) * 1.1; // Add 10% headroom
+        
+        ctx.clearRect(0, 0, width, height);
+        
+        // 1. Draw Grid & Y-Axis Labels
+        ctx.font = '12px Sora, sans-serif';
+        ctx.fillStyle = textColor;
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        
+        const yLines = 5;
+        for(let i=0; i<=yLines; i++) {
+            const yValue = maxData - (maxData / yLines) * i;
+            const yPos = padding.top + (chartHeight / yLines) * i;
+            
+            // Grid line
+            ctx.beginPath();
+            ctx.moveTo(padding.left, yPos);
+            ctx.lineTo(width - padding.right, yPos);
+            ctx.strokeStyle = gridColor;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            // Label
+            ctx.fillText('₹' + Math.floor(yValue/1000) + 'k', padding.left - 10, yPos);
+        }
+        
+        // 2. X-Axis Labels
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        for(let i=0; i<months.length; i++) {
+            const xPos = padding.left + (chartWidth / (months.length - 1)) * i;
+            ctx.fillText(months[i], xPos, height - padding.bottom + 10);
+        }
+        
+        // 3. Draw Data Line & Fill Gradient
+        const points = data.map((val, i) => {
+            return {
+                x: padding.left + (chartWidth / (months.length - 1)) * i,
+                y: padding.top + chartHeight - (val / maxData) * chartHeight
+            };
+        });
+        
+        // Gradient Fill
+        const gradient = ctx.createLinearGradient(0, padding.top, 0, height - padding.bottom);
+        gradient.addColorStop(0, gradientColorTop);
+        gradient.addColorStop(1, 'rgba(72, 118, 207, 0)');
+        
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, height - padding.bottom);
+        ctx.lineTo(points[0].x, points[0].y);
+        
+        // Bezier curves for smooth line
+        for(let i=0; i<points.length-1; i++) {
+            const xc = (points[i].x + points[i+1].x) / 2;
+            const yc = (points[i].y + points[i+1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        ctx.lineTo(points[points.length-1].x, points[points.length-1].y);
+        ctx.lineTo(points[points.length-1].x, height - padding.bottom);
+        ctx.closePath();
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        
+        // Stroke Line
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for(let i=0; i<points.length-1; i++) {
+            const xc = (points[i].x + points[i+1].x) / 2;
+            const yc = (points[i].y + points[i+1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        ctx.lineTo(points[points.length-1].x, points[points.length-1].y);
+        
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+        
+        // Data Points (Dots)
+        points.forEach((p, i) => {
+            // Shadow
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(72, 118, 207, 0.3)';
+            ctx.fill();
+            
+            // Core
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+            ctx.fillStyle = isDark ? '#1e1e1e' : '#ffffff';
+            ctx.fill();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = lineColor;
+            ctx.stroke();
+        });
+    }
+
+    // Redraw chart on window resize
+    window.addEventListener('resize', () => {
+        if(document.getElementById('tab-dashboard').classList.contains('active')) {
+            drawChart();
+        }
+    });
+
+</script>
 </body>
 </html>
