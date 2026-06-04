@@ -6,18 +6,49 @@
     <title>Heysharlo | Terms and Conditions</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
+    <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
     <style>
+        /* ==========================================================================
+           CSS VARIABLES & RESET
+           ========================================================================== */
         :root {
             --royal-blue: #4876cf;
+            --royal-blue-hover: #3a60a8;
             --emerald-aqua: #00c08b;
+            --emerald-aqua-hover: #00996f;
             --sand-beige: #f0e5cf;
+            --sand-beige-darker: #e3d5b8;
             --charcoal-black: #1e1e1e;
+            --charcoal-light: #2c2c2c;
             --clean-white: #ffffff;
             --deep-onyx: #111111;
             --soft-teal: #a9f1df;
-            --glass-blur: blur(12px);
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-blur: blur(16px);
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --transition-fast: all 0.2s ease;
             --transition-all: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --radius-md: 12px;
+            --radius-lg: 20px;
+        }
+
+        body.dark-mode {
+            --sand-beige: #121212;
+            --sand-beige-darker: #1a1a1a;
+            --deep-onyx: #f5f5f5;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(30, 30, 30, 0.85);
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+            background-color: var(--charcoal-black);
         }
 
         * {
@@ -26,18 +57,57 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
         body {
             font-family: 'Sora', sans-serif;
             background-color: var(--sand-beige);
-            color: var(--deep-onyx);
+            color: var(--text-main);
             overflow-x: hidden;
-            transition: var(--transition-all);
-            line-height: 1.6;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        body.dark-mode {
-            background-color: var(--charcoal-black);
-            color: var(--clean-white);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--sand-beige);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--royal-blue);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--emerald-aqua);
+        }
+
+        /* ==========================================================================
+           COMPONENTS
+           ========================================================================== */
+        
+        /* Reading Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
+            width: 0%;
+            transition: width 0.1s ease;
         }
 
         /* Navbar */
@@ -48,16 +118,11 @@
             width: 100%;
             z-index: 1000;
             transition: var(--transition-all);
-            padding: 20px 0;
-            background: rgba(240, 229, 207, 0.8);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .dark-mode .navbar {
-            background: rgba(30, 30, 30, 0.8);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 15px 0;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .nav-container {
@@ -70,353 +135,801 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
         .logo-text {
-            background: linear-gradient(to right, #4876cf, #00c08b);
+            background: linear-gradient(to right, var(--royal-blue), var(--emerald-aqua));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            text-decoration: none;
             padding: 5px 0;
+            transition: var(--transition-fast);
+        }
+
+        .logo-text:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--emerald-aqua);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-icon {
+            color: var(--text-muted);
+            font-size: 1.2rem;
         }
 
         .theme-toggle {
-            width: 50px;
-            height: 24px;
-            border-radius: 12px;
-            background: var(--deep-onyx);
+            width: 56px;
+            height: 28px;
+            border-radius: 14px;
+            background: var(--charcoal-black);
             cursor: pointer;
             display: flex;
             align-items: center;
-            padding: 0 3px;
+            padding: 0 4px;
             transition: var(--transition-all);
             border: 1px solid rgba(72, 118, 207, 0.3);
+            position: relative;
         }
 
         .dark-mode .theme-toggle {
-            background: var(--sand-beige);
+            background: var(--sand-beige-darker);
             border: 1px solid rgba(0, 192, 139, 0.3);
         }
 
         .toggle-ball {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background: var(--sand-beige);
-            transition: transform 0.3s ease;
+            background: var(--clean-white);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .dark-mode .toggle-ball {
             background: var(--charcoal-black);
-            transform: translateX(26px);
+            transform: translateX(28px);
+        }
+
+        /* ==========================================================================
+           MAIN LAYOUT (Sidebar + Content)
+           ========================================================================== */
+        .page-wrapper {
+            max-width: 1400px;
+            margin: 120px auto 60px;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            flex-grow: 1;
+        }
+
+        /* Sidebar / Table of Contents */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: calc(100vh - 160px);
+            overflow-y: auto;
+            padding-right: 20px;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .toc-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-item {
+            margin-bottom: 12px;
+        }
+
+        .toc-link {
+            display: block;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: var(--transition-fast);
+            border-left: 3px solid transparent;
+        }
+
+        .toc-link:hover {
+            background: rgba(72, 118, 207, 0.1);
+            color: var(--royal-blue);
+        }
+
+        .toc-link.active {
+            background: rgba(0, 192, 139, 0.1);
+            color: var(--emerald-aqua);
+            border-left-color: var(--emerald-aqua);
+            font-weight: 600;
         }
 
         /* Terms Container */
         .terms-container {
-            max-width: 1000px;
-            margin: 100px auto;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            background: var(--glass-bg);
+            padding: 60px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
             backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border-color);
             transition: var(--transition-all);
         }
 
-        .dark-mode .terms-container {
-            background: rgba(30, 30, 30, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        /* Header Area inside Terms */
+        .terms-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .terms-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             background: linear-gradient(90deg, var(--royal-blue), var(--emerald-aqua));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-align: center;
+            line-height: 1.2;
         }
 
         .last-updated {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--deep-onyx);
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 20px;
         }
 
         .dark-mode .last-updated {
-            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Typography inside Terms */
+        .terms-section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .terms-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h2 {
             font-size: 1.8rem;
-            margin: 30px 0 15px;
+            margin: 0 0 20px 0;
             color: var(--royal-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .dark-mode h2 {
             color: var(--emerald-aqua);
         }
 
+        h2::before {
+            content: '#';
+            color: var(--border-color);
+            font-size: 1.4rem;
+        }
+
         h3 {
             font-size: 1.4rem;
-            margin: 25px 0 10px;
-            color: var(--royal-blue);
-        }
-
-        .dark-mode h3 {
-            color: var(--emerald-aqua);
-        }
-
-        h4 {
-            font-size: 1.2rem;
-            margin: 20px 0 10px;
+            margin: 25px 0 15px;
+            color: var(--text-main);
         }
 
         p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-size: 1.05rem;
         }
 
         ul, ol {
-            margin-bottom: 20px;
-            padding-left: 20px;
+            margin-bottom: 25px;
+            padding-left: 25px;
+            color: var(--text-main);
         }
 
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            padding-left: 5px;
         }
 
-        strong {
+        li::marker {
             color: var(--royal-blue);
         }
 
-        .dark-mode strong {
-            color: var(--emerald-aqua);
+        strong {
+            color: var(--deep-onyx);
+            font-weight: 600;
         }
 
         a {
             color: var(--royal-blue);
             text-decoration: none;
-            transition: var(--transition-all);
+            font-weight: 500;
+            transition: var(--transition-fast);
+            border-bottom: 1px dashed var(--royal-blue);
         }
 
         .dark-mode a {
             color: var(--emerald-aqua);
+            border-bottom-color: var(--emerald-aqua);
         }
 
         a:hover {
-            text-decoration: underline;
+            color: var(--royal-blue-hover);
+            border-bottom-style: solid;
         }
 
-        /* Responsive */
+        /* Callout Boxes */
+        .callout {
+            background: rgba(72, 118, 207, 0.05);
+            border-left: 4px solid var(--royal-blue);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+
+        .dark-mode .callout {
+            background: rgba(0, 192, 139, 0.05);
+            border-left-color: var(--emerald-aqua);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        .footer {
+            background: var(--charcoal-black);
+            color: var(--clean-white);
+            padding: 60px 40px 30px;
+            margin-top: auto;
+            border-top: 5px solid var(--royal-blue);
+        }
+
+        .dark-mode .footer {
+            border-top: 5px solid var(--emerald-aqua);
+            background: #0a0a0a;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--royal-blue), var(--emerald-aqua));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-brand p {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            max-width: 300px;
+            border: none;
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--clean-white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #a0a0a0;
+            border: none;
+            font-weight: 400;
+        }
+
+        .footer-links a:hover {
+            color: var(--emerald-aqua);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--royal-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--royal-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition-all);
+            z-index: 999;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #backToTop:hover {
+            background: var(--emerald-aqua);
+            transform: translateY(-5px);
+        }
+
+        /* ==========================================================================
+           RESPONSIVE DESIGN
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .page-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none; /* Hide sidebar on smaller screens */
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Can implement hamburger menu later */
+            }
             .terms-container {
-                padding: 30px;
-                margin: 100px 20px;
+                padding: 40px 30px;
             }
-            
             .terms-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
-            
-            h2 {
-                font-size: 1.6rem;
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
-            
-            h3 {
-                font-size: 1.3rem;
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
         }
 
         @media (max-width: 480px) {
-            .terms-container {
-                padding: 20px;
+            .page-wrapper {
+                padding: 0 20px;
+                margin-top: 100px;
             }
-            
+            .terms-container {
+                padding: 30px 20px;
+            }
             .terms-title {
                 font-size: 1.8rem;
             }
-            
             h2 {
-                font-size: 1.4rem;
-            }
-            
-            h3 {
-                font-size: 1.2rem;
-            }
-            
-            .nav-container {
-                padding: 0 20px;
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
                 <a href="../index.html" class="logo-text">HEYSHARLO</a>
             </div>
-            <div class="theme-toggle" id="theme-toggle">
-                <div class="toggle-ball"></div>
+            
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../services.html" class="nav-link">Services</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <div class="theme-toggle-wrapper">
+                <i class="fas fa-sun theme-icon" id="sun-icon"></i>
+                <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle Dark Mode">
+                    <div class="toggle-ball"></div>
+                </div>
+                <i class="fas fa-moon theme-icon" id="moon-icon"></i>
             </div>
         </div>
     </nav>
 
-    <!-- Terms and Conditions Content -->
-    <div class="terms-container">
-        <h1 class="terms-title">Terms and Conditions</h1>
-        <p class="last-updated">Last updated: April 25, 2025</p>
+    <div class="page-wrapper">
         
-        <h2>Welcome to heysharlo!</h2>
-        <p>These terms and conditions outline the rules and regulations for the use of heysharlo's Website, located at 
-            <a href="https://heysharloindia.netlify.app/">https://heysharloindia.netlify.app/</a>.
-        </p>
-        <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use heysharlo if you do not agree to take all of the terms and conditions stated on this page.</p>
-        
-        <h2>Interpretation</h2>
-        <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company's terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance, and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client's needs in respect of the provision of the Company's stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization, and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
-        
-        <h2>Cookies</h2>
-        <p>We employ the use of cookies. By accessing heysharlo, you agreed to use cookies in agreement with heysharlo's Privacy Policy.</p>
-        <p>Most interactive websites use <a href="https://alphametatoolz.com/cookies" target="_blank">cookies</a> to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
-        
-        <h2>License</h2>
-        <p>Unless otherwise stated, heysharlo and/or its licensors own the intellectual property rights for all material on heysharlo. All intellectual property rights are reserved. You may access this from heysharlo for your own personal use subject to restrictions set in these terms and conditions.</p>
-        <p>You must not:</p>
-        <ul>
-            <li>Republish material from heysharlo</li>
-            <li>Sell, rent or sub-license material from heysharlo</li>
-            <li>Reproduce, duplicate or copy material from heysharlo</li>
-            <li>Redistribute content from heysharlo</li>
-        </ul>
-        
-        
-        <h2>User Comments</h2>
-        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. heysharlo does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of heysharlo, its agents, and/or affiliates. Comments reflect the views and opinions of the person who posts their views and opinions. To the extent permitted by applicable laws, heysharlo shall not be liable for the Comments or for any liability, damages, or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-        <p>heysharlo reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
-        <p>You warrant and represent that:</p>
-        <ul>
-            <li>You are entitled to post the Comments on our website and have all necessary licenses and consents to do so;</li>
-            <li>The Comments do not invade any intellectual property right, including without limitation copyright, patent or trademark of any third party;</li>
-            <li>The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy;</li>
-            <li>The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.</li>
-        </ul>
-        <p>You hereby grant heysharlo a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats, or media.</p>
-        
-        <h2>Hyperlinking to our Content</h2>
-        <p>The following organizations may link to our Website without prior written approval:</p>
-        <ul>
-            <li>Government agencies;</li>
-            <li>Search engines;</li>
-            <li>News organizations;</li>
-            <li>Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and</li>
-            <li>System-wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Website.</li>
-        </ul>
-        
-        <p>These organizations may link to our home page, to publications, or to other Website information so long as the link: </p>
-        <ol>
-            <li>is not in any way deceptive;</li>
-            <li>does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and</li>
-            <li>fits within the context of the linking party's site.</li>
-        </ol>
-        
-        <p>We may consider and approve other link requests from the following types of organizations:</p>
-        <ul>
-            <li>Commonly-known consumer and/or business information sources;</li>
-            <li>Dot-com community sites;</li>
-            <li>Associations or other groups representing charities;</li>
-            <li>Online directory distributors;</li>
-            <li>Internet portals;</li>
-            <li>Accounting, law and consulting firms; and</li>
-            <li>Educational institutions and trade associations.</li>
-        </ul>
-        
-        <p>We will approve link requests from these organizations if we decide that: </p>
-        <ol>
-            <li>the link would not make us look unfavorably to ourselves or to our accredited businesses;</li>
-            <li>the organization does not have any negative records with us;</li>
-            <li>the benefit to us from the visibility of the hyperlink compensates the absence of <strong>heysharlo</strong>, and</li>
-            <li>the link is in the context of general resource information.</li>
-        </ol>
-        
-        <p>These organizations may link to our home page so long as the link: </p>
-        <ol>
-            <li>is not in any way deceptive;</li>
-            <li>does not falsely imply sponsorship, endorsement, or approval of the linking party and its products or services; and</li>
-            <li>fits within the context of the linking party's site.</li>
-        </ol>
-        
-        <p>If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you must inform us by sending an e-mail to <strong>heysharlo</strong>. Please include your name, your organization name, contact information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and a list of the URLs on our site to which you would like to link. Wait 2-3 weeks for a response.</p>
-        
-        <p> Our aim is to position our website among these types of competitive platforms.</p>
-        
-        <p>Approved organizations may hyperlink to our Website as follows:</p>
-        <ul>
-            <li>By use of our corporate name; or</li>
-            <li>By use of the uniform resource locator being linked to; or</li>
-            <li>By use of any other description of our Website being linked to that makes sense within the context and format of content on the linking party's site.</li>
-        </ul>
-        
-        <p>No use of <strong>heysharlo</strong>'s logo or other artwork will be allowed for linking absent a trademark license agreement.</p>
-        
-        <h2>iFrames</h2>
-        <p>Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.</p>
-        
-        <h2>Content Liability</h2>
-        <p>We shall not be held responsible for any content that appears on your Website. You agree to protect and defend us against all claims that are arising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene, or criminal, or which infringes, otherwise violates or advocates the infringement or other violation of, any third party rights.</p>
-        
-        <h2>Reservation of Rights</h2>
-        <p>We reserve the right to request that you remove all links or any particular link to our Website. You agree to immediately remove all links to our Website upon request. We also reserve the right to amend these terms and conditions and its linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
-        
-        <h2>Removal of Links from Our Website</h2>
-        <p>If you find any link on our Website that is offensive for any reason, you are free to contact and inform us at any moment. We will consider requests to remove links but we are not obligated to do so or to respond to you directly.</p>
-        
-        <h2>Disclaimer</h2>
-        <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
-        <ol>
-            <li>Limit or exclude our or your liability for death or personal injury;</li>
-            <li>Limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
-            <li>Limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
-            <li>Exclude any of our or your liabilities that may not be excluded under applicable law.</li>
-        </ol>
-        
-        <p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort, and for breach of statutory duty.</p>
-        <p>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p>
-        
-        <h2>Contact Us</h2>
-        <p>If you want to contact us then you can email us at heysharloindia@gmail.com.</p>
-        <p>Go to homepage --&gt; <a href="../index.html">heysharlo</a></p>
-        
-        <center><p>"Thank you for taking the time to review our Terms and Conditions."</p></center>
+        <aside class="sidebar">
+            <h4 class="toc-title">On This Page</h4>
+            <ul class="toc-list" id="tocList">
+                <li class="toc-item"><a href="#welcome" class="toc-link">Welcome</a></li>
+                <li class="toc-item"><a href="#interpretation" class="toc-link">Interpretation</a></li>
+                <li class="toc-item"><a href="#cookies" class="toc-link">Cookies</a></li>
+                <li class="toc-item"><a href="#license" class="toc-link">License</a></li>
+                <li class="toc-item"><a href="#comments" class="toc-link">User Comments</a></li>
+                <li class="toc-item"><a href="#hyperlinking" class="toc-link">Hyperlinking</a></li>
+                <li class="toc-item"><a href="#iframes" class="toc-link">iFrames</a></li>
+                <li class="toc-item"><a href="#liability" class="toc-link">Content Liability</a></li>
+                <li class="toc-item"><a href="#rights" class="toc-link">Reservation of Rights</a></li>
+                <li class="toc-item"><a href="#removal" class="toc-link">Removal of Links</a></li>
+                <li class="toc-item"><a href="#disclaimer" class="toc-link">Disclaimer</a></li>
+                <li class="toc-item"><a href="#contact" class="toc-link">Contact Us</a></li>
+            </ul>
+        </aside>
+
+        <main class="terms-container">
+            <div class="terms-header">
+                <h1 class="terms-title">Terms and Conditions</h1>
+                <div class="last-updated"><i class="far fa-calendar-alt"></i> Last updated: April 25, 2025</div>
+            </div>
+            
+            <section id="welcome" class="terms-section">
+                <h2>Welcome to heysharlo!</h2>
+                <p>These terms and conditions outline the rules and regulations for the use of heysharlo's Website, located at 
+                    <a href="https://heysharloindia.netlify.app/">https://heysharloindia.netlify.app/</a>.
+                </p>
+                <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use heysharlo if you do not agree to take all of the terms and conditions stated on this page. We reserve the right to modify these terms at any time without prior notice.</p>
+                <div class="callout">
+                    <strong>Important Note:</strong> Please read these terms carefully. They establish a legal agreement between you and heysharlo regarding your use of our platform.
+                </div>
+            </section>
+            
+            <section id="interpretation" class="terms-section">
+                <h2>Interpretation</h2>
+                <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company's terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company.</p>
+                <p>"Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance, and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client's needs in respect of the provision of the Company's stated services, in accordance with and subject to, prevailing law.</p>
+            </section>
+            
+            <section id="cookies" class="terms-section">
+                <h2>Cookies</h2>
+                <p>We employ the use of cookies. By accessing heysharlo, you agreed to use cookies in agreement with heysharlo's Privacy Policy.</p>
+                <p>Most interactive websites use <a href="https://alphametatoolz.com/cookies" target="_blank">cookies</a> to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies for tracking and analytics purposes.</p>
+            </section>
+            
+            <section id="license" class="terms-section">
+                <h2>License</h2>
+                <p>Unless otherwise stated, heysharlo and/or its licensors own the intellectual property rights for all material on heysharlo. All intellectual property rights are reserved. You may access this from heysharlo for your own personal use subject to restrictions set in these terms and conditions.</p>
+                <p>You must strictly not:</p>
+                <ul>
+                    <li>Republish material from heysharlo without prior written consent</li>
+                    <li>Sell, rent or sub-license material from heysharlo</li>
+                    <li>Reproduce, duplicate or copy material from heysharlo for commercial purposes</li>
+                    <li>Redistribute content from heysharlo (unless content is specifically made for redistribution)</li>
+                </ul>
+            </section>
+            
+            <section id="comments" class="terms-section">
+                <h2>User Comments</h2>
+                <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. heysharlo does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of heysharlo, its agents, and/or affiliates. Comments reflect the views and opinions of the person who posts their views and opinions.</p>
+                <p>To the extent permitted by applicable laws, heysharlo shall not be liable for the Comments or for any liability, damages, or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
+                <p>heysharlo reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+                <p>You warrant and represent that:</p>
+                <ul>
+                    <li>You are entitled to post the Comments on our website and have all necessary licenses and consents to do so;</li>
+                    <li>The Comments do not invade any intellectual property right, including without limitation copyright, patent or trademark of any third party;</li>
+                    <li>The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy;</li>
+                    <li>The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.</li>
+                </ul>
+                <p>You hereby grant heysharlo a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats, or media.</p>
+            </section>
+            
+            <section id="hyperlinking" class="terms-section">
+                <h2>Hyperlinking to our Content</h2>
+                <p>The following organizations may link to our Website without prior written approval:</p>
+                <ul>
+                    <li>Government agencies;</li>
+                    <li>Search engines;</li>
+                    <li>News organizations;</li>
+                    <li>Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and</li>
+                    <li>System-wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Website.</li>
+                </ul>
+                <p>These organizations may link to our home page, to publications, or to other Website information so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and (c) fits within the context of the linking party's site.</p>
+            </section>
+            
+            <section id="iframes" class="terms-section">
+                <h2>iFrames</h2>
+                <p>Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website. Any unauthorized framing may result in immediate legal action to protect our intellectual property.</p>
+            </section>
+            
+            <section id="liability" class="terms-section">
+                <h2>Content Liability</h2>
+                <p>We shall not be held responsible for any content that appears on your Website. You agree to protect and defend us against all claims that are arising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene, or criminal, or which infringes, otherwise violates or advocates the infringement or other violation of, any third party rights.</p>
+            </section>
+            
+            <section id="rights" class="terms-section">
+                <h2>Reservation of Rights</h2>
+                <p>We reserve the right to request that you remove all links or any particular link to our Website. You agree to immediately remove all links to our Website upon request. We also reserve the right to amend these terms and conditions and its linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
+            </section>
+            
+            <section id="removal" class="terms-section">
+                <h2>Removal of Links from Our Website</h2>
+                <p>If you find any link on our Website that is offensive for any reason, you are free to contact and inform us at any moment. We will consider requests to remove links but we are not obligated to do so or to respond to you directly. We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available.</p>
+            </section>
+            
+            <section id="disclaimer" class="terms-section">
+                <h2>Disclaimer</h2>
+                <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
+                <ol>
+                    <li>Limit or exclude our or your liability for death or personal injury;</li>
+                    <li>Limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
+                    <li>Limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
+                    <li>Exclude any of our or your liabilities that may not be excluded under applicable law.</li>
+                </ol>
+                <p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort, and for breach of statutory duty.</p>
+                <div class="callout">
+                    As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.
+                </div>
+            </section>
+            
+            <section id="contact" class="terms-section">
+                <h2>Contact Us</h2>
+                <p>If you have any questions regarding our Terms and Conditions, please contact us:</p>
+                <ul>
+                    <li>By email: <a href="mailto:heysharloindia@gmail.com">heysharloindia@gmail.com</a></li>
+                    <li>By visiting our homepage: <a href="../index.html">heysharlo Official Site</a></li>
+                </ul>
+                <br>
+                <center><p style="font-style: italic; color: var(--text-muted);">"Thank you for taking the time to review our Terms and Conditions. We value your presence in our community."</p></center>
+            </section>
+        </main>
     </div>
 
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>HEYSHARLO</h3>
+                <p>Empowering digital experiences across India and beyond. Providing top-tier solutions with unparalleled dedication.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="cookies.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Heysharlo. All Rights Reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: #ff4757;"></i> in India</p>
+        </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-        }
-        
-        // Initialize theme from localStorage
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-        }
-        
-        // Add event listener to toggle
-        if (themeToggle) {
-            themeToggle.addEventListener('click', toggleDarkMode);
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Theme Toggle Logic
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // Check for saved theme or system preference
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                body.classList.add('dark-mode');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const isDark = body.classList.contains('dark-mode');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+
+            // 2. Reading Progress Bar
+            const progressBar = document.getElementById('progressBar');
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.width = scrolled + '%';
+            });
+
+            // 3. Scroll Animations using Intersection Observer
+            const sections = document.querySelectorAll('.terms-section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optional: stop observing once visible
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            // 4. Sidebar Table of Contents ScrollSpy
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // 5. Back to Top Button
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // 6. Smooth scrolling for TOC links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
     </script>
 </body>
 </html>
