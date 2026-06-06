@@ -4,30 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About HeySharlo | Luxury Skincare & Cosmetics</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="img/heysharlologo.png" type="image/x-icon">
     <style>
         :root {
             /* Core Brand Colors */
             --royal-blue: #4876cf;
             --emerald-aqua: #00c08b;
-            --sand-beige: #f9f6f0;
-            --charcoal-black: #1a1a1a;
+            --sand-beige: #fdfbf7;
+            --charcoal-black: #111111;
             --clean-white: #ffffff;
-            --deep-onyx: #0a0a0a;
-            --soft-teal: #a9f1df;
+            --deep-onyx: #050505;
+            --text-muted-light: #555555;
+            --text-muted-dark: #aaaaaa;
             
             /* UI Elements */
-            --glass-bg-light: rgba(255, 255, 255, 0.85);
-            --glass-bg-dark: rgba(26, 26, 26, 0.85);
-            --glass-border-light: rgba(255, 255, 255, 0.4);
-            --glass-border-dark: rgba(255, 255, 255, 0.05);
-            --glass-blur: blur(16px);
-            --transition-all: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --glass-bg-light: rgba(255, 255, 255, 0.7);
+            --glass-bg-dark: rgba(20, 20, 20, 0.7);
+            --glass-border-light: rgba(255, 255, 255, 0.5);
+            --glass-border-dark: rgba(255, 255, 255, 0.08);
+            --glass-blur: blur(20px);
+            --transition-all: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             
             /* Gradients */
             --brand-gradient: linear-gradient(135deg, var(--royal-blue), var(--emerald-aqua));
+            --text-gradient: linear-gradient(to right, var(--charcoal-black), #444);
+        }
+
+        .dark-mode {
+            --text-gradient: linear-gradient(to right, #fff, #aaa);
         }
 
         * {
@@ -36,13 +41,17 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Sora', sans-serif;
             background-color: var(--sand-beige);
             color: var(--charcoal-black);
             overflow-x: hidden;
-            transition: var(--transition-all);
-            line-height: 1.7;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            line-height: 1.8;
             min-height: 100vh;
         }
 
@@ -51,25 +60,24 @@
             color: var(--clean-white);
         }
 
-        /* --- Ambient Background Glow --- */
+        /* --- Advanced Ambient Background Glow --- */
         .ambient-glow {
             position: fixed;
-            top: -20%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 192, 139, 0.05) 0%, transparent 70%);
+            filter: blur(80px);
             z-index: -1;
             pointer-events: none;
+            opacity: 0.6;
+            animation: float 20s infinite alternate ease-in-out;
         }
         
-        .ambient-glow.two {
-            top: auto;
-            bottom: -20%;
-            left: auto;
-            right: -10%;
-            background: radial-gradient(circle, rgba(72, 118, 207, 0.05) 0%, transparent 70%);
+        .glow-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(0, 192, 139, 0.08) 0%, transparent 70%); }
+        .glow-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(72, 118, 207, 0.08) 0%, transparent 70%); animation-delay: -5s; }
+        .glow-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(169, 241, 223, 0.05) 0%, transparent 70%); animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5%, 5%) scale(1.1); }
         }
 
         /* --- Navbar --- */
@@ -93,7 +101,7 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
             display: flex;
@@ -102,9 +110,9 @@
         }
 
         .logo-text {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
             background: var(--brand-gradient);
             -webkit-background-clip: text;
             background-clip: text;
@@ -113,8 +121,8 @@
         }
 
         .theme-toggle {
-            width: 56px;
-            height: 28px;
+            width: 64px;
+            height: 32px;
             border-radius: 30px;
             background: var(--charcoal-black);
             cursor: pointer;
@@ -122,44 +130,92 @@
             align-items: center;
             padding: 0 4px;
             transition: var(--transition-all);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .dark-mode .theme-toggle {
             background: var(--clean-white);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .toggle-ball {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background: var(--clean-white);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .dark-mode .toggle-ball {
             background: var(--charcoal-black);
-            transform: translateX(28px);
+            transform: translateX(32px);
         }
 
-        /* --- Main Container --- */
-        .about-wrapper {
+        .toggle-ball i { font-size: 12px; color: var(--charcoal-black); }
+        .dark-mode .toggle-ball i { color: var(--clean-white); }
+
+        /* --- Main Layout --- */
+        .container {
             max-width: 1200px;
-            margin: 120px auto 60px;
+            margin: 0 auto;
             padding: 0 40px;
         }
+
+        section { margin-bottom: 120px; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Typography --- */
+        .section-tag {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--royal-blue);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        .dark-mode .section-tag { color: var(--emerald-aqua); }
+
+        .title-serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        p { font-size: 1.1rem; margin-bottom: 20px; color: var(--text-muted-light); }
+        .dark-mode p { color: var(--text-muted-dark); }
 
         /* --- Hero Section --- */
         .hero-section {
             text-align: center;
-            margin-bottom: 80px;
-            padding: 60px 0;
+            padding: 180px 0 60px;
+            max-width: 900px;
+            margin: 0 auto 80px;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            background: var(--text-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -2px;
         }
 
         .hero-title span {
@@ -170,32 +226,58 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 700px;
+            font-size: 1.3rem;
+            max-width: 800px;
             margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
-        .dark-mode .hero-subtitle {
-            color: #aaa;
+        /* --- Story Section --- */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
+
+        .story-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 600px;
+            border-radius: 30px;
+            background: url('https://images.unsplash.com/photo-1617897903246-719242758050?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dark-mode .story-image { box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
 
         /* --- Bento Grid Layout --- */
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(300px, auto);
             gap: 30px;
-            margin-bottom: 80px;
         }
 
         .bento-card {
             background: var(--glass-bg-light);
-            border-radius: 24px;
-            padding: 40px;
+            border-radius: 30px;
+            padding: 50px;
             border: 1px solid var(--glass-border-light);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
             backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             transition: var(--transition-all);
+            position: relative;
+            overflow: hidden;
         }
 
         .dark-mode .bento-card {
@@ -205,36 +287,43 @@
         }
 
         .bento-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 30px 60px rgba(72, 118, 207, 0.1);
         }
 
-        .card-full {
-            grid-column: 1 / -1;
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--brand-gradient);
+            opacity: 0;
+            transition: var(--transition-all);
         }
 
-        h2 {
+        .bento-card:hover::before { opacity: 1; }
+
+        .card-large { grid-column: span 2; grid-row: span 2; }
+        .card-wide { grid-column: span 2; }
+        .card-tall { grid-row: span 2; }
+
+        .bento-card h3 {
             font-size: 1.8rem;
             margin-bottom: 20px;
             font-weight: 700;
         }
 
-        .icon-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
         .icon-box {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
             background: rgba(72, 118, 207, 0.1);
             color: var(--royal-blue);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            transition: var(--transition-all);
         }
 
         .dark-mode .icon-box {
@@ -242,48 +331,20 @@
             color: var(--emerald-aqua);
         }
 
-        ul.styled-list {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        ul.styled-list li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-
-        ul.styled-list li::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: var(--emerald-aqua);
-        }
-
         /* --- Team Section --- */
-        .team-section {
-            margin-top: 80px;
-        }
-
-        .team-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+        .team-header { text-align: center; margin-bottom: 60px; }
+        .team-header h2 { font-size: 3rem; margin-bottom: 20px; }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
         }
 
         .team-member {
             background: var(--glass-bg-light);
-            border-radius: 24px;
-            padding: 40px 20px;
+            border-radius: 30px;
+            padding: 50px 30px;
             text-align: center;
             border: 1px solid var(--glass-border-light);
             transition: var(--transition-all);
@@ -295,43 +356,44 @@
         }
 
         .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
         }
 
         .member-photo {
-            width: 140px;
-            height: 140px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 20px;
+            margin: 0 auto 30px;
             border: 4px solid transparent;
-            background: linear-gradient(var(--clean-white), var(--clean-white)) padding-box, 
+            background: linear-gradient(var(--sand-beige), var(--sand-beige)) padding-box, 
                         var(--brand-gradient) border-box;
+            transition: var(--transition-all);
         }
 
         .dark-mode .member-photo {
-            background: linear-gradient(var(--charcoal-black), var(--charcoal-black)) padding-box, 
+            background: linear-gradient(var(--deep-onyx), var(--deep-onyx)) padding-box, 
                         var(--brand-gradient) border-box;
         }
 
-        .member-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
+        .team-member:hover .member-photo { transform: scale(1.05) rotate(5deg); }
 
+        .member-name { font-size: 1.6rem; font-weight: 700; margin-bottom: 5px; }
         .member-role {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--royal-blue);
-            font-weight: 500;
-            margin-bottom: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
+        .dark-mode .member-role { color: var(--emerald-aqua); }
 
-        .dark-mode .member-role {
-            color: var(--emerald-aqua);
+        .member-bio {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
 
         .social-links {
@@ -341,8 +403,8 @@
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: rgba(0,0,0,0.05);
             color: var(--charcoal-black);
@@ -351,6 +413,7 @@
             justify-content: center;
             text-decoration: none;
             transition: var(--transition-all);
+            font-size: 1.1rem;
         }
 
         .dark-mode .social-links a {
@@ -359,52 +422,65 @@
         }
 
         .social-links a:hover {
-            background: var(--royal-blue);
+            background: var(--brand-gradient);
             color: var(--clean-white);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
+
+        /* --- Footer CTA --- */
+        .footer-cta {
+            text-align: center;
+            padding: 100px 0;
+            background: var(--brand-gradient);
+            border-radius: 40px;
+            color: white;
+            margin-bottom: 60px;
+        }
+        .footer-cta h2 { font-size: 3rem; margin-bottom: 20px; color: white; }
+        .footer-cta p { color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto; }
 
         /* --- Modern AI Assistant Interface --- */
         .ai-fab {
             position: fixed;
             bottom: 40px;
             right: 40px;
-            width: 65px;
-            height: 65px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: var(--brand-gradient);
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(72, 118, 207, 0.4);
+            box-shadow: 0 15px 35px rgba(72, 118, 207, 0.4);
             z-index: 100;
             transition: var(--transition-all);
             border: 2px solid rgba(255,255,255,0.2);
         }
 
         .ai-fab:hover {
-            transform: scale(1.08) translateY(-5px);
-            box-shadow: 0 15px 35px rgba(72, 118, 207, 0.6);
+            transform: scale(1.1) translateY(-5px) rotate(10deg);
+            box-shadow: 0 20px 45px rgba(72, 118, 207, 0.6);
         }
 
         .ai-chat {
             position: fixed;
-            bottom: 120px;
+            bottom: 130px;
             right: 40px;
-            width: 380px;
+            width: 400px;
             background: var(--glass-bg-light);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            padding: 25px;
-            transform: translateY(20px) scale(0.95);
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            transform: translateY(30px) scale(0.9);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             z-index: 99;
             backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             border: 1px solid var(--glass-border-light);
             transform-origin: bottom right;
         }
@@ -418,50 +494,49 @@
         .dark-mode .ai-chat {
             background: var(--glass-bg-dark);
             border: 1px solid var(--glass-border-dark);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
         }
 
         .ai-chat-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .dark-mode .ai-chat-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        .dark-mode .ai-chat-header { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
 
         .ai-chat-title {
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
+            gap: 12px;
+            font-size: 1.2rem;
         }
 
-        .ai-chat-title i {
-            color: var(--royal-blue);
-        }
+        .ai-chat-title i { color: var(--royal-blue); }
         .dark-mode .ai-chat-title i { color: var(--emerald-aqua); }
 
         .ai-close-btn {
             background: rgba(0,0,0,0.05);
             border: none;
-            width: 30px;
-            height: 30px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             cursor: pointer;
             color: inherit;
             transition: var(--transition-all);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .dark-mode .ai-close-btn { background: rgba(255,255,255,0.1); }
-        .ai-close-btn:hover { background: #ff4d4d; color: white; }
+        .ai-close-btn:hover { background: #ff4d4d; color: white; transform: rotate(90deg); }
 
         .ai-chat-messages {
-            height: 320px;
+            height: 350px;
             overflow-y: auto;
             margin-bottom: 20px;
             padding-right: 10px;
@@ -470,15 +545,14 @@
             gap: 15px;
         }
 
-        /* Custom Scrollbar */
         .ai-chat-messages::-webkit-scrollbar { width: 6px; }
         .ai-chat-messages::-webkit-scrollbar-track { background: transparent; }
         .ai-chat-messages::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
         .dark-mode .ai-chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
 
         .ai-message {
-            padding: 12px 16px;
-            border-radius: 16px;
+            padding: 14px 18px;
+            border-radius: 20px;
             max-width: 85%;
             font-size: 0.95rem;
             line-height: 1.5;
@@ -509,28 +583,26 @@
             display: flex;
             gap: 10px;
             background: rgba(0,0,0,0.03);
-            padding: 5px;
+            padding: 8px;
             border-radius: 30px;
             border: 1px solid rgba(0,0,0,0.05);
         }
-        .dark-mode .ai-chat-input {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(255,255,255,0.05);
-        }
+        .dark-mode .ai-chat-input { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.05); }
 
         .ai-chat-input input {
             flex: 1;
-            padding: 12px 15px;
+            padding: 10px 15px;
             border: none;
             background: transparent;
             outline: none;
             color: inherit;
             font-family: inherit;
+            font-size: 0.95rem;
         }
 
         .ai-chat-input button {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: none;
             background: var(--royal-blue);
@@ -544,141 +616,196 @@
         .dark-mode .ai-chat-input button { background: var(--emerald-aqua); color: var(--charcoal-black); }
         .ai-chat-input button:hover { transform: scale(1.05); }
 
-        .ai-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        .ai-chip {
-            padding: 6px 12px;
-            border-radius: 20px;
-            background: transparent;
-            border: 1px solid rgba(72, 118, 207, 0.3);
-            color: var(--royal-blue);
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: var(--transition-all);
-        }
-        .dark-mode .ai-chip { border-color: rgba(0, 192, 139, 0.4); color: var(--emerald-aqua); }
-        .ai-chip:hover { background: rgba(72, 118, 207, 0.1); }
-        .dark-mode .ai-chip:hover { background: rgba(0, 192, 139, 0.1); }
-
         /* --- Responsive --- */
-        @media (max-width: 900px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.8rem; }
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .story-grid { grid-template-columns: 1fr; }
+            .story-image { height: 400px; order: -1; }
+            .card-large { grid-column: span 1; grid-row: span 1; }
         }
 
-        @media (max-width: 600px) {
-            .hero-title { font-size: 2.2rem; }
-            .about-wrapper { padding: 0 20px; }
-            .ai-chat { width: calc(100% - 40px); right: 20px; bottom: 110px; }
-            .ai-fab { right: 20px; bottom: 20px; width: 55px; height: 55px; }
+        @media (max-width: 768px) {
+            .bento-grid, .team-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 3rem; }
+            .card-wide, .card-tall { grid-column: span 1; grid-row: span 1; }
+            .container { padding: 0 20px; }
+            .ai-chat { width: calc(100% - 40px); right: 20px; bottom: 120px; }
+            .ai-fab { right: 20px; bottom: 20px; width: 60px; height: 60px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient Background -->
-    <div class="ambient-glow"></div>
-    <div class="ambient-glow two"></div>
+    <!-- Ambient Backgrounds -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
 
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="../index.html" class="logo-text">heysharlo.</a>
+            <a href="#" class="logo-text">heysharlo.</a>
             <div class="theme-toggle" id="theme-toggle">
-                <div class="toggle-ball"></div>
+                <div class="toggle-ball"><i class="fas fa-moon"></i></div>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="about-wrapper">
+    <main class="container">
         
         <!-- Hero Section -->
-        <section class="hero-section">
-            <h1 class="hero-title">Redefining <span>Beauty.</span></h1>
+        <section class="hero-section reveal">
+            <span class="section-tag">Welcome to the future of skincare</span>
+            <h1 class="hero-title">Redefining <span class="title-serif">Beauty.</span></h1>
             <p class="hero-subtitle">
-                Welcome to HeySharlo. We are revolutionizing the cosmetics industry by blending cutting-edge dermatological science with uncompromising luxury and compassionate skincare.
+                At HeySharlo, we view skincare not merely as a routine, but as a deeply personal ritual of reverence for your body. We are revolutionizing the global cosmetics industry by fusing cutting-edge dermatological science with uncompromising luxury, delivering a standard of self-care previously thought impossible.
             </p>
         </section>
 
-        <!-- Bento Layout -->
-        <section class="bento-grid">
+        <!-- Our Story / Genesis -->
+        <section class="story-grid reveal">
+            <div class="story-content">
+                <span class="section-tag">The Genesis</span>
+                <h2>Born from a Desire for <span style="background: var(--brand-gradient); -webkit-background-clip: text; color: transparent;">Perfection</span></h2>
+                <p>
+                    The story of HeySharlo began in the early months of 2026, conceived in a small, minimalist studio. Our founders realized a glaring dichotomy within the luxury beauty space: consumers were forced to choose between highly efficacious, scientifically formulated clinical products that lacked aesthetic pleasure, and beautifully packaged luxury brands filled with toxic, archaic ingredients.
+                </p>
+                <p>
+                    There was no middle ground. There was no brand that offered the absolute pinnacle of dermatological research wrapped in the decadent, sensory experience of high-end luxury. So, we decided to build it ourselves.
+                </p>
+                <p>
+                    After hundreds of iterations, partnering with world-renowned biochemists, and pushing the boundaries of botanical extraction, HeySharlo was born. Our mission is clear: to transform your bathroom vanity into an elite, personalized apothecary, ensuring that every drop applied is a testament to purity, science, and elegance.
+                </p>
+            </div>
+            <div class="story-image"></div>
+        </section>
+
+        <!-- Bento Layout: Philosophy & Ethics -->
+        <section class="reveal">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <span class="section-tag">Our Pillars</span>
+                <h2 style="font-size: 3rem;">The HeySharlo Standard</h2>
+            </div>
             
-            <div class="bento-card">
-                <div class="icon-header">
-                    <div class="icon-box"><i class="fas fa-book-open"></i></div>
-                    <h2>Our Heritage</h2>
+            <div class="bento-grid">
+                
+                <!-- Science -->
+                <div class="bento-card card-large">
+                    <div class="icon-box"><i class="fas fa-flask"></i></div>
+                    <h3>Clinically Engineered Efficacy</h3>
+                    <p>
+                        We do not believe in pseudo-science or "miracle" claims. At the heart of HeySharlo lies our proprietary bio-cellular research facility. Every formulation is the result of years of rigorous clinical trials, focusing on cellular regeneration, microbiome support, and transdermal delivery systems. 
+                    </p>
+                    <p>
+                        By synthesizing raw, potent botanicals with advanced active ingredients like encapsulated retinol, multi-weight hyaluronic acid, and bio-identical ceramides, we ensure that our products do not just sit on the surface of your skin—they fundamentally repair and transform it from within.
+                    </p>
                 </div>
-                <p>Founded in 2026, HeySharlo began as a boutique startup with a disruptive vision: to make advanced, luxury-grade cosmetics accessible to everyone. We noticed a gap between high-end aesthetics and clean, scientifically-backed ingredients—and we set out to bridge it.</p>
-            </div>
 
-            <div class="bento-card">
-                <div class="icon-header">
-                    <div class="icon-box"><i class="fas fa-bullseye"></i></div>
-                    <h2>Our Mission</h2>
+                <!-- Ethics -->
+                <div class="bento-card">
+                    <div class="icon-box"><i class="fas fa-leaf"></i></div>
+                    <h3>Radically Clean</h3>
+                    <p>
+                        Luxury means peace of mind. Our Clean Beauty Promise guarantees that every product is 100% cruelty-free, vegan-certified, and entirely devoid of parabens, sulfates, phthalates, and synthetic endocrine disruptors. 
+                    </p>
                 </div>
-                <p>To transform personal care routines into empowering rituals. We deliver highly personalized, clinically proven products that respect your skin's natural balance. We believe that true luxury lies in products that work seamlessly for you.</p>
-            </div>
 
-            <div class="bento-card card-full">
-                <div class="icon-header">
+                <!-- Aesthetics -->
+                <div class="bento-card">
                     <div class="icon-box"><i class="fas fa-gem"></i></div>
-                    <h2>The HeySharlo Standard</h2>
+                    <h3>Sensory Luxury</h3>
+                    <p>
+                        The tactile experience matters. From the heavy, sustainable glass of our bottles to the bespoke, allergen-free olfactory profiles designed by master perfumers, every touchpoint with HeySharlo is engineered to evoke a feeling of absolute indulgence.
+                    </p>
                 </div>
-                <p>We do not compromise on quality, ethics, or aesthetics. Every product developed in our labs undergoes rigorous testing to ensure it meets our strict criteria.</p>
-                <ul class="styled-list">
-                    <li><strong>Inclusive Formulations:</strong> Skincare and color cosmetics expertly engineered for all genders, skin tones, and types.</li>
-                    <li><strong>Clean Beauty Promise:</strong> 100% cruelty-free, vegan-friendly, and free from harmful parabens and sulfates.</li>
-                    <li><strong>Aesthetic Excellence:</strong> Bringing the feeling of a luxury spa directly to your daily vanity routine.</li>
-                </ul>
+
+                <!-- Inclusivity -->
+                <div class="bento-card card-wide">
+                    <div class="icon-box"><i class="fas fa-globe"></i></div>
+                    <h3>Universal Inclusivity</h3>
+                    <p>
+                        For too long, the luxury beauty industry has catered to a narrow demographic. HeySharlo was engineered from the ground up to be universally inclusive. Our cosmetic pigment technology is dynamically formulated to adapt to the widest spectrum of human skin tones, undertones, and textures. We develop products that respect the nuances of melanin-rich skin just as expertly as they address the sensitivities of fair skin. Beauty has no gender, no single color, and no age limit—our formulations reflect this profound truth.
+                    </p>
+                </div>
+
+                <!-- Sustainability -->
+                <div class="bento-card">
+                    <div class="icon-box"><i class="fas fa-recycle"></i></div>
+                    <h3>Earth-Conscious</h3>
+                    <p>
+                        We are proudly carbon-neutral. Our packaging utilizes 85% post-consumer recycled materials, and our supply chain is transparently sourced to ensure ethical labor and environmental regeneration at every step.
+                    </p>
+                </div>
+
             </div>
         </section>
 
         <!-- Team Section -->
-        <section class="team-section">
+        <section class="team-section reveal">
             <div class="team-header">
+                <span class="section-tag">The Architects of Beauty</span>
                 <h2>Meet the Visionaries</h2>
-                <p style="color: #666;">The minds behind the makeup.</p>
+                <p style="max-width: 600px; margin: 0 auto;">
+                    A symphony of expertise. Our leadership combines high-fashion aesthetics, scalable business intelligence, and world-class dermatological science to bring you the unparalleled HeySharlo experience.
+                </p>
             </div>
             
             <div class="team-grid">
+                
+                <!-- Vishal -->
                 <div class="team-member">
                     <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Vishal" class="member-photo">
                     <h3 class="member-name">Vishal</h3>
                     <p class="member-role">Founder & Creative Director</p>
+                    <p class="member-bio">
+                        With over a decade of experience in high-fashion and luxury brand architecture, Vishal recognized the need to bring elegance back to efficacious skincare. He oversees the aesthetic DNA of HeySharlo, ensuring every product looks as breathtaking as the results it delivers.
+                    </p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
+                <!-- Gautam -->
                 <div class="team-member">
                     <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Gautam" class="member-photo">
                     <h3 class="member-name">Gautam</h3>
                     <p class="member-role">Chief Executive Officer</p>
+                    <p class="member-bio">
+                        Gautam brings a formidable background in global supply chain logistics and sustainable enterprise scaling. His operational genius ensures that HeySharlo's uncompromising standards for ethical sourcing and carbon neutrality are met on a global scale without sacrificing quality.
+                    </p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 
+                <!-- Dr. Sarah -->
                 <div class="team-member">
                     <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dr. Sarah Johnson" class="member-photo">
                     <h3 class="member-name">Dr. Sarah Johnson</h3>
                     <p class="member-role">Chief Cosmetic Chemist</p>
+                    <p class="member-bio">
+                        Holding a Ph.D. in Dermato-Cosmetology, Dr. Johnson leads our global R&D laboratories. She has pioneered several of our patented transdermal delivery systems, bridging the gap between prescriptive dermatology and holistic, botanical skin health.
+                    </p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fas fa-flask"></i></a>
                     </div>
                 </div>
+
             </div>
         </section>
-    </div>
+
+        <!-- Footer CTA -->
+        <section class="footer-cta reveal">
+            <h2>Experience the Alchemy</h2>
+            <p>Join the HeySharlo community today. Discover skincare that refuses to compromise, engineered specifically for the modern connoisseur of beauty.</p>
+        </section>
+
+    </main>
 
     <!-- AI Floating Action Button -->
     <div class="ai-fab" id="ai-fab">
@@ -694,25 +821,35 @@
         
         <div class="ai-chat-messages" id="ai-chat-messages">
             <div class="ai-message ai-message-bot">
-                Welcome to HeySharlo. I'm your digital beauty concierge. How can I assist you with your routine today?
+                Welcome to HeySharlo. I'm your digital beauty concierge. How can I assist you in curating your luxury routine today?
             </div>
         </div>
         
-        <div class="ai-chips">
-            <button class="ai-chip" data-question="What services do you offer?">Our Services</button>
-            <button class="ai-chip" data-question="Are your products cruelty-free?">Cruelty-Free?</button>
-            <button class="ai-chip" data-question="How do I contact support?">Contact Support</button>
-        </div>
-        
         <div class="ai-chat-input">
-            <input type="text" id="ai-user-input" placeholder="Ask me anything...">
+            <input type="text" id="ai-user-input" placeholder="Ask about our formulations...">
             <button id="ai-send-btn"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
     <script>
+        // --- Scroll Reveal Logic ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+
         // --- Theme Toggle Logic ---
         const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
         const body = document.body;
         const aiChatTitle = document.getElementById('ai-chat-title');
         
@@ -721,12 +858,14 @@
             const isDarkMode = body.classList.contains('dark-mode');
             localStorage.setItem('darkMode', isDarkMode);
             
-            // Update AI Assistant Name based on aesthetic preference
+            // Update UI Elements
+            themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
             aiChatTitle.textContent = isDarkMode ? "Memo Concierge" : "Maya Concierge";
         }
         
         if (localStorage.getItem('darkMode') === 'true') {
             body.classList.add('dark-mode');
+            themeIcon.className = 'fas fa-sun';
             aiChatTitle.textContent = "Memo Concierge";
         }
         
@@ -739,18 +878,17 @@
         const aiMessages = document.getElementById('ai-chat-messages');
         const aiUserInput = document.getElementById('ai-user-input');
         const aiSendBtn = document.getElementById('ai-send-btn');
-        const aiChips = document.querySelectorAll('.ai-chip');
 
         const aiResponses = {
-            "what services do you offer?": "HeySharlo offers premium cosmetic products tailored for all skin types, personalized beauty consultations, and our exclusive Elite Membership programs.",
-            "how do i contact support?": "You can reach our dedicated support team 24/7 by emailing heysharloindia@gmail.com. We are always here to help you achieve your beauty goals.",
-            "tell me about the founders": "HeySharlo was founded by Vishal (Founder & Creative Director) and Gautam (CEO), combining visionary aesthetics with business acumen to redefine modern beauty.",
-            "are your products cruelty-free?": "Absolutely. 100% of HeySharlo products are cruelty-free, vegan-friendly, and formulated without harsh parabens or sulfates.",
-            "what makes heysharlo unique?": "We seamlessly blend high-end luxury aesthetics with scientifically-backed, clean formulations, ensuring inclusive beauty for every gender and skin tone.",
-            "default": "That's a great question! While I don't have the exact answer right now, our beauty experts at heysharloindia@gmail.com would love to assist you."
+            "hello": "Hello! Welcome to the world of HeySharlo. How can I assist your beauty journey today?",
+            "what is heysharlo": "HeySharlo is a luxury cosmetics brand founded in 2026. We bridge the gap between high-end aesthetics and clean, scientifically-backed dermatological formulations.",
+            "are you cruelty free": "Absolutely. Our 'Radically Clean' promise ensures 100% of HeySharlo products are cruelty-free, vegan, and free from harmful parabens and sulfates.",
+            "who are the founders": "HeySharlo was founded by Vishal (Creative Director) and Gautam (CEO), alongside our Chief Cosmetic Chemist, Dr. Sarah Johnson.",
+            "contact": "You can reach our elite support team 24/7 at concierge@heysharlo.com for personalized consultations.",
+            "default": "That's a beautiful question. While I am still learning about that specific topic, our human beauty experts at concierge@heysharlo.com would be delighted to assist you further."
         };
 
-        // Toggle Chat Window
+        // Toggle Chat
         aiFab.addEventListener('click', () => {
             aiChat.classList.add('active');
             setTimeout(() => aiUserInput.focus(), 300);
@@ -769,12 +907,19 @@
                 addMessage(rawMessage, 'user');
                 aiUserInput.value = '';
                 
-                // Show typing indicator (optional enhancement for future)
-                
+                // Simple keyword matching for responses
+                let responseKey = 'default';
+                for (let key in aiResponses) {
+                    if (lowerMessage.includes(key) && key !== 'default') {
+                        responseKey = key;
+                        break;
+                    }
+                }
+
+                // Simulate typing delay
                 setTimeout(() => {
-                    const response = aiResponses[lowerMessage] || aiResponses['default'];
-                    addMessage(response, 'bot');
-                }, 600);
+                    addMessage(aiResponses[responseKey], 'bot');
+                }, 800);
             }
         }
 
@@ -789,13 +934,6 @@
         aiSendBtn.addEventListener('click', sendMessage);
         aiUserInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
-        });
-
-        aiChips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                aiUserInput.value = chip.getAttribute('data-question');
-                sendMessage();
-            });
         });
     </script>
 </body>
