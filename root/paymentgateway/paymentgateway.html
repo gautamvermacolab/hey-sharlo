@@ -1,183 +1,591 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King Card - Payment</title>
+    <title>King Card - Premium Membership Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ==========================================================================
+           CSS VARIABLES & RESET
+           ========================================================================== */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #4a6491;
+            --accent-color: #d4af37; /* Gold accent for the 'King' theme */
+            --success-color: #4CAF50;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #eeeeee;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 5px 15px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            scroll-behavior: smooth;
         }
-        
+
         body {
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: var(--bg-light);
+            color: var(--text-main);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ==========================================================================
+           NAVIGATION BAR
+           ========================================================================== */
+        .navbar {
+            background: var(--primary-color);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-logo {
+            color: var(--bg-white);
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo i {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            color: var(--bg-white);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links li a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           HEADER SECTION
+           ========================================================================== */
         .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
             text-align: center;
-            padding: 10px 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: pulse 10s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
         .logo {
-            font-size: 2.2rem;
-            font-weight: bold;
+            font-size: 3.5rem;
+            font-weight: 900;
             margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
+
         .tagline {
-            font-size: 1.1rem;
+            font-size: 1.4rem;
             opacity: 0.9;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
+
+        /* ==========================================================================
+           MAIN CONTAINER & PAYMENT CARD
+           ========================================================================== */
+        .main-wrapper {
             flex: 1;
-            display: flex;
-            flex-direction: column;
         }
-        
+
+        .container {
+            max-width: 900px;
+            margin: -40px auto 40px;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
         .payment-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 40px;
+            border-top: 5px solid var(--accent-color);
+            animation: slideUp 0.8s ease-out;
         }
-        
-        .order-summary {
-            margin-bottom: 30px;
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
+
         h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.2rem;
             text-align: center;
+            font-weight: 700;
         }
-        
+
+        .order-summary {
+            margin-bottom: 40px;
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
         .product-info {
             display: flex;
             align-items: center;
             margin-bottom: 25px;
             padding-bottom: 25px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px dashed #ccc;
         }
-        
+
         .product-image {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #4a6491 0%, #2c3e50 100%);
-            border-radius: 8px;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-right: 20px;
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            margin-right: 25px;
+            box-shadow: var(--shadow-sm);
+            transform: rotate(-5deg);
+            transition: var(--transition);
         }
-        
+
+        .payment-card:hover .product-image {
+            transform: rotate(0deg) scale(1.05);
+        }
+
         .product-details {
             flex: 1;
         }
-        
+
         .product-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #2c3e50;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--primary-color);
         }
-        
+
         .product-description {
-            color: #666;
-            font-size: 0.9rem;
+            color: var(--text-light);
+            font-size: 1rem;
         }
-        
-        .price-section {
-            text-align: right;
-        }
-        
-        .price {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        .price-label {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
+
         .benefits {
-            margin: 25px 0;
+            margin: 20px 0;
         }
         
+        .benefits h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
         .benefit-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 12px;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
         }
-        
+
         .benefit-icon {
-            color: #4a6491;
-            margin-right: 10px;
+            color: var(--success-color);
+            margin-right: 15px;
             font-size: 1.2rem;
+            margin-top: 2px;
         }
-        
-        .payment-methods {
-            margin-top: 30px;
-        }
-        
-        .payment-methods img {
-            height: 30px;
-            margin-right: 10px;
-            margin-top: 10px;
-        }
-        
+
+        /* Payment Buttons Area */
         .payment-btn-container {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
-        
+
         .secure-payment {
             text-align: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 0.9rem;
+            margin-top: 25px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
         }
-        
+
         .secure-payment i {
-            color: #4CAF50;
-            margin-right: 5px;
+            color: var(--success-color);
         }
-        
-        .footer {
+
+        /* ==========================================================================
+           FEATURES SECTION
+           ========================================================================== */
+        .features-section {
+            padding: 60px 5%;
+            background-color: var(--bg-white);
             text-align: center;
-            padding: 20px;
-            background: #2c3e50;
-            color: white;
-            font-size: 0.9rem;
         }
-        
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-color);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* ==========================================================================
+           TESTIMONIALS SECTION
+           ========================================================================== */
+        .testimonials {
+            padding: 60px 5%;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .testimonials .section-title {
+            color: white;
+        }
+
+        .testimonials .section-subtitle {
+            color: #aaa;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stars {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* ==========================================================================
+           FAQ SECTION
+           ========================================================================== */
+        .faq-section {
+            padding: 60px 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--bg-white);
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            background: var(--bg-light);
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-light);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 200px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--accent-color);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        .footer {
+            background: #1a252f;
+            color: white;
+            padding: 60px 5% 20px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #bbb;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .footer-bottom i {
+            color: #e25555;
+        }
+
+        /* ==========================================================================
+           MEDIA QUERIES
+           ========================================================================== */
         @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .header {
+                padding: 40px 15px;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
             .container {
+                margin-top: -20px;
                 padding: 10px;
             }
             
             .payment-card {
-                padding: 20px;
+                padding: 25px 15px;
             }
             
             .product-info {
@@ -187,65 +595,238 @@
             
             .product-image {
                 margin-right: 0;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
             }
-            
-            .price-section {
-                text-align: center;
-                margin-top: 15px;
+
+            .benefit-item {
+                font-size: 0.95rem;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <i class="fas fa-chess-king"></i> KING CARD
+        </div>
+        <ul class="nav-links">
+            <li><a href="#payment">Get Card</a></li>
+            <li><a href="#features">Benefits</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+
     <div class="header">
-        <div class="logo">KING CARD</div>
-        <div class="tagline">Premium Membership</div>
-    </div>
-    
-    <div class="container">
-        <div class="payment-card">
-            <h1>Complete Purchase</h1>
-            
-            <div class="order-summary">
-                <div class="product-info">
-                    <div class="product-image">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-name">King Card Membership</div>
-                        <div class="product-description">5 year subscription with exclusive benefits and privileges</div>
-                    </div>
-                </div>
-                
-                <div class="benefits">
-                    <h3>Your Membership Includes:</h3>
-                    <div class="benefit-item">
-                        <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
-                        <span>Exclusive VIP access to premium venues</span>
-                    </div>
-                    <div class="benefit-item">
-                        <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
-                        <span>24/7 Personal concierge service</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="payment-btn-container">
-                <form>
-                  <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Qdy5cxlh06gLX3" async> </script> </form>
-                </form>
-            </div>
-            
-            <div class="secure-payment">
-                <i class="fas fa-lock"></i> Your payment information is processed securely
-            </div>
+        <div class="header-content">
+            <div class="logo">King Card</div>
+            <div class="tagline">The Ultimate Premium Membership for Elite Access and Exclusive Lifestyle Privileges</div>
         </div>
     </div>
     
-    <div class="footer">
-        ©2025 heysharlo. All rights reserved Made with love
+    <div class="main-wrapper">
+        <div class="container" id="payment">
+            <div class="payment-card">
+                <h1>Complete Your Purchase</h1>
+                
+                <div class="order-summary">
+                    <div class="product-info">
+                        <div class="product-image">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="product-details">
+                            <div class="product-name">King Card Black Tier</div>
+                            <div class="product-description">5-Year Subscription with global VIP privileges, zero foreign transaction fees, and priority support.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="benefits">
+                        <h3>What's Included Today:</h3>
+                        <div class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Immediate digital card activation via mobile app</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Exclusive VIP access to 1,200+ airport lounges globally</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Dedicated 24/7 personal concierge service</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Invitations to members-only networking events</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-btn-container">
+                    <form>
+                        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Qdy5cxlh06gLX3" async> </script> 
+                    </form>
+                </div>
+                
+                <div class="secure-payment">
+                    <i class="fas fa-shield-alt"></i> 256-bit SSL Encrypted • Processed securely via Razorpay
+                </div>
+            </div>
+        </div>
+
+        <section class="features-section" id="features">
+            <h2 class="section-title">Why Choose King Card?</h2>
+            <p class="section-subtitle">Experience a world without boundaries.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-gem feature-icon"></i>
+                    <h3 class="feature-title">Elite Status</h3>
+                    <p>Instant upgrades at partner hotels, car rentals, and select airlines worldwide.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset feature-icon"></i>
+                    <h3 class="feature-title">Priority Support</h3>
+                    <p>Skip the queue. Connect directly to our specialized support agents in under 30 seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-globe-americas feature-icon"></i>
+                    <h3 class="feature-title">Zero FX Fees</h3>
+                    <p>Travel the world and spend in any currency without hidden exchange rate markups.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials" id="testimonials">
+            <h2 class="section-title">What Our Members Say</h2>
+            <p class="section-subtitle">Join thousands of satisfied elite cardholders.</p>
+            
+            <div class="testimonial-grid">
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"The concierge service saved my anniversary. They managed to book a table at a fully booked Michelin-star restaurant in Paris with just a 2-hour notice."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">JS</div>
+                        <div>
+                            <strong>James S.</strong>
+                            <div style="font-size: 0.85rem; color: #ccc;">Member since 2021</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"I travel for business weekly. The unlimited lounge access alone pays for the card within the first few months. Highly recommended for frequent flyers."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">MK</div>
+                        <div>
+                            <strong>Maria K.</strong>
+                            <div style="font-size: 0.85rem; color: #ccc;">Member since 2023</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section" id="faq">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    When will I receive my physical card? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Your digital card is activated immediately upon successful payment. The physical, laser-engraved metal card will be shipped via priority courier and typically arrives within 3-5 business days globally.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Is there a cancellation policy? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we offer a 30-day money-back guarantee. If you are not completely satisfied with the benefits, you can request a full refund within the first 30 days of membership.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I add a family member? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely. The King Card Black Tier allows you to add up to two supplementary cards for family members at a 50% discounted rate, sharing all travel and lifestyle benefits.</p>
+                </div>
+            </div>
+        </section>
     </div>
+    
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="nav-logo" style="margin-bottom: 20px; font-size: 1.5rem;">
+                    <i class="fas fa-chess-king"></i> KING CARD
+                </div>
+                <p style="color: #bbb; font-size: 0.9rem;">Elevating your lifestyle through unparalleled access and premium financial freedom.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#payment">Purchase Card</a></li>
+                    <li><a href="#features">Member Benefits</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#faq">Help Center & FAQ</a></li>
+                    <li><a href="#">Concierge Contact</a></li>
+                    <li><a href="#">Lost or Stolen Card</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            &copy; 2026 heysharlo. All rights reserved. Made with <i class="fas fa-heart"></i> for premium experiences.
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close other open items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
+```
