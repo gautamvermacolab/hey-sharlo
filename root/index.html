@@ -2088,9 +2088,6 @@ display: none;
         }
     }
 
-
-
-
         // Preloader
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -2107,7 +2104,6 @@ display: none;
             }, 500);
         });
     
-
       // Theme Toggle Functionality
       const themeToggle = document.getElementById('theme-toggle');
     const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
@@ -2160,7 +2156,6 @@ display: none;
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
     }});
-    
             
             // Close mobile menu when clicking on links
     document.querySelectorAll('.mobile-menu .nav-link, .mobile-menu .login-btn').forEach(link => {
@@ -2170,15 +2165,14 @@ display: none;
         });
     });
     
-        // Navbar scroll effect
-       // Navbar scroll effect
+  // Navbar scroll effect
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
         if (navbar) {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         }  });
     
-        // Animate elements when they come into view
+// Animate elements when they come into view
         const animateOnScroll = function() {
             const elements = document.querySelectorAll('.feature-card, .product-card, .review-card');
             
@@ -2193,7 +2187,7 @@ display: none;
             });
         };
     
-        // Set initial state for animated elements
+    // Set initial state for animated elements
         document.querySelectorAll('.feature-card, .product-card, .review-card').forEach(element => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(30px)';
@@ -2205,11 +2199,10 @@ display: none;
 
 
 
-        // login hide when user login 
-
-            // Check login status and update button
+ // login hide when user login 
+// Check login status and update button
     document.addEventListener('DOMContentLoaded', function() {
-        // Firebase configuration
+// Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDCwQHJfzyW0kzw6W1iUDQan_vDL-BtBIg",
@@ -2221,20 +2214,21 @@ const firebaseConfig = {
   appId: "1:868380366943:web:b82dbe4225f6aafd0423ea",
   measurementId: "G-J6X58E0K90"
 };
-        // Initialize Firebase
+
+// Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         
-        // Check auth state
+// Check auth state
         firebase.auth().onAuthStateChanged(function(user) {
             const loginBtn = document.querySelector('.login-btn');
             if (user) {
-                // User is signed in
+// User is signed in
                 if (loginBtn) {
                     loginBtn.textContent = 'Profile';
                     loginBtn.href = 'dashboard.html';
                 }
             } else {
-                // User is signed out
+// User is signed out
                 if (loginBtn) {
                     loginBtn.textContent = 'Login';
                     loginBtn.href = 'login.html';
